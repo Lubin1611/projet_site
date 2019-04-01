@@ -1,0 +1,220 @@
+body {
+    margin-top: 0;
+    left: 0;
+    width: 99%;
+    height: 95vh;
+}
+
+
+
+.container {
+
+
+}
+
+.containerActu {
+
+    position: absolute;
+    width: 60%;
+    height: 60vh;
+    left: 20%;
+    top: 220px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px darkslategray;
+
+}
+
+h2 {
+
+    font-family: 'Crete Round';
+    font-size: 2em;
+    text-align: center;
+
+}
+
+#infos {
+
+    display: flex;
+    align-items: center;
+    position: relative;
+    border: 5px ridge black;
+    top: 2%;
+    width: 80%;
+    height: 10%;
+    margin-left: 10%;
+    padding: 2% 2% 2% 2%;
+}
+
+#infos2 {
+
+    display: flex;
+    align-items: center;
+    position: relative;
+    border: 5px ridge black;
+    margin-top: 5%;
+    width: 80%;
+    height: 10%;
+    margin-left: 10%;
+    padding: 2% 2% 2% 2%;
+
+}
+
+
+.logo {
+
+    position: relative;
+    float: left;
+
+}
+
+.description {
+
+    position: relative;
+    margin-left: 10%;
+
+}
+
+img {
+    width: 70%;
+}
+
+#titre {
+    text-align: center;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    background-image: url("../Ressources/italie.jpg");
+    color: white;
+    box-shadow: 12px 12px 2px 1px lightgrey;
+}
+
+#titre #connection{
+
+    display: inline-block;
+    position: relative;
+    left: 20%;
+    font-family: "Noto Sans";
+}
+
+#inscription {
+
+    position: relative;
+    top: 30%;
+    align-items: center;
+    text-align: center;
+    line-height: 45px;
+
+}
+
+
+#titre h1 {
+
+    display: inline-block;
+    font-family: "Noto Sans";
+    text-transform: uppercase;
+    font-size: 3em;
+    padding: 1% 1% 1% 1%;
+    border-radius: 10px;
+
+}
+
+#titre a {
+
+    position: relative;
+    color: black;
+    font-family: "Noto Sans";
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 2%;
+
+}
+
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+i {
+
+    font-size: 300%;
+    color: cornflowerblue;
+}
+
+.menuderoulant {
+
+    position: fixed;
+    display: none;
+    width: 20%;
+    height: 99%;
+    z-index: 10000;
+    background-color: rgba(255, 248, 253, 0.5);
+
+}
+
+#boutonListe {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+    height: 50px;
+    width: 50px;
+    font-size: 2em;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10000;
+}
+
+#menu {
+
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 5px;
+    height: 100%;
+}
+
+#menu > #bloc1, #bloc2, #bloc3, #bloc4 {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px black solid;
+    border-bottom: 1px black solid;
+    height: 5vh;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 5%;
+    font-family: "Noto Sans";
+    font-size: 1vw;
+    font-weight: bold;
+    box-shadow: 2px 2px 2px lightgrey;
+    cursor: pointer;
+}
+
+#bloc1:hover, #bloc2:hover, #bloc3:hover {
+
+    color: white;
+    background-color: orange;
+
+}
+
+
+.effetmenu {
+
+    animation-name: croix;
+    animation-iteration-count: 1;
+    animation-duration: 1s;
+}
+
+@keyframes croix {
+
+    0% {
+        transform: rotate(0deg)
+    }
+    100% {
+        transform: rotate(360deg)
+    }
+
+}

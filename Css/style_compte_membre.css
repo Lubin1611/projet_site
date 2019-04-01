@@ -1,0 +1,28 @@
+#sub_menu_buttons {
+
+    position: relative;
+    top: 25%;
+    left: 15%;
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+}
+
+#sub_menu_buttons > span {
+
+    border: 1px solid black;
+    text-align: center;
+    padding: 1%;
+    background-color: orange;
+    color: white;
+    font-family: "Noto Sans";
+
+}
+
+#informations_compte {
+
+    position: relative;
+    top: 35%;
+    left: 15%;
+
+}
