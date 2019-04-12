@@ -1,11 +1,10 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Lubin
- * Date: 23/03/2019
- * Time: 15:54
+ * User: Administrateur
+ * Date: 12/04/2019
+ * Time: 10:29
  */
-
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +13,6 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="Css/stylr.css">
-    <link rel="stylesheet" type="text/css" href="Css/style_compte_membre.css">
     <link href="https://fonts.googleapis.com/css?family=Courgette|Crete+Round|Noto+Sans+TC" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
           integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -58,7 +56,7 @@
 </aside>
 
 <div id="titre">
-    <h1>Page d'accueil</h1>
+    <h1>Espace admin</h1>
     <div id="connection">
 
         <?php
@@ -89,25 +87,33 @@
 
     </div>
 </div>
+<table>
+    <tr>
+        <th> Nom utilisateur </th>
+        <th> Prenom utilisateur </th>
+        <th> Pseudo utilisateur </th>
+        <th> Mail utilisateur </th>
+        <th> Avatar de l'utilisateur </th>
+        <th> Rang de l'utilisateur </th>
+        <th> Supprimer </th>
+    </tr>
 
-<div id="sub_menu_buttons">
-    <span>Informations de compte</span>
-    <span>Succès</span>
-    <span>Graphique de progression</span>
-    <span>A voir </span>
-</div>
+    <?php foreach ($admin as $users) { ?>
 
-<div id="informations_compte">
+    <tr>
+        <td><?php echo $users->nom ;?></td>
+        <td><?php echo $users->prenom ;?></td>
+        <td><?php echo $users->pseudo ;?></td>
+        <td><?php echo $users->mail ;?></td>
+        <td><img src ="<?php echo $users->avatar ;?>"></td>
+        <td><?php echo $users->rang ;?></td>
+        <td> <i class="fas fa-user-times"></i> </td>
+    </tr>
 
-    <p>Voici vos informations de compte, a garder préciseuement : </p>
+<?php }
+?>
 
-    <p>Votre nom : </p>&nbsp;<?= $utilisateur['nom']; ?>
-    <p>Votre prenom :</p>&nbsp;<?= $utilisateur['prenom']; ?>
-    <p>Votre pseudo :</p>&nbsp;<?= $utilisateur['pseudo']; ?>
-    <p>Votre mail :</p>&nbsp;<?= $utilisateur['mail']; ?>
-    <p>Avatar : </p><img src="<?= $utilisateur['avatar']; ?>">
-
-</div>
+</table>
 
 <script src="Js/java.js"></script>
 </body>

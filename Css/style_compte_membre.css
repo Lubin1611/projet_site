@@ -20,9 +20,15 @@
 }
 
 #informations_compte {
-
     position: relative;
     top: 35%;
     left: 15%;
+}
+
+img {
+    border: 1px black solid;
+    width: 20%;
+    height: 15%;
+    background-size: contain;
 
 }

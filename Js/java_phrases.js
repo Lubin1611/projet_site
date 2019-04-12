@@ -64,89 +64,6 @@ var compteurmots;
 var compteurQuestions = 0;
 var bonneReponse = 0;
 
-
-$("#jeuHtml, #jeuCss, #jeuJs, #jeuPhp").on("click", function () {
-
-
-
-    if (this.id == 'jeuHtml') {
-
-        aleaTab =  Math.floor(Math.random() * arrayHtml.length); // on définit une 1ere fois aleatab
-
-        game_of_words(arrayHtml);
-
-
-        $('#NouvMot').on('click', function () {
-
-            compteurQuestions++;
-            console.log("nbre de questions répondues : " + compteurQuestions);
-
-            aleaTab =  Math.floor(Math.random() * arrayHtml.length); // pour re-piocher aleatoirement, on redéfinit aleatab, au moment du click.
-
-            reset();
-
-            game_of_words(arrayHtml);
-
-            if (compteurQuestions == 10) {
-
-                document.getElementById("containerJeu").style.display = "none";
-                document.getElementById("resultats").style.display = "block";
-                console.log(bonneReponse);
-
-            }
-
-        });
-
-        $('#verifier').on('click', function () {
-
-            compteurbonsMots = 0;
-
-            verification(arrayHtml);
-
-        });
-
-        $('#Raz').on('click', function () {
-
-            compteurmots = -1;
-            console.log(compteurmots);
-            retry(arrayHtml);
-
-        });
-
-
-        $('#Rec').on('click', function () {
-
-            compteurmots = -1;
-
-            recommencer(arrayHtml);
-
-        });
-
-    }
-
-
-    if (this.id == 'jeuCss') {
-
-
-        game_of_words(arrayCss);
-
-    }
-
-
-    if (this.id == 'jeuJs') {
-
-
-        game_of_words(arrayJs);
-
-    }
-
-    if (this.id == 'jeuPhp') {
-
-        game_of_words(arrayPhp);
-    }
-});
-
-
 function reset() {
 
 
@@ -237,96 +154,176 @@ function game_of_words(tableau) {
 
 
 
-    function verification(tableau) {
+function verification(tableau) {
+
+    for (var index = 0; index < tableau[aleaTab].phrase.length; index++) {
+
+        if (document.getElementById("mot" + index).innerHTML == tableau[aleaTab].bonneRep[index]) {
+
+            compteurbonsMots++;
 
 
+            document.getElementById("mot" + index).style.backgroundColor = "green";
+            document.getElementById("mot" + index).style.color = "white";
+            document.getElementById("mot" + index).style.borderColor = "green";
 
-        for (var index = 0; index < tableau[aleaTab].phrase.length; index++) {
+        }
 
-            console.log("nbre de lettres : " + index);
+        else {
 
-            if (document.getElementById("mot" + index).innerHTML == tableau[aleaTab].bonneRep[index]) { // je suspecte qu'il aille chercher la longueur aleatoire d'un autre mot, pas celui du mot en cours choisi
+            document.getElementById("mot" + index).style.backgroundColor = "red";
+            document.getElementById("mot" + index).style.color = "white";
+            document.getElementById("mot" + index).style.borderColor = "red";
+        }
 
+        if (compteurbonsMots == tableau[aleaTab].phrase.length) {
 
-                document.getElementById("mot" + index).style.backgroundColor = "green";
-                document.getElementById("mot" + index).style.color = "white";
-                document.getElementById("mot" + index).style.borderColor = "green";
+            bonneReponse++;
 
-            } else {
+            document.getElementById("message").innerHTML = "Bravo, vous avez su assembler les mots dans le bon ordre et trouver la phrase !";
+            document.getElementById("verifier").disabled = true;
+            document.getElementById("Rec").style.display = "none";
 
-                document.getElementById("mot" + index).style.backgroundColor = "red";
-                document.getElementById("mot" + index).style.color = "white";
-                document.getElementById("mot" + index).style.borderColor = "red";
-            }
+            console.log("compteur de bonnes réponses :" + bonneReponse);
+        }
 
-            if (compteurbonsMots == tableau[aleaTab].phrase.length) {
+        if (compteurbonsMots < tableau[aleaTab].phrase.length) {
 
-                bonneReponse++;
-                console.log("nbre de bonnes réponses :" + bonneReponse);
-
-                document.getElementById("message").innerHTML = "Bravo, tu as su assembler les mots dans le bon ordre ! ";
-                $("#message").addClass("reussite");
-                document.getElementById("verifier").disabled = true;
-                document.getElementById("Rec").style.display = "none";
-
-            }
-
-            if (compteurbonsMots < tableau[aleaTab].phrase.length) {
-
-                document.getElementById("message").innerHTML = "Certains mots sont mal placés, ce sont ceux en rouge. Ceux en vert sont bien placés.";
-                document.getElementById("verifier").disabled = true;
-                document.getElementById("Raz").style.display = "none";
-                document.getElementById("Rec").style.display = "block";
-
-            }
+            document.getElementById("message").innerHTML = "Certains mots sont mal placés, ce sont ceux en rouge. Ceux en vert sont bien placés.";
+            document.getElementById("verifier").disabled = true;
+            document.getElementById("Raz").style.display = "none";
+            document.getElementById("Rec").style.display = "block";
 
         }
     }
+}
 
 
 
-        function retry(tableau) {
+function retry(tableau) {
 
-            compteurmots = -1;
+    compteurmots = -1;
 
-                $("#recupmots > div").html("");
+    $("#recupmots > div").html("");
 
-                for (var i = 0; i < tableau[aleaTab].phrase.length; i++) {
+    for (var i = 0; i < tableau[aleaTab].phrase.length; i++) {
 
-                    if (document.getElementById(i).style.display == "none") {
+        if (document.getElementById(i).style.display == "none") {
 
-                        document.getElementById(i).style.display = "block";
-                    }
+            document.getElementById(i).style.display = "block";
+        }
 
-                }
-         }
+    }
+}
 
 
 
 
 function recommencer(tableau) {
 
-      compteurmots = -1;
+    compteurmots = -1;
 
-      $("#recupmots > div").html("");
+    $("#recupmots > div").html("");
 
-      document.getElementById("message").style.display = "none";
-      document.getElementById("verifier").disabled = false;
-      document.getElementById("Rec").style.display = "none";
-      document.getElementById("Raz").style.display = "block";
+    document.getElementById("message").style.display = "none";
+    document.getElementById("verifier").disabled = false;
+    document.getElementById("Rec").style.display = "none";
+    document.getElementById("Raz").style.display = "block";
 
-      for (var i = 0; i < tableau[aleaTab].phrase.length; i++) {
+    for (var i = 0; i < tableau[aleaTab].phrase.length; i++) {
 
-          if (document.getElementById(i).style.display = "none") {
+        if (document.getElementById(i).style.display = "none") {
 
-              document.getElementById(i).style.display = "block";
+            document.getElementById(i).style.display = "block";
 
-              document.getElementById("mot" + i).style.backgroundColor = "white";
-              document.getElementById("mot" + i).style.color = "black";
-              document.getElementById("mot" + i).style.borderColor = "orange";
+            document.getElementById("mot" + i).style.backgroundColor = "white";
+            document.getElementById("mot" + i).style.color = "black";
+            document.getElementById("mot" + i).style.borderColor = "orange";
 
-          }
+        }
 
-  }
+    }
 
 }
+
+$("#jeuHtml, #jeuCss, #jeuJs, #jeuPhp").on("click", function () {
+
+    if (this.id == 'jeuHtml') {
+
+        aleaTab =  Math.floor(Math.random() * arrayHtml.length); // on définit une 1ere fois aleatab
+
+        game_of_words(arrayHtml);
+
+
+        $('#NouvMot').on('click', function () {
+
+            compteurQuestions++;
+            console.log("nbre de questions répondues : " + compteurQuestions);
+
+            aleaTab =  Math.floor(Math.random() * arrayHtml.length); // pour re-piocher aleatoirement, on redéfinit aleatab, au moment du click.
+
+            reset();
+
+            game_of_words(arrayHtml);
+
+            if (compteurQuestions == 10) {
+
+                console.log(bonneReponse);
+                document.getElementById("containerJeu").style.display = "none";
+                document.getElementById("resultats").style.display = "block";
+                document.getElementById("resultatjeu").innerHTML = bonneReponse + " /10";
+                document.getElementById("score_jeuphrase").value = bonneReponse;
+                document.getElementById("matiere").value = "html";
+
+            }
+
+        });
+
+        $('#verifier').on('click', function () {
+
+            compteurbonsMots = 0;
+
+            verification(arrayHtml);
+
+        });
+
+        $('#Raz').on('click', function () {
+
+            compteurmots = -1;
+            console.log(compteurmots);
+            retry(arrayHtml);
+
+        });
+
+
+        $('#Rec').on('click', function () {
+
+            compteurmots = -1;
+
+            recommencer(arrayHtml);
+
+        });
+
+    }
+
+
+    if (this.id == 'jeuCss') {
+
+
+        game_of_words(arrayCss);
+
+    }
+
+
+    if (this.id == 'jeuJs') {
+
+
+        game_of_words(arrayJs);
+
+    }
+
+    if (this.id == 'jeuPhp') {
+
+        game_of_words(arrayPhp);
+    }
+});

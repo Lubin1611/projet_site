@@ -140,3 +140,8 @@ body {
     display: flex;
     align-self: center;
 }
+
+#resultats {
+    margin-top: 20%;
+    display: none;
+}

@@ -5,7 +5,7 @@
  * Date: 12/03/2019
  * Time: 17:56
  */
-session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +13,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet"  type="text/css" href="Css/stylr.css">
+    <link rel="stylesheet" type="text/css" href="Css/stylr.css">
     <link href="https://fonts.googleapis.com/css?family=Courgette|Crete+Round|Noto+Sans+TC" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
           integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -28,63 +28,71 @@ session_start();
 
     <aside class="menuderoulant">
         <div id="menu">
-            <a href = "index.php?page=redirect" id="bloc1"><div>Accueil</div></a>
-            <a href ="index.php?page=training"  id="bloc2"><div>Entrainement au vocabulaire Italien</div></a>
-            <a href ="index.php?page=jeu"  id="bloc3"><div>Jeu phrases</div></a>
-
+            <a href="index.php?" id="bloc1">
+                <div>Accueil</div>
+            </a>
+            <a href="index.php?controler=redirections&action=entrainement" id="bloc2">
+                <div>Entrainement au vocabulaire Italien</div>
+            </a>
+            <a href="index.php?controler=redirections&action=jeu_mots" id="bloc3">
+                <div>Jeu phrases</div>
+            </a>
+            <a href="index.php?controler=redirections&action=quizz" id="bloc5">
+                <div>Quizz</div>
+            </a>
             <?php
 
-            if (isset($_SESSION['admin']) == 1) {
+            if (isset($_SESSION['rang']) and $_SESSION['rang'] == 0) {
 
                 ?>
 
-            <a href ="index.php?page=membres"  id="bloc4"><div>Espace membres</div></a>
+                <a href="index.php?controler=users&action=vue_espace_membres" id="bloc4">
+                    <div>Espace membres</div>
+                </a>
 
-            <?php
+                <?php
 
+            } else if (isset($_SESSION['rang']) and $_SESSION['rang'] == 1) { ?>
+                <a href="index.php?controler=users&action=panel_admin" id="bloc4">
+                    <div>Espace admin</div>
+                </a>
+                <?php
             } else {
+                ?>
 
-            ?>
-
-
-
-            <?php
-
+                <?php
             }
             ?>
-
         </div>
     </aside>
 
 
-    <div id = "titre">
+    <div id="titre">
         <h1>Page d'accueil</h1>
-        <div id = "connection">
+        <div id="connection">
 
             <?php
-
-            if (isset($_SESSION['admin']) == 1) {
-
+            if (isset($_SESSION['rang']) and $_SESSION['rang'] == 0 || $_SESSION['rang'] == 1) {
                 ?>
 
-                <p>Bienvenue, <?php echo $_SESSION['nom']; echo $_SESSION['prenom'];?></p>
-                <p>vous pouvez désormais accéder à votre espace membre a partir du menu</p>
-                <a href="index.php?page=logout">Se déconnecter</a>
+                <p>Bienvenue, <?php echo $_SESSION['nom'];
+                    echo $_SESSION['prenom']; ?></p>
+                <p>Id de session : <?php echo $_SESSION['id']; ?></p>
+                <p>vous pouvez désormais accéder à votre espace personnel a partir du menu</p>
+                <a href="index.php?controler=users&action=log_out">Se déconnecter</a>
 
                 <?php
-
             } else {
-
                 ?>
 
                 <h3>Connectez-vous</h3>
 
-                <form action="index.php?page=login" method="post">
-                    <label>Votre Pseudo : </label><input type = "text" name = "logPseudo">
-                    <label>Votre mot de passe : </label><input type = "text" name = "logMdp">
+                <form action="index.php?controler=users&action=connection" method="post">
+                    <label>Votre Pseudo : </label><input type="text" name="logPseudo">
+                    <label>Votre mot de passe : </label><input type="text" name="logMdp">
                     <input type="submit" name="Connectez-vous"><br><br>
                 </form>
-                <a href="index.php?page=inscription">Inscrivez-vous ici</a>
+                <a href="index.php?controler=users&action=vue_inscription">Inscrivez-vous ici</a>
 
                 <?php
             }
@@ -94,29 +102,28 @@ session_start();
     </div>
 
 
-
     <div class="containerActu">
 
         <h2>Actualités</h2>
 
-        <div id = infos>
+        <div id=infos>
             <div class="logo">
                 <i class="fas fa-arrow-circle-right"></i>
-                <a href ="https://www.lastampa.it/" target="_blank">
+                <a href="https://www.lastampa.it/" target="_blank">
                     <img src="Ressources/logoStampa.jpg"/>
                 </a>
             </div>
-            <span class = "description">Actualités en direct de la Stampa.</span>
+            <span class="description">Actualités en direct de la Stampa.</span>
         </div>
 
-        <div id = infos2>
+        <div id=infos2>
             <div class="logo">
                 <i class="fas fa-arrow-circle-right"></i>
-                <a href ="http://www.reverso.net/text_translation.aspx?lang=FR" target="_blank">
+                <a href="http://www.reverso.net/text_translation.aspx?lang=FR" target="_blank">
                     <img src="Ressources/reverso.PNG"/>
                 </a>
             </div>
-            <span class = "description">Site de reverso pour aider à la traduction.</span>
+            <span class="description">Site de reverso pour aider à la traduction.</span>
         </div>
     </div>
 

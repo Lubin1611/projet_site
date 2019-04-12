@@ -1,9 +1,9 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Lubin
- * Date: 23/03/2019
- * Time: 15:54
+ * User: Administrateur
+ * Date: 12/04/2019
+ * Time: 13:48
  */
 
 ?>
@@ -13,15 +13,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="Css/stylr.css">
-    <link rel="stylesheet" type="text/css" href="Css/style_compte_membre.css">
-    <link href="https://fonts.googleapis.com/css?family=Courgette|Crete+Round|Noto+Sans+TC" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <script src="lib/jquery.js"></script>
+    <link rel="stylesheet" href="Css/style_quizz.css">
+    <link rel="stylesheet" href="bootstrap/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="Css/stylr.css">
 </head>
 <body>
-
 <div id="boutonListe">+</div>
 
 <aside class="menuderoulant">
@@ -34,6 +31,9 @@
         </a>
         <a href="index.php?controler=redirections&action=jeu_mots" id="bloc3">
             <div>Jeu phrases</div>
+        </a>
+        <a href="index.php?controler=redirections&action=quizz" id="bloc5">
+            <div>Quizz</div>
         </a>
 
         <?php
@@ -58,19 +58,20 @@
 </aside>
 
 <div id="titre">
-    <h1>Page d'accueil</h1>
+    <h1>Accueil site</h1>
     <div id="connection">
 
         <?php
-        if (isset($_SESSION['rang']) and $_SESSION['rang'] == 0) {
-            ?>
 
-            <p>Bienvenue, <?php echo $_SESSION['nom'];
-                echo $_SESSION['prenom']; ?></p>
+        if (isset($_SESSION['rang']) and $_SESSION['rang'] == 0 || $_SESSION['rang'] == 1) {
+
+            ?>
+            <p>Bienvenue, <?php echo $_SESSION['nom']; ?>&nbsp;<?php $_SESSION['prenom']; ?></p>
             <p>vous pouvez désormais accéder à votre espace membre a partir du menu</p>
             <a href="index.php?controler=users&action=log_out">Se déconnecter</a>
 
             <?php
+
         } else {
             ?>
 
@@ -90,25 +91,39 @@
     </div>
 </div>
 
-<div id="sub_menu_buttons">
-    <span>Informations de compte</span>
-    <span>Succès</span>
-    <span>Graphique de progression</span>
-    <span>A voir </span>
+
+<div id="container_qcm">
+
+    <!--<span id="titre_quizz">Quizz</span>-->
+
+    <div id="container_quiz">
+
+
+        <span id="questions"></span>
+
+        <div id="container_reponses">
+            <div class="container">
+                <div class="row" id = "choix">
+                    <div class="col" id="reponse1">Column</div>
+                    <div class="col" id="reponse2">Column</div>
+                    <div class="w-100"></div>
+                    <div class="col" id="reponse3">Column</div>
+                    <div class="col" id="reponse4">Column</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="container_scores">
+
+
+        <div id="score" class="styleScore"></div>
+        <div id="explications_score" class="styleScore"></div>
+
+    </div>
 </div>
-
-<div id="informations_compte">
-
-    <p>Voici vos informations de compte, a garder préciseuement : </p>
-
-    <p>Votre nom : </p>&nbsp;<?= $utilisateur['nom']; ?>
-    <p>Votre prenom :</p>&nbsp;<?= $utilisateur['prenom']; ?>
-    <p>Votre pseudo :</p>&nbsp;<?= $utilisateur['pseudo']; ?>
-    <p>Votre mail :</p>&nbsp;<?= $utilisateur['mail']; ?>
-    <p>Avatar : </p><img src="<?= $utilisateur['avatar']; ?>">
-
-</div>
-
+<script src="Js/quizz.js"></script>
 <script src="Js/java.js"></script>
 </body>
 </html>

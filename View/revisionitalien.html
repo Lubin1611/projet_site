@@ -16,18 +16,61 @@
 
 <aside class="menuderoulant">
     <div id="menu">
-        <a href = "index.php?page=redirect" id="bloc1"><div>Accueil</div></a>
-        <a href ="index.php?page=training"  id="bloc2"><div>Entrainement au vocabulaire Italien</div></a>
-        <a href = "index.php?page=jeu" id ="bloc3"><div>Jeu phrases Italien</div></a>
+        <a href = "index.php?" id="bloc1"><div>Accueil</div></a>
+        <a href ="index.php?controler=redirections&action=entrainement"  id="bloc2"><div>Entrainement au vocabulaire Italien</div></a>
+        <a href ="index.php?controler=redirections&action=jeu_mots"  id="bloc3"><div>Jeu phrases</div></a>
+
+        <?php
+
+            if (isset($_SESSION['rang']) and $_SESSION['rang'] == 0) {
+
+                ?>
+
         <a href ="index.php?page=membres"  id="bloc4"><div>Espace membres</div></a>
+
+        <?php
+
+            } else {
+
+                ?>
+        <?php
+            }
+            ?>
     </div>
 </aside>
 
-
 <div id = "titre">
+    <h1>Accueil site</h1>
+    <div id = "connection">
 
-    <h1>Page d'accueil</h1>
+        <?php
 
+            if (isset($_SESSION['rang']) and $_SESSION['rang'] == 0 || $_SESSION['rang'] == 1) {
+
+                ?>
+        <p>Bienvenue, <?php echo $_SESSION['nom'];?>&nbsp;<?php $_SESSION['prenom'];?></p>
+        <p>vous pouvez désormais accéder à votre espace membre a partir du menu</p>
+        <a href="index.php?controler=users&action=log_out">Se déconnecter</a>
+
+        <?php
+
+            } else {
+                ?>
+
+        <h3>Connectez-vous</h3>
+
+        <form action="index.php?controler=users&action=connection" method="post">
+            <label>Votre Pseudo : </label><input type = "text" name = "logPseudo">
+            <label>Votre mot de passe : </label><input type = "text" name = "logMdp">
+            <input type="submit" name="Connectez-vous"><br><br>
+        </form>
+        <a href="index.php?controler=users&action=vue_inscription">Inscrivez-vous ici</a>
+
+        <?php
+            }
+            ?>
+
+    </div>
 </div>
 
 

@@ -6,77 +6,85 @@
  * Time: 16:08
  */
 
-if (isset($_GET['page'])) {
 
-    switch($_GET['page']) {
+if (isset($_GET['controler'])) { // isset GET['controler'] verifie si une valeur est indiquée en parametre dans l'url
 
-        case "training":
+    switch ($_GET['controler']) {
 
-            require_once"Controler/controler_con.php";
-            $training = new controler_con();
-            $training->training();
+        case "users":
 
+            require "Model/Users.php";
+            require "Controler/users_controler.php";
+
+            switch ($_GET['action']) {
+
+                case "vue_inscription":
+                    $to_sign_up = new users_controler();
+                    $to_sign_up->vue_sign_up();
+                    break;
+
+                case "inscription":
+                    $sign_up = new users_controler();
+                    $sign_up->submit_sign_up();
+                    break;
+
+                case "vue_espace_membres":
+                    $espace_membre = new users_controler();
+                    $espace_membre->vue_membres();
+                    break;
+
+                case "panel_admin":
+                    $admin = new users_controler();
+                    $admin->vue_admin();
+                    break;
+
+                case "connection":
+                    $login = new users_controler();
+                    $login->login();
+                    break;
+
+                case "log_out";
+                    $to_log_out = new users_controler();
+                    $to_log_out->submit_logout();
+
+            }
             break;
 
-        case "jeu":
+        case "redirections":
 
-            require_once"Controler/controler_con.php";
-            $training = new controler_con();
-            $training->jeuPhrases();
+            require "Controler/redirections.php";
 
-            break;
+            switch ($_GET['action']) {
 
-        case "login":
+                case "entrainement":
+                    $training = new redirections();
+                    $training->jeu1();
+                    break;
 
-            require_once "Controler/controler_con.php";
+                case "jeu_mots":
+                    $mots = new redirections();
+                    $mots->jeu2();
 
-            $donnees = new controler_con();
+                case "quizz":
+                    $quizz = new redirections();
+                    $quizz->jeu3();
+            }
+        break;
 
-            $donnees->login();
+        case "scores":
+            require "Model/Scores.php";
+            require "Controler/scores_controler.php";
 
-            break;
+            switch ($_GET['action']) {
 
-        case "inscription":
+                case "envoi":
+                    $send = new scores_controler();
+                    $send->send_scores();
 
-            require_once"Controler/controler_con.php";
-
-            $inscr = new controler_con();
-            $inscr->page_inscription();
-
-            break;
-
-        case "redirect":
-
-            require_once"Controler/controler_con.php";
-            $redir = new controler_con();
-            $redir->page_accueil();
-
-            break;
-
-        case "logout":
-
-            require_once "Controler/controler_con.php";
-
-            $logout = new controler_con();
-
-            $logout->send_logout();
-
-            break;
-
-        case "membres":
-
-            require_once "Controler/controler_con.php";
-
-            $membres = new controler_con();
-            $membres->page_membres();
-
-
+            }
     }
 
-}
-
-
-else{
+} else {
 
     //Page d'index
 
@@ -84,25 +92,6 @@ else{
     include "Model/connection_sql.php";
 
     $ctrl = new controler_con();
-    $ctrl-> page_accueil();
-
-}
-
-
-switch(isset($_POST['action']))
-{
-
-    case "inscription":
-
-        require_once "Controler/controler_con.php";
-
-        $donnees = new controler_con();
-
-        $donnees->envoi_donnees();
-
-        break;
-
-
-
+    $ctrl->page_accueil();
 
 }

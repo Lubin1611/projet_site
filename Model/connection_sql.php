@@ -39,9 +39,9 @@ class connection_sql
 
     public function inscription()
     {
-        var_dump($_POST);
 
-        $this->sql = $this->bdd->prepare("INSERT INTO `inscriptions_login` (`nom`, `prenom`, `pseudo`, `password`, `mail`, `admin`) VALUES (?,?,?,?,?,?)");
+
+        $this->sql = $this->bdd->prepare("INSERT INTO `users` (`nom`, `prenom`, `pseudo`, `password`, `avatar`, `mail`, `rang`) VALUES (?,?,?,?,?,?,?)");
 
         $this->nom = $_POST['nom'];
         filter_var($this->nom, FILTER_SANITIZE_STRING);
@@ -52,21 +52,25 @@ class connection_sql
         $this->pseudo = $_POST['pseudo'];
         filter_var($this->pseudo, FILTER_SANITIZE_STRING);
 
-        $this->mail = $_POST['mail'];
-        filter_var($this->mail, FILTER_SANITIZE_STRING);
-
         $this->motdepasse = $_POST['mdp'];
         filter_var($this->motdepasse, FILTER_SANITIZE_STRING);
 
-        $this->admin = '0';
+        $this->avatar = $_POST['avatar'];
+        filter_var($this->avatar, FILTER_SANITIZE_STRING);
+
+        $this->mail = $_POST['mail'];
+        filter_var($this->mail, FILTER_SANITIZE_STRING);
+
+        $this->rang = '0';
 
 
         $this->sql->bindParam(1, $this->nom);
         $this->sql->bindParam(2, $this->prenom);
         $this->sql->bindParam(3, $this->pseudo);
         $this->sql->bindParam(4, $this->motdepasse);
-        $this->sql->bindParam(5, $this->mail);
-        $this->sql->bindParam(6, $this->admin);
+        $this->sql->bindParam(5, $this->avatar);
+        $this->sql->bindParam(6, $this->mail);
+        $this->sql->bindParam(7, $this->rang);
 
         var_dump($this->sql);
 
@@ -74,8 +78,6 @@ class connection_sql
 
 
     }
-
-
 
     public function log()
     {
