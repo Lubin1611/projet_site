@@ -73,7 +73,7 @@
     </div>
 </div>
 
-
+<div id="container_questions">
 
 <div id = "questions"></div>
 
@@ -87,6 +87,22 @@
 <div id = "nextButton"></div>
 <div id = "bonsPts">Bons points</div>
 <div id = "highScore">Récompense : </div>
+
+</div>
+
+<div id = "fin_serie">
+    Félicitations ! vous avez fini une série de 10 questions !
+    <span>Vous avez un score de :</span><span id = "resultat_quest"></span>
+
+    <form action="index.php?controler=scores&action=envoi_reponses&id=<?php echo $_SESSION['id']; ?>" method="post">
+        <!-- infos sur le joueur : score effectué -->
+        <input type="hidden" id="score_jeuquestions" name="score_jeuquestions">
+        <!-- les infos sont collectées avec les input hidden -->
+        <input type="submit" value="sauvegarder mes resultats">
+    </form>
+
+    <span>Recommencer une serie de questions ? </span><span onclick="recommencer()">Cliquez ici</span>
+</div>
 
 
 <script src="Js/java.js"></script>

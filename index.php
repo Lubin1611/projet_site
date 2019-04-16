@@ -64,12 +64,13 @@ if (isset($_GET['controler'])) { // isset GET['controler'] verifie si une valeur
                 case "jeu_mots":
                     $mots = new redirections();
                     $mots->jeu2();
+                    break;
 
                 case "quizz":
                     $quizz = new redirections();
                     $quizz->jeu3();
             }
-        break;
+            break;
 
         case "scores":
             require "Model/Scores.php";
@@ -80,9 +81,33 @@ if (isset($_GET['controler'])) { // isset GET['controler'] verifie si une valeur
                 case "envoi":
                     $send = new scores_controler();
                     $send->send_scores();
+                    break;
+
+                case "envoi_quizz":
+                    $send_quizz = new scores_controler();
+                    $send_quizz->resultat_quizz();
+                    break;
+                case "envoi_reponses":
+                    $send_reponses = new scores_controler();
+                    $send_reponses->resultat_reponses();
 
             }
+        break;
+
+        case "ajax":
+            require "Model/Ajax.php";
+            require "Controler/controler_ajax.php";
+
+            switch ($_GET['action']) {
+
+                case "getscores":
+                    $get= new controler_ajax();
+                    $get->send_request();
+
+            }
+
     }
+
 
 } else {
 

@@ -13,11 +13,15 @@ var reponses = ["suffisant", "conference", "enrayer", "disparaitre", "esperer", 
 
 var randQuestions = Math.floor(Math.random() * questions.length);
 var pts = 0;
+var pts_serie = 0;
 var vie = 3;
+var tentatives = 0;
 
 
 
 function boutonReponse () {
+
+
 
     var utilisateur = champUtilisateur.value;
 
@@ -30,6 +34,9 @@ function boutonReponse () {
         document.getElementById("bonsPts").innerHTML = "Bravo, vous avez : " + pts + " bons points";
         document.getElementById("champUtilisateur").innerHTML = " ";
 
+        pts_serie++;
+        tentatives++;
+
     } else if (randQuestions == 0 && utilisateur !== reponses[0]) {
 
         document.getElementById("reponse").innerHTML = "nope";
@@ -37,11 +44,14 @@ function boutonReponse () {
         document.getElementById("reponse").innerHTML = "Il vous reste " + vie + " vies";
 
 
+
         if (vie < 0) {
 
             document.getElementById("bouton").disabled = true;
             document.getElementById("reponse").innerHTML = "Vous êtes a court de vies. La réponse était " + reponses[0];
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
+
+            tentatives++;
         }
     }
 
@@ -54,7 +64,8 @@ function boutonReponse () {
         pts++;
         document.getElementById("bonsPts").innerHTML = "Bravo, vous avez : " + pts + " bons points";
         document.getElementById("champUtilisateur").innerHTML = " ";
-
+        tentatives++;
+        pts_serie++;
 
     } else if (randQuestions == 1 && utilisateur !== reponses[1]) {
 
@@ -67,6 +78,7 @@ function boutonReponse () {
             document.getElementById("bouton").disabled = true;
             document.getElementById("reponse").innerHTML = "Vous êtes a court de vies. La réponse était " + reponses[1];
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
+            tentatives++;
         }
     }
 
@@ -79,7 +91,8 @@ function boutonReponse () {
         document.getElementById("bonsPts").innerHTML = "Bravo, vous avez : " + pts + " bons points";
         document.getElementById("champUtilisateur").innerHTML = " ";
 
-
+        tentatives++;
+        pts_serie++;
 
     } else if (randQuestions == 2 && utilisateur !== reponses[2]) {
 
@@ -92,6 +105,7 @@ function boutonReponse () {
             document.getElementById("bouton").disabled = true;
             document.getElementById("reponse").innerHTML = "Vous êtes a court de vies. La réponse était " + reponses[2];
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
+            tentatives++;
         }
     }
 
@@ -104,7 +118,8 @@ function boutonReponse () {
         pts++;
         document.getElementById("bonsPts").innerHTML = "Bravo, vous avez : " + pts + " bons points";
         document.getElementById("champUtilisateur").innerHTML = " ";
-
+        tentatives++;
+        pts_serie++;
 
     } else if (randQuestions == 3 && utilisateur !== reponses[3]) {
 
@@ -117,6 +132,7 @@ function boutonReponse () {
             document.getElementById("bouton").disabled = true;
             document.getElementById("reponse").innerHTML = "Vous êtes a court de vies. La réponse était " + reponses[3];
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
+            tentatives++;
         }
     }
 
@@ -128,8 +144,8 @@ function boutonReponse () {
         pts++;
         document.getElementById("bonsPts").innerHTML = "Bravo, vous avez : " + pts + " bons points";
         document.getElementById("champUtilisateur").innerHTML = " ";
-
-
+        tentatives++;
+        pts_serie++;
 
     } else if (randQuestions == 4 && utilisateur !== reponses[4]) {
 
@@ -142,7 +158,7 @@ function boutonReponse () {
             document.getElementById("bouton").disabled = true;
             document.getElementById("reponse").innerHTML = "Vous êtes a court de vies. La réponse était " + reponses[4];
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
-
+            tentatives++;
         }
     }
 
@@ -154,8 +170,8 @@ function boutonReponse () {
         pts++;
         document.getElementById("bonsPts").innerHTML = "Bravo, vous avez : " + pts + " bons points";
         document.getElementById("champUtilisateur").innerHTML = " ";
-
-
+        tentatives++;
+        pts_serie++;
 
     }  else if (randQuestions == 5 && utilisateur !== reponses[5]) {
 
@@ -168,6 +184,7 @@ function boutonReponse () {
             document.getElementById("bouton").disabled = true;
             document.getElementById("reponse").innerHTML = "Vous êtes a court de vies. La réponse était " + reponses[5];
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
+            tentatives++;
         }
     }
 
@@ -179,7 +196,8 @@ function boutonReponse () {
         pts++;
         document.getElementById("bonsPts").innerHTML = "Bravo, vous avez : " + pts + " bons points";
         document.getElementById("champUtilisateur").innerHTML = " ";
-
+        tentatives++;
+        pts_serie++;
 
     } else if (randQuestions == 6 && utilisateur !== reponses[6]) {
 
@@ -192,6 +210,7 @@ function boutonReponse () {
             document.getElementById("bouton").disabled = true;
             document.getElementById("reponse").innerHTML = "Vous êtes a court de vies. La réponse était " + reponses[6];
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
+            tentatives++;
         }
     }
 
@@ -203,6 +222,8 @@ function boutonReponse () {
         pts++;
         document.getElementById("bonsPts").innerHTML = "Bravo, vous avez : " + pts + " bons points";
         document.getElementById("champUtilisateur").innerHTML = " ";
+        tentatives++;
+        pts_serie++;
 
     } else if (randQuestions == 7 && utilisateur !== reponses[7]) {
 
@@ -216,6 +237,7 @@ function boutonReponse () {
             document.getElementById("bouton").disabled = true;
             document.getElementById("reponse").innerHTML = "Vous êtes a court de vies. La réponse était " + reponses[7];
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
+            tentatives++;
         }
     }
 
@@ -227,6 +249,8 @@ function boutonReponse () {
         pts++;
         document.getElementById("bonsPts").innerHTML = "Bravo, vous avez : " + pts + " bons points";
         document.getElementById("champUtilisateur").innerHTML = " ";
+        tentatives++;
+        pts_serie++;
 
     } else if (randQuestions == 8 && utilisateur !== reponses[8]) {
 
@@ -239,6 +263,7 @@ function boutonReponse () {
             document.getElementById("bouton").disabled = true;
             document.getElementById("reponse").innerHTML = "Vous êtes a court de vies. La réponse était " + reponses[8];
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
+            tentatives++;
         }
     }
 
@@ -250,6 +275,8 @@ function boutonReponse () {
         pts++;
         document.getElementById("bonsPts").innerHTML = "Bravo, vous avez : " + pts + " bons points";
         document.getElementById("champUtilisateur").innerHTML = " ";
+        tentatives++;
+        pts_serie++;
 
     } else if (randQuestions == 9 && utilisateur !== reponses[9]) {
 
@@ -262,6 +289,7 @@ function boutonReponse () {
             document.getElementById("bouton").disabled = true;
             document.getElementById("reponse").innerHTML = "Vous êtes a court de vies. La réponse était " + reponses[9];
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
+            tentatives++;
         }
     }
 
@@ -273,7 +301,8 @@ function boutonReponse () {
         pts++;
         document.getElementById("bonsPts").innerHTML = "Bravo, vous avez : " + pts + " bons points";
         document.getElementById("champUtilisateur").innerHTML = " ";
-
+        tentatives++;
+        pts_serie++;
 
     } else if (randQuestions == 10 && utilisateur !== reponses[10]) {
 
@@ -286,6 +315,7 @@ function boutonReponse () {
             document.getElementById("bouton").disabled = true;
             document.getElementById("reponse").innerHTML = "Vous êtes a court de vies. La réponse était " + reponses[10];
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
+            tentatives++;
         }
     }
 
@@ -297,7 +327,8 @@ function boutonReponse () {
         pts++;
         document.getElementById("bonsPts").innerHTML = "Bravo, vous avez : " + pts + " bons points";
         document.getElementById("champUtilisateur").innerHTML = " ";
-
+        tentatives++;
+        pts_serie++;
 
     } else if (randQuestions == 11 && utilisateur !== reponses[11]) {
 
@@ -310,6 +341,7 @@ function boutonReponse () {
             document.getElementById("bouton").disabled = true;
             document.getElementById("reponse").innerHTML = "Vous êtes a court de vies. La réponse était " + reponses[11];
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
+            tentatives++;
         }
     }
 
@@ -321,7 +353,8 @@ function boutonReponse () {
         pts++;
         document.getElementById("bonsPts").innerHTML = "Bravo, vous avez : " + pts + " bons points";
         document.getElementById("champUtilisateur").innerHTML = " ";
-
+        tentatives++;
+        pts_serie++;
 
     } else if (randQuestions == 12 && utilisateur !== reponses[12]) {
 
@@ -334,6 +367,7 @@ function boutonReponse () {
             document.getElementById("bouton").disabled = true;
             document.getElementById("reponse").innerHTML = "Vous êtes a court de vies. La réponse était " + reponses[12];
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
+            tentatives++;
         }
     }
 
@@ -345,7 +379,8 @@ function boutonReponse () {
         pts++;
         document.getElementById("bonsPts").innerHTML = "Bravo, vous avez : " + pts + " bons points";
         document.getElementById("champUtilisateur").innerHTML = " ";
-
+        tentatives++;
+        pts_serie++;
 
     } else if (randQuestions == 13 && utilisateur !== reponses[13]) {
 
@@ -358,6 +393,7 @@ function boutonReponse () {
             document.getElementById("bouton").disabled = true;
             document.getElementById("reponse").innerHTML = "Vous êtes a court de vies. La réponse était " + reponses[13];
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
+            tentatives++;
         }
     }
 
@@ -369,7 +405,8 @@ function boutonReponse () {
         pts++;
         document.getElementById("bonsPts").innerHTML = "Bravo, vous avez : " + pts + " bons points";
         document.getElementById("champUtilisateur").innerHTML = " ";
-
+        tentatives++;
+        pts_serie++;
 
     } else if (randQuestions == 14 && utilisateur !== reponses[14]) {
 
@@ -382,6 +419,7 @@ function boutonReponse () {
             document.getElementById("bouton").disabled = true;
             document.getElementById("reponse").innerHTML = "Vous êtes a court de vies. La réponse était " + reponses[14];
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
+            tentatives++;
         }
     }
 
@@ -393,6 +431,8 @@ function boutonReponse () {
         pts++;
         document.getElementById("bonsPts").innerHTML = "Bravo, vous avez : " + pts + " bons points";
         document.getElementById("champUtilisateur").innerHTML = " ";
+        tentatives++;
+        pts_serie++;
 
     } else if (randQuestions == 15 && utilisateur !== reponses[15]) {
 
@@ -405,6 +445,7 @@ function boutonReponse () {
 
             document.getElementById("reponse").innerHTML = "Vous êtes a court de vies. La réponse était " + reponses[15];
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
+            tentatives++;
         }
     }
 
@@ -416,6 +457,8 @@ function boutonReponse () {
         pts++;
         document.getElementById("bonsPts").innerHTML = "Bravo, vous avez : " + pts + " bons points";
         document.getElementById("champUtilisateur").innerHTML = " ";
+        tentatives++;
+        pts_serie++;
 
     } else if (randQuestions == 16 && utilisateur !== reponses[16]) {
 
@@ -428,6 +471,7 @@ function boutonReponse () {
             document.getElementById("bouton").disabled = true;
             document.getElementById("reponse").innerHTML = "Vous êtes a court de vies. La réponse était " + reponses[16];
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
+            tentatives++;
         }
     }
 
@@ -440,6 +484,8 @@ function boutonReponse () {
         pts++;
         document.getElementById("bonsPts").innerHTML = "Bravo, vous avez : " + pts + " bons points";
         document.getElementById("champUtilisateur").innerHTML = " ";
+        tentatives++;
+        pts_serie++;
 
     } else if (randQuestions == 17 && utilisateur !== reponses[17]) {
 
@@ -453,6 +499,7 @@ function boutonReponse () {
             document.getElementById("bouton").disabled = true;
             document.getElementById("reponse").innerHTML = "Vous êtes a court de vies. La réponse était " + reponses[17];
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
+            tentatives++;
         }
     }
 
@@ -464,6 +511,8 @@ function boutonReponse () {
         pts++;
         document.getElementById("bonsPts").innerHTML = "Bravo, vous avez : " + pts + " bons points";
         document.getElementById("champUtilisateur").innerHTML = " ";
+        tentatives++;
+        pts_serie++;
 
     }   else if (randQuestions == 18 && utilisateur !== reponses[18]) {
 
@@ -477,6 +526,7 @@ function boutonReponse () {
             document.getElementById("bouton").disabled = true;
             document.getElementById("reponse").innerHTML = "Vous êtes a court de vies. La réponse était " + reponses[18];
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
+            tentatives++;
         }
     }
 
@@ -488,6 +538,8 @@ function boutonReponse () {
         pts++;
         document.getElementById("bonsPts").innerHTML = "Bravo, vous avez : " + pts + " bons points";
         document.getElementById("champUtilisateur").innerHTML = " ";
+        tentatives++;
+        pts_serie++;
 
     }   else if (randQuestions == 19 && utilisateur !== reponses[19]) {
 
@@ -501,6 +553,7 @@ function boutonReponse () {
             document.getElementById("bouton").disabled = true;
             document.getElementById("reponse").innerHTML = "Vous êtes a court de vies. La réponse était " + reponses[19];
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
+            tentatives++;
         }
     }
 
@@ -512,6 +565,8 @@ function boutonReponse () {
         pts++;
         document.getElementById("bonsPts").innerHTML = "Bravo, vous avez : " + pts + " bons points";
         document.getElementById("champUtilisateur").innerHTML = " ";
+        tentatives++;
+        pts_serie++;
 
     }   else if (randQuestions == 20 && utilisateur !== reponses[20]) {
 
@@ -525,6 +580,7 @@ function boutonReponse () {
             document.getElementById("bouton").disabled = true;
             document.getElementById("reponse").innerHTML = "Vous êtes a court de vies. La réponse était " + reponses[20];
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
+            tentatives++;
         }
     }
 
@@ -536,6 +592,8 @@ function boutonReponse () {
         pts++;
         document.getElementById("bonsPts").innerHTML = "Bravo, vous avez : " + pts + " bons points";
         document.getElementById("champUtilisateur").innerHTML = " ";
+        tentatives++;
+        pts_serie++;
 
     }   else if (randQuestions == 21 && utilisateur !== reponses[21]) {
 
@@ -549,6 +607,7 @@ function boutonReponse () {
             document.getElementById("bouton").disabled = true;
             document.getElementById("reponse").innerHTML = "Vous êtes a court de vies. La réponse était " + reponses[21];
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
+            tentatives++;
         }
     }
 
@@ -560,6 +619,8 @@ function boutonReponse () {
         pts++;
         document.getElementById("bonsPts").innerHTML = "Bravo, vous avez : " + pts + " bons points";
         document.getElementById("champUtilisateur").innerHTML = " ";
+        tentatives++;
+        pts_serie++;
 
     }   else if (randQuestions == 22 && utilisateur !== reponses[22]) {
 
@@ -573,6 +634,7 @@ function boutonReponse () {
             document.getElementById("bouton").disabled = true;
             document.getElementById("reponse").innerHTML = "Vous êtes a court de vies. La réponse était " + reponses[22];
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
+            tentatives++;
         }
     }
 
@@ -584,6 +646,8 @@ function boutonReponse () {
         pts++;
         document.getElementById("bonsPts").innerHTML = "Bravo, vous avez : " + pts + " bons points";
         document.getElementById("champUtilisateur").innerHTML = " ";
+        tentatives++;
+        pts_serie++;
 
     }   else if (randQuestions == 23 && utilisateur !== reponses[23]) {
 
@@ -597,6 +661,7 @@ function boutonReponse () {
             document.getElementById("bouton").disabled = true;
             document.getElementById("reponse").innerHTML = "Vous êtes a court de vies. La réponse était " + reponses[23];
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
+            tentatives++;
         }
     }
 
@@ -608,6 +673,8 @@ function boutonReponse () {
         pts++;
         document.getElementById("bonsPts").innerHTML = "Bravo, vous avez : " + pts + " bons points";
         document.getElementById("champUtilisateur").innerHTML = " ";
+        tentatives++;
+        pts_serie++;
 
     }   else if (randQuestions == 24 && utilisateur !== reponses[24]) {
 
@@ -621,6 +688,7 @@ function boutonReponse () {
             document.getElementById("bouton").disabled = true;
             document.getElementById("reponse").innerHTML = "Vous êtes a court de vies. La réponse était " + reponses[24];
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
+            tentatives++;
         }
     }
 
@@ -632,6 +700,8 @@ function boutonReponse () {
         pts++;
         document.getElementById("bonsPts").innerHTML = "Bravo, vous avez : " + pts + " bons points";
         document.getElementById("champUtilisateur").innerHTML = " ";
+        tentatives++;
+        pts_serie++;
 
     }   else if (randQuestions == 25 && utilisateur !== reponses[25]) {
 
@@ -645,6 +715,7 @@ function boutonReponse () {
             document.getElementById("bouton").disabled = true;
             document.getElementById("reponse").innerHTML = "Vous êtes a court de vies. La réponse était " + reponses[25];
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
+            tentatives++;
         }
     }
 
@@ -656,6 +727,8 @@ function boutonReponse () {
         pts++;
         document.getElementById("bonsPts").innerHTML = "Bravo, vous avez : " + pts + " bons points";
         document.getElementById("champUtilisateur").innerHTML = " ";
+        tentatives++;
+        pts_serie++;
 
     }   else if (randQuestions == 26 && utilisateur !== reponses[26]) {
 
@@ -669,6 +742,7 @@ function boutonReponse () {
             document.getElementById("bouton").disabled = true;
             document.getElementById("reponse").innerHTML = "Vous êtes a court de vies. La réponse était " + reponses[26];
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
+            tentatives++;
         }
     }
 
@@ -680,6 +754,8 @@ function boutonReponse () {
         pts++;
         document.getElementById("bonsPts").innerHTML = "Bravo, vous avez : " + pts + " bons points";
         document.getElementById("champUtilisateur").innerHTML = " ";
+        tentatives++;
+        pts_serie++;
 
     }   else if (randQuestions == 27 && utilisateur !== reponses[27]) {
 
@@ -693,6 +769,7 @@ function boutonReponse () {
             document.getElementById("bouton").disabled = true;
             document.getElementById("reponse").innerHTML = "Vous êtes a court de vies. La réponse était " + reponses[27];
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
+            tentatives++;
         }
     }
 
@@ -704,6 +781,8 @@ function boutonReponse () {
         pts++;
         document.getElementById("bonsPts").innerHTML = "Bravo, vous avez : " + pts + " bons points";
         document.getElementById("champUtilisateur").innerHTML = " ";
+        tentatives++;
+        pts_serie++;
 
     }   else if (randQuestions == 28 && utilisateur !== reponses[28]) {
 
@@ -717,7 +796,17 @@ function boutonReponse () {
             document.getElementById("bouton").disabled = true;
             document.getElementById("reponse").innerHTML = "Vous êtes a court de vies. La réponse était " + reponses[28];
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
+            tentatives++;
         }
+    }
+
+    if (tentatives == 10) {
+
+        document.getElementById("container_questions").style.display = "none";
+        document.getElementById("fin_serie").style.display = "block";
+        document.getElementById("resultat_quest").innerHTML = pts_serie + " /10";
+        document.getElementById("resultat_quest").value = pts_serie;
+        document.getElementById("score_jeuquestions").value = pts_serie;
     }
 
     if (pts > 10) {
@@ -774,4 +863,19 @@ function reset () {
     document.getElementById("champUtilisateur").innerHTML = " ";
     vie = 3;
 
+}
+
+function recommencer() {
+
+    tentatives = 0;
+    pts_serie = 0;
+
+    document.getElementById("fin_serie").style.display = "none";
+    document.getElementById("container_questions").style.display = "block";
+    document.getElementById("bouton").disabled = false;
+    randQuestions = Math.floor(Math.random() * questions.length);
+    document.getElementById("questions").innerHTML = questions[randQuestions];
+    document.getElementById("nextButton").innerHTML = " ";
+    document.getElementById("reponse").innerHTML = " ";
+    document.getElementById("champUtilisateur").innerHTML = " ";
 }

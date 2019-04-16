@@ -80,3 +80,9 @@ h1 {
 .tailleBouton {
     height: 35px;
 }
+
+#fin_serie {
+    display: none;
+    margin-top: 400px;
+    margin-left: 200px;
+}

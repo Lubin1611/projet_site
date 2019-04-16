@@ -146,6 +146,7 @@ $("#reponse1, #reponse2, #reponse3, #reponse4").on("click", function () {
         document.getElementById("container_quiz").style.display = "none";
         document.getElementById("container_scores").style.display = "block";
         document.getElementById("score").innerHTML = "Vous avez un score de : " + compteurBon + " / 10";
+        document.getElementById("score_jeuquizz").value = compteurBon;
 
         for (var j = 0; j < reponseUser.length; j++) {
 
@@ -183,3 +184,9 @@ $("#reponse1, #reponse2, #reponse3, #reponse4").on("click", function () {
 
 
 });
+
+function recommencer() {
+
+    window.location.reload();
+
+}

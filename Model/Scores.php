@@ -39,4 +39,35 @@ class Scores
         $this->sql->execute();
 
     }
+
+    public function score_quizz($id, $result)
+    {
+
+        date_default_timezone_set('Europe/Paris');
+        $date = date("d/m/y H:i:s");
+
+        $this->sql = $this->bdd->prepare("INSERT INTO `score_quizz` (`date_quizz`, `score`, `id_users`) VALUES (?,?,?)");
+        $this->sql->bindParam(1, $date);
+        $this->sql->bindParam(2, $result);
+        $this->sql->bindParam(3, $id);
+
+        $this->sql->execute();
+
+    }
+
+    public function score_questions($id, $result)
+    {
+
+        date_default_timezone_set('Europe/Paris');
+        $date = date("d/m/y H:i:s");
+
+        $this->sql = $this->bdd->prepare("INSERT INTO `score_questions` (`date_reponses`, `score`, `id_users`) VALUES (?,?,?)");
+        $this->sql->bindParam(1, $date);
+        $this->sql->bindParam(2, $result);
+        $this->sql->bindParam(3, $id);
+
+        $this->sql->execute();
+
+    }
+
 }

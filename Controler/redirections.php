@@ -17,6 +17,7 @@ class redirections
 
     public function jeu1() {
 
+        session_start();
         include "View/revisionitalien.html";
     }
 
@@ -29,6 +30,7 @@ class redirections
 
     public function jeu3() {
 
+        session_start();
         include "View/vue_quizz.php";
 
     }

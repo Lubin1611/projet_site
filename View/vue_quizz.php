@@ -118,8 +118,21 @@
     <div id="container_scores">
 
 
-        <div id="score" class="styleScore"></div>
+        <div id="score" class="styleScore">
+
+        </div>
+
+        <form action="index.php?controler=scores&action=envoi_quizz&id=<?php echo $_SESSION['id']; ?>" method="post">
+            <!-- infos sur le joueur : score effectué-->
+            <input type="hidden" id="score_jeuquizz" name="score_jeuquizz">
+            <!-- les infos sont collectées avec les input hidden -->
+            <label>Inscrivez vos resultats, cliquez sur le bouton</label><input type="submit" value="sauvegarder mes resultats">
+        </form>
+
+        <span>Recommencer une serie de questions ? </span><span onclick="recommencer()">Cliquez ici</span>
+
         <div id="explications_score" class="styleScore"></div>
+
 
     </div>
 </div>

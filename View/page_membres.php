@@ -91,9 +91,9 @@
 </div>
 
 <div id="sub_menu_buttons">
-    <span>Informations de compte</span>
-    <span>Succès</span>
-    <span>Graphique de progression</span>
+    <span id = 'infos'>Informations de compte</span>
+    <span id = 'page_succes'>Succès</span>
+    <span id = 'page_graph'>Graphique de progression</span>
     <span>A voir </span>
 </div>
 
@@ -109,6 +109,31 @@
 
 </div>
 
+<div id="succes">
+
+
+
+
+</div>
+
+<div id="graphique">
+
+
+    <canvas id="myChart"></canvas>
+
+
+</div>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script src="Js/js_page_membre.js"></script>
 <script src="Js/java.js"></script>
+
+
 </body>
 </html>

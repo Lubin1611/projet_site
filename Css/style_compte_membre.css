@@ -32,3 +32,12 @@ img {
     background-size: contain;
 
 }
+
+#graphique {
+    display: none;
+    width: 50%;
+    height: 50%;
+    margin-top: 15%;
+    margin-left: 1%;
+}
+

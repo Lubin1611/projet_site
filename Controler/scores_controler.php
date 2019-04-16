@@ -33,4 +33,23 @@ class scores_controler
         include "View/Page_accueil.php";
     }
 
+    public function resultat_quizz() {
+        $id =  $_SESSION['id'];
+        $resultat_quizz =  $_POST['score_jeuquizz'];
+
+        $this->model->score_quizz($id, $resultat_quizz);
+
+        include "View/Page_accueil.php";
+    }
+
+    public function resultat_reponses() {
+
+        $id =  $_SESSION['id'];
+        $resultat_questions =  $_POST['score_jeuquestions'];
+
+        $this->model->score_questions($id, $resultat_questions);
+
+        include "View/Page_accueil.php";
+
+    }
 }

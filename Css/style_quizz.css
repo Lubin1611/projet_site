@@ -42,8 +42,32 @@ body {
     align-items: center;
     justify-content: center;
     height: 200px;
-    border: 1px solid black;
+    border: 1px solid white;
 
+}
+
+#reponse1 {
+    background-color: yellow;
+    color: white;
+    font-weight: bold;
+}
+
+#reponse2 {
+    background-color: orange;
+    color: white;
+    font-weight: bold;
+}
+
+#reponse3 {
+    background-color: greenyellow;
+    color: white;
+    font-weight: bold;
+}
+
+#reponse4 {
+    background-color: cyan;
+    color: white;
+    font-weight: bold;
 }
 
 
