@@ -4,6 +4,22 @@ body {
     font-family: lobster, sans-serif;
 }
 
+#container_questions {
+    display: none;
+}
+
+#accueil_jeu {
+    margin-top: 10%;
+}
+
+#start {
+    width: 7%;
+    height: 50px;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}
+
 h1 {
 
     text-align: center;

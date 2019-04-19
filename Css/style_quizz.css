@@ -77,6 +77,22 @@ body {
 
 }
 
+#accueil_quizz {
+    margin-top: 10%;
+    display: block;
+}
+
+#commencer {
+    width: 7%;
+    height: 50px;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}
+
+#container_qcm {
+    display: none;
+}
 
 #container_scores {
 

@@ -24,13 +24,13 @@
         <a href="index.php?" id="bloc1">
             <div>Accueil</div>
         </a>
-        <a href="index.php?controler=redirections&action=entrainement" id="bloc2">
+        <a href="index.php?controler=jeux&action=entrainement" id="bloc2">
             <div>Entrainement au vocabulaire Italien</div>
         </a>
-        <a href="index.php?controler=redirections&action=jeu_mots" id="bloc3">
+        <a href="index.php?controler=jeux&action=jeu_mots" id="bloc3">
             <div>Jeu phrases</div>
         </a>
-        <a href="index.php?controler=redirections&action=quizz" id="bloc5">
+        <a href="index.php?controler=jeux&action=quizz" id="bloc5">
             <div>Quizz</div>
         </a>
 
@@ -103,6 +103,21 @@
     <div id="jeuJs">Javascript</div>
     <div id="jeuPhp">PHP</div>
 
+    <div id="commenter">
+        <form action="index.php?controler=jeux&action=coms_words" method="post">
+            <label>Commentez :</label><textarea name="contenu_com" id="contenu_com"></textarea>
+            <input type="submit" value="Envoyez" class="btn btn-primary mb-2" id="btn">
+    </div>
+
+<div id = "commentaires">
+    <?php foreach ($commentaires as $com) { ?>
+
+    <h5>De : <?= $com->pseudo_user ?>, Date d'émission : <?= $com->date_com ?></h5>
+
+    <div id="contenu_commentaire"><?= $com->contenu_com ?></div>
+
+    <?php } ?>
+</div>
 </div>
 
 

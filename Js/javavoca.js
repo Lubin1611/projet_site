@@ -1,6 +1,3 @@
-//alert("Bienvenue sur mon site de révisions en Italien ! Dans vos réponses, n'utilisez pas de majuscules, ni d'accents, mon appli web ne le prend pas encore en compte. Revenez régulièrement, " +
- //   " le contenu sera mis a jour prochainement.")
-
 var questions = ["Que veux dire bastano ?", "Que veux dire conferenze ?", "Que veux dire arginare ?", "Que veux dire scomparso ?",
     "Que veux dire sperare ?", "Que veux dire fare ?", "Que veux dire fanculo ?", "Que veux dire tanta?", "Que veux dire scherzo?", "Que veux dire ti auguro ?"
     , "Que veux dire andare ?", "Que veux dire dovere ?", "Que veux dire conoscere ?", "Que veux dire sapere ?", "Que veux dire sedersi ?", "Que veux dire casa ?",
@@ -9,19 +6,29 @@ var questions = ["Que veux dire bastano ?", "Que veux dire conferenze ?", "Que v
 
 var reponses = ["suffisant", "conference", "enrayer", "disparaitre", "esperer", "faire", "putain", "beaucoup", "canular", "je te souhaite", "aller"
     , "devoir", "connaitre", "savoir", "s'assoir", "maison", "journal", "s'endormir", "se promener", "une rue", "une ville", "a la campagne", "un paysan",
-     "une fenetre", "un jardin", "une poule", "tableau de maitre", "faire la cuisine"];
+    "une fenetre", "un jardin", "une poule", "tableau de maitre", "faire la cuisine"];
+
+
+
 
 var randQuestions = Math.floor(Math.random() * questions.length);
+document.getElementById("questions").innerHTML = questions[randQuestions];
+var highscore;
+
 var pts = 0;
-var pts_serie = 0;
+var pts_serie = document.getElementById('highScore').innerHTML;
 var vie = 3;
 var tentatives = 0;
+var compteur_highscore = 0;
+
+$('#start').on('click', function () {
+
+    document.getElementById('accueil_jeu').style.display = "none";
+    document.getElementById('container_questions').style.display = "block";
+});
 
 
-
-function boutonReponse () {
-
-
+function boutonReponse() {
 
     var utilisateur = champUtilisateur.value;
 
@@ -36,13 +43,13 @@ function boutonReponse () {
 
         pts_serie++;
         tentatives++;
+        compteur_highscore++;
 
     } else if (randQuestions == 0 && utilisateur !== reponses[0]) {
 
         document.getElementById("reponse").innerHTML = "nope";
         vie--;
         document.getElementById("reponse").innerHTML = "Il vous reste " + vie + " vies";
-
 
 
         if (vie < 0) {
@@ -53,10 +60,7 @@ function boutonReponse () {
 
             tentatives++;
         }
-    }
-
-
-    else if (randQuestions == 1 && utilisateur == reponses[1]) {
+    } else if (randQuestions == 1 && utilisateur == reponses[1]) {
 
         document.getElementById("bouton").disabled = true;
         document.getElementById("reponse").innerHTML = "Bravo ! tu as la bonne réponse.";
@@ -66,7 +70,7 @@ function boutonReponse () {
         document.getElementById("champUtilisateur").innerHTML = " ";
         tentatives++;
         pts_serie++;
-
+        compteur_highscore++;
     } else if (randQuestions == 1 && utilisateur !== reponses[1]) {
 
         document.getElementById("reponse").innerHTML = "nope";
@@ -80,9 +84,7 @@ function boutonReponse () {
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
             tentatives++;
         }
-    }
-
-    else if (randQuestions == 2 && utilisateur == reponses[2]) {
+    } else if (randQuestions == 2 && utilisateur == reponses[2]) {
 
         document.getElementById("bouton").disabled = true;
         document.getElementById("reponse").innerHTML = "Bravo ! tu as la bonne réponse.";
@@ -93,6 +95,7 @@ function boutonReponse () {
 
         tentatives++;
         pts_serie++;
+        compteur_highscore++;
 
     } else if (randQuestions == 2 && utilisateur !== reponses[2]) {
 
@@ -107,10 +110,7 @@ function boutonReponse () {
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
             tentatives++;
         }
-    }
-
-
-    else if (randQuestions == 3 && utilisateur == reponses[3]) {
+    } else if (randQuestions == 3 && utilisateur == reponses[3]) {
 
         document.getElementById("bouton").disabled = true;
         document.getElementById("reponse").innerHTML = "Bravo ! tu as la bonne réponse.";
@@ -120,7 +120,7 @@ function boutonReponse () {
         document.getElementById("champUtilisateur").innerHTML = " ";
         tentatives++;
         pts_serie++;
-
+        compteur_highscore++;
     } else if (randQuestions == 3 && utilisateur !== reponses[3]) {
 
         document.getElementById("reponse").innerHTML = "nope";
@@ -134,9 +134,7 @@ function boutonReponse () {
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
             tentatives++;
         }
-    }
-
-    else if (randQuestions == 4 && utilisateur == reponses[4]) {
+    } else if (randQuestions == 4 && utilisateur == reponses[4]) {
 
         document.getElementById("bouton").disabled = true;
         document.getElementById("reponse").innerHTML = "Bravo ! tu as la bonne réponse.";
@@ -146,7 +144,7 @@ function boutonReponse () {
         document.getElementById("champUtilisateur").innerHTML = " ";
         tentatives++;
         pts_serie++;
-
+        compteur_highscore++;
     } else if (randQuestions == 4 && utilisateur !== reponses[4]) {
 
         document.getElementById("reponse").innerHTML = "nope";
@@ -160,9 +158,7 @@ function boutonReponse () {
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
             tentatives++;
         }
-    }
-
-    else if (randQuestions == 5 && utilisateur == reponses[5]) {
+    } else if (randQuestions == 5 && utilisateur == reponses[5]) {
 
         document.getElementById("bouton").disabled = true;
         document.getElementById("reponse").innerHTML = "Bravo ! tu as la bonne réponse.";
@@ -172,8 +168,8 @@ function boutonReponse () {
         document.getElementById("champUtilisateur").innerHTML = " ";
         tentatives++;
         pts_serie++;
-
-    }  else if (randQuestions == 5 && utilisateur !== reponses[5]) {
+        compteur_highscore++;
+    } else if (randQuestions == 5 && utilisateur !== reponses[5]) {
 
         document.getElementById("reponse").innerHTML = "nope";
         vie--;
@@ -186,9 +182,7 @@ function boutonReponse () {
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
             tentatives++;
         }
-    }
-
-    else if (randQuestions == 6 && utilisateur == reponses[6]) {
+    } else if (randQuestions == 6 && utilisateur == reponses[6]) {
 
         document.getElementById("bouton").disabled = true;
         document.getElementById("reponse").innerHTML = "Bravo ! tu as la bonne réponse.";
@@ -198,7 +192,7 @@ function boutonReponse () {
         document.getElementById("champUtilisateur").innerHTML = " ";
         tentatives++;
         pts_serie++;
-
+        compteur_highscore++;
     } else if (randQuestions == 6 && utilisateur !== reponses[6]) {
 
         document.getElementById("reponse").innerHTML = "nope";
@@ -212,9 +206,7 @@ function boutonReponse () {
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
             tentatives++;
         }
-    }
-
-    else if (randQuestions == 7 && utilisateur == reponses[7]) {
+    } else if (randQuestions == 7 && utilisateur == reponses[7]) {
 
         document.getElementById("bouton").disabled = true;
         document.getElementById("reponse").innerHTML = "Bravo ! tu as la bonne réponse.";
@@ -224,7 +216,7 @@ function boutonReponse () {
         document.getElementById("champUtilisateur").innerHTML = " ";
         tentatives++;
         pts_serie++;
-
+        compteur_highscore++;
     } else if (randQuestions == 7 && utilisateur !== reponses[7]) {
 
         document.getElementById("reponse").innerHTML = "nope";
@@ -239,9 +231,7 @@ function boutonReponse () {
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
             tentatives++;
         }
-    }
-
-    else if (randQuestions == 8 && utilisateur == reponses[8]) {
+    } else if (randQuestions == 8 && utilisateur == reponses[8]) {
 
         document.getElementById("bouton").disabled = true;
         document.getElementById("reponse").innerHTML = "Bravo ! tu as la bonne réponse.";
@@ -251,7 +241,7 @@ function boutonReponse () {
         document.getElementById("champUtilisateur").innerHTML = " ";
         tentatives++;
         pts_serie++;
-
+        compteur_highscore++;
     } else if (randQuestions == 8 && utilisateur !== reponses[8]) {
 
         document.getElementById("reponse").innerHTML = "nope";
@@ -265,9 +255,7 @@ function boutonReponse () {
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
             tentatives++;
         }
-    }
-
-    else if (randQuestions == 9 && utilisateur == reponses[9]) {
+    } else if (randQuestions == 9 && utilisateur == reponses[9]) {
 
         document.getElementById("bouton").disabled = true;
         document.getElementById("reponse").innerHTML = "Bravo ! tu as la bonne réponse.";
@@ -277,7 +265,7 @@ function boutonReponse () {
         document.getElementById("champUtilisateur").innerHTML = " ";
         tentatives++;
         pts_serie++;
-
+        compteur_highscore++;
     } else if (randQuestions == 9 && utilisateur !== reponses[9]) {
 
         document.getElementById("reponse").innerHTML = "nope";
@@ -291,9 +279,7 @@ function boutonReponse () {
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
             tentatives++;
         }
-    }
-
-    else if (randQuestions == 10 && utilisateur == reponses[10]) {
+    } else if (randQuestions == 10 && utilisateur == reponses[10]) {
 
         document.getElementById("bouton").disabled = true;
         document.getElementById("reponse").innerHTML = "Bravo ! tu as la bonne réponse.";
@@ -303,7 +289,7 @@ function boutonReponse () {
         document.getElementById("champUtilisateur").innerHTML = " ";
         tentatives++;
         pts_serie++;
-
+        compteur_highscore++;
     } else if (randQuestions == 10 && utilisateur !== reponses[10]) {
 
         document.getElementById("reponse").innerHTML = "nope";
@@ -317,9 +303,7 @@ function boutonReponse () {
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
             tentatives++;
         }
-    }
-
-    else if (randQuestions == 11 && utilisateur == reponses[11]) {
+    } else if (randQuestions == 11 && utilisateur == reponses[11]) {
 
         document.getElementById("bouton").disabled = true;
         document.getElementById("reponse").innerHTML = "Bravo ! tu as la bonne réponse.";
@@ -329,7 +313,7 @@ function boutonReponse () {
         document.getElementById("champUtilisateur").innerHTML = " ";
         tentatives++;
         pts_serie++;
-
+        compteur_highscore++;
     } else if (randQuestions == 11 && utilisateur !== reponses[11]) {
 
         document.getElementById("reponse").innerHTML = "nope";
@@ -343,9 +327,7 @@ function boutonReponse () {
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
             tentatives++;
         }
-    }
-
-    else if (randQuestions == 12 && utilisateur == reponses[12]) {
+    } else if (randQuestions == 12 && utilisateur == reponses[12]) {
 
         document.getElementById("bouton").disabled = true;
         document.getElementById("reponse").innerHTML = "Bravo ! tu as la bonne réponse.";
@@ -355,7 +337,7 @@ function boutonReponse () {
         document.getElementById("champUtilisateur").innerHTML = " ";
         tentatives++;
         pts_serie++;
-
+        compteur_highscore++;
     } else if (randQuestions == 12 && utilisateur !== reponses[12]) {
 
         document.getElementById("reponse").innerHTML = "nope";
@@ -369,9 +351,7 @@ function boutonReponse () {
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
             tentatives++;
         }
-    }
-
-    else if (randQuestions == 13 && utilisateur == reponses[13]) {
+    } else if (randQuestions == 13 && utilisateur == reponses[13]) {
 
         document.getElementById("bouton").disabled = true;
         document.getElementById("reponse").innerHTML = "Bravo ! tu as la bonne réponse.";
@@ -381,7 +361,7 @@ function boutonReponse () {
         document.getElementById("champUtilisateur").innerHTML = " ";
         tentatives++;
         pts_serie++;
-
+        compteur_highscore++;
     } else if (randQuestions == 13 && utilisateur !== reponses[13]) {
 
         document.getElementById("reponse").innerHTML = "nope";
@@ -395,9 +375,7 @@ function boutonReponse () {
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
             tentatives++;
         }
-    }
-
-    else if (randQuestions == 14 && utilisateur == reponses[14]) {
+    } else if (randQuestions == 14 && utilisateur == reponses[14]) {
 
         document.getElementById("bouton").disabled = true;
         document.getElementById("reponse").innerHTML = "Bravo ! tu as la bonne réponse.";
@@ -407,7 +385,7 @@ function boutonReponse () {
         document.getElementById("champUtilisateur").innerHTML = " ";
         tentatives++;
         pts_serie++;
-
+        compteur_highscore++;
     } else if (randQuestions == 14 && utilisateur !== reponses[14]) {
 
         document.getElementById("reponse").innerHTML = "nope";
@@ -421,9 +399,7 @@ function boutonReponse () {
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
             tentatives++;
         }
-    }
-
-    else if (randQuestions == 15 && utilisateur == reponses[15]) {
+    } else if (randQuestions == 15 && utilisateur == reponses[15]) {
 
         document.getElementById("bouton").disabled = true;
         document.getElementById("reponse").innerHTML = "Bravo ! tu as la bonne réponse.";
@@ -433,7 +409,7 @@ function boutonReponse () {
         document.getElementById("champUtilisateur").innerHTML = " ";
         tentatives++;
         pts_serie++;
-
+        compteur_highscore++;
     } else if (randQuestions == 15 && utilisateur !== reponses[15]) {
 
         document.getElementById("bouton").disabled = true;
@@ -447,9 +423,7 @@ function boutonReponse () {
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
             tentatives++;
         }
-    }
-
-    else if (randQuestions == 16 && utilisateur == reponses[16]) {
+    } else if (randQuestions == 16 && utilisateur == reponses[16]) {
 
         document.getElementById("bouton").disabled = true;
         document.getElementById("reponse").innerHTML = "Bravo ! tu as la bonne réponse.";
@@ -459,7 +433,7 @@ function boutonReponse () {
         document.getElementById("champUtilisateur").innerHTML = " ";
         tentatives++;
         pts_serie++;
-
+        compteur_highscore++;
     } else if (randQuestions == 16 && utilisateur !== reponses[16]) {
 
         document.getElementById("reponse").innerHTML = "nope";
@@ -473,10 +447,7 @@ function boutonReponse () {
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
             tentatives++;
         }
-    }
-
-
-    else if (randQuestions == 17 && utilisateur == reponses[17]) {
+    } else if (randQuestions == 17 && utilisateur == reponses[17]) {
 
         document.getElementById("bouton").disabled = true;
         document.getElementById("reponse").innerHTML = "Bravo ! tu as la bonne réponse.";
@@ -486,7 +457,7 @@ function boutonReponse () {
         document.getElementById("champUtilisateur").innerHTML = " ";
         tentatives++;
         pts_serie++;
-
+        compteur_highscore++;
     } else if (randQuestions == 17 && utilisateur !== reponses[17]) {
 
 
@@ -501,9 +472,7 @@ function boutonReponse () {
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
             tentatives++;
         }
-    }
-
-    else if (randQuestions == 18 && utilisateur == reponses[18]) {
+    } else if (randQuestions == 18 && utilisateur == reponses[18]) {
 
         document.getElementById("bouton").disabled = true;
         document.getElementById("reponse").innerHTML = "Bravo ! tu as la bonne réponse.";
@@ -513,8 +482,8 @@ function boutonReponse () {
         document.getElementById("champUtilisateur").innerHTML = " ";
         tentatives++;
         pts_serie++;
-
-    }   else if (randQuestions == 18 && utilisateur !== reponses[18]) {
+        compteur_highscore++;
+    } else if (randQuestions == 18 && utilisateur !== reponses[18]) {
 
 
         document.getElementById("reponse").innerHTML = "nope";
@@ -528,9 +497,7 @@ function boutonReponse () {
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
             tentatives++;
         }
-    }
-
-    else if (randQuestions == 19 && utilisateur == reponses[19]) {
+    } else if (randQuestions == 19 && utilisateur == reponses[19]) {
 
         document.getElementById("bouton").disabled = true;
         document.getElementById("reponse").innerHTML = "Bravo ! tu as la bonne réponse.";
@@ -540,8 +507,8 @@ function boutonReponse () {
         document.getElementById("champUtilisateur").innerHTML = " ";
         tentatives++;
         pts_serie++;
-
-    }   else if (randQuestions == 19 && utilisateur !== reponses[19]) {
+        compteur_highscore++;
+    } else if (randQuestions == 19 && utilisateur !== reponses[19]) {
 
 
         document.getElementById("reponse").innerHTML = "nope";
@@ -555,9 +522,7 @@ function boutonReponse () {
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
             tentatives++;
         }
-    }
-
-    else if (randQuestions == 20 && utilisateur == reponses[20]) {
+    } else if (randQuestions == 20 && utilisateur == reponses[20]) {
 
         document.getElementById("bouton").disabled = true;
         document.getElementById("reponse").innerHTML = "Bravo ! tu as la bonne réponse.";
@@ -567,8 +532,8 @@ function boutonReponse () {
         document.getElementById("champUtilisateur").innerHTML = " ";
         tentatives++;
         pts_serie++;
-
-    }   else if (randQuestions == 20 && utilisateur !== reponses[20]) {
+        compteur_highscore++;
+    } else if (randQuestions == 20 && utilisateur !== reponses[20]) {
 
 
         document.getElementById("reponse").innerHTML = "nope";
@@ -582,9 +547,7 @@ function boutonReponse () {
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
             tentatives++;
         }
-    }
-
-    else if (randQuestions == 21 && utilisateur == reponses[21]) {
+    } else if (randQuestions == 21 && utilisateur == reponses[21]) {
 
         document.getElementById("bouton").disabled = true;
         document.getElementById("reponse").innerHTML = "Bravo ! tu as la bonne réponse.";
@@ -594,8 +557,8 @@ function boutonReponse () {
         document.getElementById("champUtilisateur").innerHTML = " ";
         tentatives++;
         pts_serie++;
-
-    }   else if (randQuestions == 21 && utilisateur !== reponses[21]) {
+        compteur_highscore++;
+    } else if (randQuestions == 21 && utilisateur !== reponses[21]) {
 
 
         document.getElementById("reponse").innerHTML = "nope";
@@ -609,9 +572,7 @@ function boutonReponse () {
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
             tentatives++;
         }
-    }
-
-    else if (randQuestions == 22 && utilisateur == reponses[22]) {
+    } else if (randQuestions == 22 && utilisateur == reponses[22]) {
 
         document.getElementById("bouton").disabled = true;
         document.getElementById("reponse").innerHTML = "Bravo ! tu as la bonne réponse.";
@@ -621,8 +582,8 @@ function boutonReponse () {
         document.getElementById("champUtilisateur").innerHTML = " ";
         tentatives++;
         pts_serie++;
-
-    }   else if (randQuestions == 22 && utilisateur !== reponses[22]) {
+        compteur_highscore++;
+    } else if (randQuestions == 22 && utilisateur !== reponses[22]) {
 
 
         document.getElementById("reponse").innerHTML = "nope";
@@ -636,9 +597,7 @@ function boutonReponse () {
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
             tentatives++;
         }
-    }
-
-    else if (randQuestions == 23 && utilisateur == reponses[23]) {
+    } else if (randQuestions == 23 && utilisateur == reponses[23]) {
 
         document.getElementById("bouton").disabled = true;
         document.getElementById("reponse").innerHTML = "Bravo ! tu as la bonne réponse.";
@@ -648,8 +607,8 @@ function boutonReponse () {
         document.getElementById("champUtilisateur").innerHTML = " ";
         tentatives++;
         pts_serie++;
-
-    }   else if (randQuestions == 23 && utilisateur !== reponses[23]) {
+        compteur_highscore++;
+    } else if (randQuestions == 23 && utilisateur !== reponses[23]) {
 
 
         document.getElementById("reponse").innerHTML = "nope";
@@ -663,9 +622,7 @@ function boutonReponse () {
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
             tentatives++;
         }
-    }
-
-    else if (randQuestions == 24 && utilisateur == reponses[24]) {
+    } else if (randQuestions == 24 && utilisateur == reponses[24]) {
 
         document.getElementById("bouton").disabled = true;
         document.getElementById("reponse").innerHTML = "Bravo ! tu as la bonne réponse.";
@@ -675,8 +632,8 @@ function boutonReponse () {
         document.getElementById("champUtilisateur").innerHTML = " ";
         tentatives++;
         pts_serie++;
-
-    }   else if (randQuestions == 24 && utilisateur !== reponses[24]) {
+        compteur_highscore++;
+    } else if (randQuestions == 24 && utilisateur !== reponses[24]) {
 
 
         document.getElementById("reponse").innerHTML = "nope";
@@ -690,9 +647,7 @@ function boutonReponse () {
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
             tentatives++;
         }
-    }
-
-    else if (randQuestions == 25 && utilisateur == reponses[25]) {
+    } else if (randQuestions == 25 && utilisateur == reponses[25]) {
 
         document.getElementById("bouton").disabled = true;
         document.getElementById("reponse").innerHTML = "Bravo ! tu as la bonne réponse.";
@@ -702,8 +657,8 @@ function boutonReponse () {
         document.getElementById("champUtilisateur").innerHTML = " ";
         tentatives++;
         pts_serie++;
-
-    }   else if (randQuestions == 25 && utilisateur !== reponses[25]) {
+        compteur_highscore++;
+    } else if (randQuestions == 25 && utilisateur !== reponses[25]) {
 
 
         document.getElementById("reponse").innerHTML = "nope";
@@ -717,9 +672,7 @@ function boutonReponse () {
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
             tentatives++;
         }
-    }
-
-    else if (randQuestions == 26 && utilisateur == reponses[26]) {
+    } else if (randQuestions == 26 && utilisateur == reponses[26]) {
 
         document.getElementById("bouton").disabled = true;
         document.getElementById("reponse").innerHTML = "Bravo ! tu as la bonne réponse.";
@@ -729,8 +682,8 @@ function boutonReponse () {
         document.getElementById("champUtilisateur").innerHTML = " ";
         tentatives++;
         pts_serie++;
-
-    }   else if (randQuestions == 26 && utilisateur !== reponses[26]) {
+        compteur_highscore++;
+    } else if (randQuestions == 26 && utilisateur !== reponses[26]) {
 
 
         document.getElementById("reponse").innerHTML = "nope";
@@ -744,9 +697,7 @@ function boutonReponse () {
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
             tentatives++;
         }
-    }
-
-    else if (randQuestions == 27 && utilisateur == reponses[27]) {
+    } else if (randQuestions == 27 && utilisateur == reponses[27]) {
 
         document.getElementById("bouton").disabled = true;
         document.getElementById("reponse").innerHTML = "Bravo ! tu as la bonne réponse.";
@@ -756,8 +707,8 @@ function boutonReponse () {
         document.getElementById("champUtilisateur").innerHTML = " ";
         tentatives++;
         pts_serie++;
-
-    }   else if (randQuestions == 27 && utilisateur !== reponses[27]) {
+        compteur_highscore++;
+    } else if (randQuestions == 27 && utilisateur !== reponses[27]) {
 
 
         document.getElementById("reponse").innerHTML = "nope";
@@ -771,9 +722,7 @@ function boutonReponse () {
             document.getElementById("nextButton").innerHTML = "<button onclick = reset() class=\"tailleBouton\">Autre mot</button>";
             tentatives++;
         }
-    }
-
-    else if (randQuestions == 28 && utilisateur == reponses[28]) {
+    } else if (randQuestions == 28 && utilisateur == reponses[28]) {
 
         document.getElementById("bouton").disabled = true;
         document.getElementById("reponse").innerHTML = "Bravo ! tu as la bonne réponse.";
@@ -783,8 +732,8 @@ function boutonReponse () {
         document.getElementById("champUtilisateur").innerHTML = " ";
         tentatives++;
         pts_serie++;
-
-    }   else if (randQuestions == 28 && utilisateur !== reponses[28]) {
+        compteur_highscore++;
+    } else if (randQuestions == 28 && utilisateur !== reponses[28]) {
 
 
         document.getElementById("reponse").innerHTML = "nope";
@@ -800,49 +749,81 @@ function boutonReponse () {
         }
     }
 
+    function ajax_classement() {
+
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function () {
+
+            if (this.readyState == 4 && this.status == 200) {
+
+
+
+                console.log(this.responseText);
+            }
+
+        };
+
+        xhttp.open("GET", "index.php?controler=ajax&action=get_classement", true);
+
+        xhttp.send();
+    }
+
+    function ajaxadd_highscore() {
+
+        alert("envoi en cours");
+
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function () {
+
+            if (this.readyState == 4 && this.status == 200) {
+
+
+
+                console.log(this.responseText);
+            }
+
+        };
+
+        xhttp.open("GET", "index.php?controler=ajax&action=send_score&score=" + highscore, true);
+
+        xhttp.send();
+
+    }
+
     if (tentatives == 10) {
+
+
+        highscore = document.getElementById("highScore").innerHTML;
+        console.log(highscore);
+        ajaxadd_highscore();
 
         document.getElementById("container_questions").style.display = "none";
         document.getElementById("fin_serie").style.display = "block";
-        document.getElementById("resultat_quest").innerHTML = pts_serie + " /10";
+
+        ajax_classement();
+
+        document.getElementById("resultat_quest").innerHTML = pts + " /10";
         document.getElementById("resultat_quest").value = pts_serie;
         document.getElementById("score_jeuquestions").value = pts_serie;
+
+        ajax_classement();
     }
 
-    if (pts > 10) {
+    if (compteur_highscore == 5) {
 
-        document.getElementById("highScore").innerHTML = " Quel talent ! vous obtenez 500 points !"
+            pts_serie = pts_serie + 500;
+            document.getElementById("highScore").innerHTML = pts_serie;
+            compteur_highscore = 0;
+            console.log(compteur_highscore);
+        }
 
-    }
 
-    if (pts > 20) {
-
-        document.getElementById("highScore").innerHTML = " Quel talent ! vous obtenez 1500 points !"
-
-    }
-
-    if (pts > 25) {
-
-        document.getElementById("highScore").innerHTML = " Quel talent ! vous obtenez 3000 points !"
-
-    }
-
-    if (pts > 30) {
-
-        document.getElementById("highScore").innerHTML = " Quel talent ! vous obtenez 4000 points !"
-
-    }
-
-    if (pts > 40) {
-
-        document.getElementById("highScore").innerHTML = " Quel talent ! vous obtenez 5000 points !" + " Vous êtes un génie."
-
-    }
 }
 
-document.getElementById("questions").innerHTML = questions[randQuestions];
 
-function nextBtn () {
+function nextBtn() {
 
     document.getElementById("bouton").disabled = false;
     randQuestions = Math.floor(Math.random() * questions.length);
@@ -853,7 +834,7 @@ function nextBtn () {
 
 }
 
-function reset () {
+function reset() {
 
     document.getElementById("bouton").disabled = false;
     randQuestions = Math.floor(Math.random() * questions.length);
@@ -865,17 +846,22 @@ function reset () {
 
 }
 
+
 function recommencer() {
 
     tentatives = 0;
-    pts_serie = 0;
+    pts = 0;
 
     document.getElementById("fin_serie").style.display = "none";
-    document.getElementById("container_questions").style.display = "block";
+    document.getElementById("accueil_jeu").style.display = "block";
     document.getElementById("bouton").disabled = false;
+
     randQuestions = Math.floor(Math.random() * questions.length);
+
     document.getElementById("questions").innerHTML = questions[randQuestions];
     document.getElementById("nextButton").innerHTML = " ";
     document.getElementById("reponse").innerHTML = " ";
     document.getElementById("champUtilisateur").innerHTML = " ";
 }
+
+

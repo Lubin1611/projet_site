@@ -103,6 +103,13 @@ var arrQuestions = [
     }
 ];
 
+$('#commencer').on('click', function () {
+
+    document.getElementById('accueil_quizz').style.display = "none";
+    document.getElementById('container_qcm').style.display = "block";
+});
+
+
 var failUser = [];
 var solutionFail = [];
 var reponseUser = [];

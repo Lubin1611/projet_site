@@ -39,7 +39,7 @@ class controler_con
 
     public function training() {
 
-        include "View/revisionitalien.html";
+        include "View/revisions.php";
 
     }
 

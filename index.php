@@ -50,25 +50,41 @@ if (isset($_GET['controler'])) { // isset GET['controler'] verifie si une valeur
             }
             break;
 
-        case "redirections":
-
-            require "Controler/redirections.php";
+        case "jeux":
+            require "Model/Commentaires_jeux.php";
+            require "Controler/Jeux.php";
 
             switch ($_GET['action']) {
 
                 case "entrainement":
-                    $training = new redirections();
+                    $training = new Jeux();
                     $training->jeu1();
                     break;
 
                 case "jeu_mots":
-                    $mots = new redirections();
+                    $mots = new Jeux();
                     $mots->jeu2();
                     break;
 
                 case "quizz":
-                    $quizz = new redirections();
+                    $quizz = new Jeux();
                     $quizz->jeu3();
+                    break;
+
+                case "coms_words":
+                    $coms_jeu1 = new Jeux();
+                    $coms_jeu1->write_coms1();
+                    break;
+
+                case "coms_revisions":
+                    $com_jeu2 = new Jeux();
+                    $com_jeu2->write_com2();
+                    break;
+
+                case "coms_quizz":
+                    $com_jeu3 = new Jeux();
+                    $com_jeu3->write_com3();
+
             }
             break;
 
@@ -87,6 +103,7 @@ if (isset($_GET['controler'])) { // isset GET['controler'] verifie si une valeur
                     $send_quizz = new scores_controler();
                     $send_quizz->resultat_quizz();
                     break;
+
                 case "envoi_reponses":
                     $send_reponses = new scores_controler();
                     $send_reponses->resultat_reponses();
@@ -103,6 +120,26 @@ if (isset($_GET['controler'])) { // isset GET['controler'] verifie si une valeur
                 case "getscores":
                     $get= new controler_ajax();
                     $get->send_request();
+                break;
+
+                case "get_graph":
+                    $get_graph = new controler_ajax();
+                    $get_graph->request_graph();
+                    break;
+
+                case "get_graph2":
+                    $get_reponses = new controler_ajax();
+                    $get_reponses->request_questions();
+                    break;
+
+                case "send_score":
+                    $high_score = new controler_ajax();
+                    $high_score->send_highscore();
+                    break;
+
+                case "get_classement":
+                    $classement = new controler_ajax();
+                    $classement->request_classement();
 
             }
 

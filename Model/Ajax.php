@@ -54,4 +54,49 @@ class Ajax
        echo json_encode($tabJeu);
 
     }
+
+    public function generate_graph() {
+
+        session_start();
+
+        $id_session = $_SESSION['id'];
+
+        $this->sql = $this->bdd->query("select * from score_quizz where id_users = $id_session");
+
+        $this->sql = $this->sql->fetchAll();
+
+        echo json_encode($this->sql);
+
+    }
+
+    public function generate_graph2() {
+
+        session_start();
+
+        $id_session = $_SESSION['id'];
+
+        $this->sql = $this->bdd->query("select * from score_questions where id_users = $id_session");
+
+        $this->sql = $this->sql->fetchAll();
+
+        echo json_encode($this->sql);
+
+    }
+
+    public function set_highscore($score, $id) {
+
+        $this->sql = "UPDATE `highscore` SET score=? WHERE id_users = ?";
+        $this->bdd->prepare($this->sql)->execute([$score, $id]);
+
+        echo json_encode($score, $id);
+    }
+
+    public function classement() {
+
+        $this->classement = $this->bdd->query("select * from highscore order by score desc")->fetchall(PDO::FETCH_OBJ);
+
+        echo json_encode($this->classement);
+
+    }
+
 }

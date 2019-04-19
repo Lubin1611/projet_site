@@ -27,10 +27,10 @@
         <a href="index.php?" id="bloc1">
             <div>Accueil</div>
         </a>
-        <a href="index.php?controler=redirections&action=entrainement" id="bloc2">
+        <a href="index.php?controler=jeux&action=entrainement" id="bloc2">
             <div>Entrainement au vocabulaire Italien</div>
         </a>
-        <a href="index.php?controler=redirections&action=jeu_mots" id="bloc3">
+        <a href="index.php?controler=jeux&action=jeu_mots" id="bloc3">
             <div>Jeu phrases</div>
         </a>
 
