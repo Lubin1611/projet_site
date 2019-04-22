@@ -5,7 +5,7 @@
  * Date: 11/04/2019
  * Time: 10:54
  */
-session_start();
+
 
 class scores_controler
 {

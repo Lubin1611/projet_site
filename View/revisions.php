@@ -133,8 +133,10 @@
 
     <h1>Classement</h1>
 
-    <span id = id_joueur></span>
-    <span id = resultat_joueur></span>
+  <div id = 'classement'>
+      <div id ='nom'></div>
+      <div id ='score'></div>
+  </div>
 
     <span>Recommencer une serie de questions ? </span><span onclick="recommencer()">Cliquez ici</span>
 </div>

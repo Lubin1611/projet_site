@@ -1,68 +1,290 @@
-var arrayHtml = [{
-    question: "Pouvez vous ecrire en anglais la balise pour un titre de tableau ?",
-    phrase: ["c", "a", "p", "t", "i", "o", "n"],
-    bonneRep: ["c", "a", "p", "t", "i", "o", "n"],
-},
-    {
-        question: "Pouvez vous écrire en anglais la balise pour créer un formulaire ?",
-        phrase: ["f", "o", "r", "m"],
-        bonneRep: ["f", "o", "r", "m"],
-    },
-    {
-        question: "Pouvez vous écrire en anglais la balise pour un nouvel element de formulaire ?",
-        phrase: ["i", "n", "p", "u", "t"],
-        bonneRep: ["i", "n", "p", "u", "t"]
-    },
-
-
-];
-
-var arrayCss = [{
-    question: "Pouvez vous écrire en anglais le mot-clef qui désigne un nom de police ?",
-    phrase: ["f", "o", "n", "t", "-", "f", "a", "m", "i", "l", "y"],
-    bonneRep: ["f", "o", "n", "t", "-", "f", "a", "m", "i", "l", "y"],
-},
-    {
-        question: "Pouvez vous écrire en anglais le mot-clef qui transforme les lettres  ?",
-        phrase: ["t", "e", "x", "t", "-", "t", "r", "a", "n", "s", "f", "o", "r", "m"],
-        bonneRep: ["t", "e", "x", "t", "-", "t", "r", "a", "n", "s", "f", "o", "r", "m"]
-    }
-
-];
-
-var arrayJs = [{
-    question: "Pouvez vous écrire en anglais le mot-clef qui désigne un nom de police a la con ?",
-    phrase: ["f", "o", "n", "t", "-", "f", "a", "m", "i", "l", "y"],
-    bonneRep: ["f", "o", "n", "t", "-", "f", "a", "m", "i", "l", "y"],
-},
-    {
-        question: "Pouvez vous écrire en anglais le mot-clef qui transforme les lettres hguilkgh ?",
-        phrase: ["t", "e", "x", "t", "-", "t", "r", "a", "n", "s", "f", "o", "r", "m"],
-        bonneRep: ["t", "e", "x", "t", "-", "t", "r", "a", "n", "s", "f", "o", "r", "m"]
-    }
-
-];
-
-
-var arrayPhp = [{
-
-    question: "Pouvez vous écrire en anglais le mot-clef qui désigne un nom de police a la con ?",
-    phrase: ["f", "o", "n", "t", "-", "f", "a", "m", "i", "l", "y"],
-    bonneRep: ["f", "o", "n", "t", "-", "f", "a", "m", "i", "l", "y"],
-},
-    {
-        question: "Pouvez vous écrire en anglais le mot-clef qui transforme les lettres hguilkgh ?",
-        phrase: ["t", "e", "x", "t", "-", "t", "r", "a", "n", "s", "f", "o", "r", "m"],
-        bonneRep: ["t", "e", "x", "t", "-", "t", "r", "a", "n", "s", "f", "o", "r", "m"]
-    }
-
-];
-
+var obj_mots;
 var aleaTab;
-var compteurbonsMots;
+var compteurbonsMots = 0;
 var compteurmots;
 var compteurQuestions = 0;
 var bonneReponse = 0;
+var shuffledmot;
+var matiere;
+var score;
+
+
+$("#jeuHtml, #jeuCss, #jeuJs, #jeuPhp").on("click", function () {
+
+
+    if (this.id == 'jeuHtml') {
+
+        ajax_loadDB_html();
+
+
+        $('#NouvMot').on('click', function () {
+
+            compteurbonsMots = 0;
+            compteurQuestions++;
+            console.log("nbre de questions répondues : " + compteurQuestions);
+
+            aleaTab =  Math.floor(Math.random() * obj_mots.length); // pour re-piocher aleatoirement, on redéfinit aleatab, au moment du click.
+
+            reset();
+
+            game_of_words();
+
+            if (compteurQuestions == 10) {
+
+                document.getElementById("containerJeu").style.display = "none";
+                document.getElementById("resultats").style.display = "block";
+                document.getElementById("resultatjeu").innerHTML = bonneReponse + " /10";
+
+                console.log(bonneReponse);
+                score = bonneReponse;
+                matiere = "HTML";
+
+                ajax_send_scores(matiere, score);
+
+            }
+
+        });
+
+    }
+
+
+    if (this.id == 'jeuCss') {
+
+        ajax_loadDB_css();
+
+
+        $('#NouvMot').on('click', function () {
+
+            compteurbonsMots = 0;
+            compteurQuestions++;
+            console.log("nbre de questions répondues : " + compteurQuestions);
+
+            aleaTab =  Math.floor(Math.random() * obj_mots.length); // pour re-piocher aleatoirement, on redéfinit aleatab, au moment du click.
+
+            reset();
+
+            game_of_words();
+
+            if (compteurQuestions == 10) {
+
+                console.log(bonneReponse);
+                document.getElementById("containerJeu").style.display = "none";
+                document.getElementById("resultats").style.display = "block";
+                document.getElementById("resultatjeu").innerHTML = bonneReponse + " /10";
+
+                console.log(bonneReponse);
+                score = bonneReponse;
+                matiere = "HTML";
+
+                ajax_send_scores(matiere, score);
+
+            }
+
+        });
+
+
+    }
+
+
+    if (this.id == 'jeuJs') {
+
+        ajax_loadDB_js();
+
+
+        $('#NouvMot').on('click', function () {
+
+            compteurbonsMots = 0;
+            compteurQuestions++;
+            console.log("nbre de questions répondues : " + compteurQuestions);
+
+            aleaTab =  Math.floor(Math.random() * obj_mots.length); // pour re-piocher aleatoirement, on redéfinit aleatab, au moment du click.
+
+            reset();
+
+            game_of_words();
+
+            if (compteurQuestions == 10) {
+
+                console.log(bonneReponse);
+                document.getElementById("containerJeu").style.display = "none";
+                document.getElementById("resultats").style.display = "block";
+                document.getElementById("resultatjeu").innerHTML = bonneReponse + " /10";
+
+                console.log(bonneReponse);
+                score = bonneReponse;
+                matiere = "HTML";
+
+                ajax_send_scores(matiere, score);
+
+
+            }
+
+        });
+
+
+    }
+
+    if (this.id == 'jeuPhp') {
+
+        ajax_loadDB_php();
+
+
+        $('#NouvMot').on('click', function () {
+
+            compteurbonsMots = 0;
+            compteurQuestions++;
+            console.log("nbre de questions répondues : " + compteurQuestions);
+
+            aleaTab =  Math.floor(Math.random() * obj_mots.length); // pour re-piocher aleatoirement, on redéfinit aleatab, au moment du click.
+
+            reset();
+
+            game_of_words();
+
+            if (compteurQuestions == 10) {
+
+                console.log(bonneReponse);
+                document.getElementById("containerJeu").style.display = "none";
+                document.getElementById("resultats").style.display = "block";
+                document.getElementById("resultatjeu").innerHTML = bonneReponse + " /10";
+
+                console.log(bonneReponse);
+                score = bonneReponse;
+                matiere = "HTML";
+
+                ajax_send_scores(matiere, score);
+
+
+            }
+
+        });
+
+    }
+});
+
+
+function ajax_loadDB_html() {
+
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function () {
+
+        if (this.readyState == 4 && this.status == 200) {
+
+            obj_mots = JSON.parse(this.responseText);
+            console.log(obj_mots);
+
+            aleaTab =  Math.floor(Math.random() * obj_mots.length);
+
+
+            game_of_words(); // on déclenche le jeu une fois que le tableau de mots est chargé, car ici on se place dans la partie reponse de notre appel ajax
+
+        }
+    };
+
+    xhttp.open("GET", "index.php?controler=ajax&action=get_words_db", true);
+
+    xhttp.send();
+
+}
+
+function ajax_loadDB_css() {
+
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function () {
+
+        if (this.readyState == 4 && this.status == 200) {
+
+            obj_mots = JSON.parse(this.responseText);
+            console.log(obj_mots);
+
+            aleaTab =  Math.floor(Math.random() * obj_mots.length);
+
+
+            game_of_words(); // on déclenche le jeu une fois que le tableau de mots est chargé, car ici on se place dans la partie reponse de notre appel ajax
+
+        }
+    };
+
+    xhttp.open("GET", "index.php?controler=ajax&action=get_csswords_db", true);
+
+    xhttp.send();
+
+}
+
+function ajax_loadDB_js() {
+
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function () {
+
+        if (this.readyState == 4 && this.status == 200) {
+
+            obj_mots = JSON.parse(this.responseText);
+            console.log(obj_mots);
+
+            aleaTab =  Math.floor(Math.random() * obj_mots.length);
+
+
+            game_of_words(); // on déclenche le jeu une fois que le tableau de mots est chargé, car ici on se place dans la partie reponse de notre appel ajax
+
+        }
+    };
+
+    xhttp.open("GET", "index.php?controler=ajax&action=get_jswords_db", true);
+
+    xhttp.send();
+
+}
+
+function ajax_loadDB_php() {
+
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function () {
+
+        if (this.readyState == 4 && this.status == 200) {
+
+            obj_mots = JSON.parse(this.responseText);
+            console.log(obj_mots);
+
+            aleaTab =  Math.floor(Math.random() * obj_mots.length);
+
+
+            game_of_words(); // on déclenche le jeu une fois que le tableau de mots est chargé, car ici on se place dans la partie reponse de notre appel ajax
+
+        }
+    };
+
+    xhttp.open("GET", "index.php?controler=ajax&action=get_phpwords_db", true);
+
+    xhttp.send();
+
+}
+
+function ajax_send_scores(matiere, score) {
+
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function () {
+
+        if (this.readyState == 4 && this.status == 200) {
+
+
+            console.log(this.responseText);
+
+
+        }
+    };
+
+    xhttp.open("GET", "index.php?controler=ajax&action=scores_phrases&score=" + score + "&matiere=" + matiere, true);
+
+    xhttp.send();
+
+}
+
+
 
 function reset() {
 
@@ -72,51 +294,52 @@ function reset() {
     $("#message").empty();
 
     document.getElementById("verifier").disabled = false;
-    document.getElementById("Rec").style.display = "none";
-    document.getElementById("Raz").style.display = "block";
+    document.getElementById("Restart").style.display = "none";
+    document.getElementById("Retry").style.display = "block";
 
 }
 
 
 
 
-function game_of_words(tableau) {
+function game_of_words() {
 
 
     document.getElementById("menuJeu").style.display = "none";
     document.getElementById("containerJeu").style.display = "block";
 
     var conteneurQ = document.getElementById("Question");
-    var temp;
     var conteneurP = document.getElementById("aleaphrase");
     var conteneurRecup = document.getElementById("recupmots");
     var compteurmots = -1;
 
 
-    conteneurQ.innerHTML = tableau[aleaTab].question;
 
-    for (var i = tableau[aleaTab].phrase.length - 1; i >= 1; i--) {
+    conteneurQ.innerHTML = obj_mots[aleaTab].question;
 
-        var random = Math.floor(Math.random() * (i + 1));
+    // algorythme qui melange les lettres d'un mot.
 
-        temp = tableau[aleaTab].phrase[i];
-
-        tableau[aleaTab].phrase[i] = tableau[aleaTab].phrase[random];
-
-        tableau[aleaTab].phrase[random] = temp;
-
+    function shuffelWord(word) {
+        var shuffledWord = '';
+        word = word.split('');
+        while (word.length > 0) {
+            shuffledWord +=  word.splice(word.length * Math.random() << 0, 1);
+        }
+        return shuffledWord;
     }
+    shuffledmot = shuffelWord(obj_mots[aleaTab].phrase);
 
 
-    for (var j = 0; j < tableau[aleaTab].phrase.length; j++) { // attribue chaque span pour chaque lettre du mot gÃ©nÃ©rÃ©
+
+    for (var j = 0; j < shuffledmot.length; j++) { // attribue chaque span pour chaque lettre du mot gÃ©nÃ©rÃ©
         var tirets = document.createElement("span");
-        tirets.innerHTML = tableau[aleaTab].phrase[j];
+        tirets.innerHTML = shuffledmot[j];
         tirets.id = j;
         tirets.onclick = jeu;
         conteneurP.appendChild(tirets);
     }
 
-    for (var q = 0; q < tableau[aleaTab].phrase.length; q++) { // attribue chaque span pour chaque lettre du mot gÃ©nÃ©rÃ©
+    for (var q = 0; q < shuffledmot.length; q++) { // attribue chaque span pour chaque lettre du mot gÃ©nÃ©rÃ©
         var blocs = document.createElement("div");
         blocs.id = "mot" + q;
         blocs.style.display = "flex";
@@ -134,7 +357,7 @@ function game_of_words(tableau) {
 
         compteurmots++;
 
-        for (var p = 0; p < tableau[aleaTab].phrase.length; p++) {
+        for (var p = 0; p < obj_mots[aleaTab].phrase.length; p++) {
 
             if (compteurmots == p) {
 
@@ -151,17 +374,15 @@ function game_of_words(tableau) {
 }
 
 
+document.getElementById('verifier').addEventListener('click', function () {
 
 
+    for (var index = 0; index < obj_mots[aleaTab].phrase.length; index++) {
 
-function verification(tableau) {
-
-    for (var index = 0; index < tableau[aleaTab].phrase.length; index++) {
-
-        if (document.getElementById("mot" + index).innerHTML == tableau[aleaTab].bonneRep[index]) {
+        if (document.getElementById("mot" + index).innerHTML == obj_mots[aleaTab].bonnerep[index]) {
 
             compteurbonsMots++;
-
+            console.log("compteur bons mots :" + compteurbonsMots);
 
             document.getElementById("mot" + index).style.backgroundColor = "green";
             document.getElementById("mot" + index).style.color = "white";
@@ -176,37 +397,37 @@ function verification(tableau) {
             document.getElementById("mot" + index).style.borderColor = "red";
         }
 
-        if (compteurbonsMots == tableau[aleaTab].phrase.length) {
+        if (compteurbonsMots == obj_mots[aleaTab].phrase.length) {
 
             bonneReponse++;
 
             document.getElementById("message").innerHTML = "Bravo, vous avez su assembler les mots dans le bon ordre et trouver la phrase !";
             document.getElementById("verifier").disabled = true;
-            document.getElementById("Rec").style.display = "none";
+            document.getElementById("Restart").style.display = "none";
 
             console.log("compteur de bonnes réponses :" + bonneReponse);
         }
 
-        if (compteurbonsMots < tableau[aleaTab].phrase.length) {
+        if (compteurbonsMots < obj_mots[aleaTab].phrase.length) {
 
             document.getElementById("message").innerHTML = "Certains mots sont mal placés, ce sont ceux en rouge. Ceux en vert sont bien placés.";
             document.getElementById("verifier").disabled = true;
-            document.getElementById("Raz").style.display = "none";
-            document.getElementById("Rec").style.display = "block";
+            document.getElementById("Retry").style.display = "none";
+            document.getElementById("Restart").style.display = "block";
 
         }
     }
-}
 
+});
 
+document.getElementById('Retry').addEventListener('click', function () {
 
-function retry(tableau) {
-
+    compteurbonsMots = 0;
     compteurmots = -1;
 
     $("#recupmots > div").html("");
 
-    for (var i = 0; i < tableau[aleaTab].phrase.length; i++) {
+    for (var i = 0; i < obj_mots[aleaTab].phrase.length; i++) {
 
         if (document.getElementById(i).style.display == "none") {
 
@@ -214,23 +435,21 @@ function retry(tableau) {
         }
 
     }
-}
+});
 
+document.getElementById('Restart').addEventListener('click', function () {
 
-
-
-function recommencer(tableau) {
-
+    compteurbonsMots = 0;
     compteurmots = -1;
 
     $("#recupmots > div").html("");
 
     document.getElementById("message").style.display = "none";
     document.getElementById("verifier").disabled = false;
-    document.getElementById("Rec").style.display = "none";
-    document.getElementById("Raz").style.display = "block";
+    document.getElementById("Restart").style.display = "none";
+    document.getElementById("Retry").style.display = "block";
 
-    for (var i = 0; i < tableau[aleaTab].phrase.length; i++) {
+    for (var i = 0; i < obj_mots[aleaTab].phrase.length; i++) {
 
         if (document.getElementById(i).style.display = "none") {
 
@@ -242,88 +461,5 @@ function recommencer(tableau) {
 
         }
 
-    }
-
-}
-
-$("#jeuHtml, #jeuCss, #jeuJs, #jeuPhp").on("click", function () {
-
-    if (this.id == 'jeuHtml') {
-
-        aleaTab =  Math.floor(Math.random() * arrayHtml.length); // on définit une 1ere fois aleatab
-
-        game_of_words(arrayHtml);
-
-
-        $('#NouvMot').on('click', function () {
-
-            compteurQuestions++;
-            console.log("nbre de questions répondues : " + compteurQuestions);
-
-            aleaTab =  Math.floor(Math.random() * arrayHtml.length); // pour re-piocher aleatoirement, on redéfinit aleatab, au moment du click.
-
-            reset();
-
-            game_of_words(arrayHtml);
-
-            if (compteurQuestions == 10) {
-
-                console.log(bonneReponse);
-                document.getElementById("containerJeu").style.display = "none";
-                document.getElementById("resultats").style.display = "block";
-                document.getElementById("resultatjeu").innerHTML = bonneReponse + " /10";
-                document.getElementById("score_jeuphrase").value = bonneReponse;
-                document.getElementById("matiere").value = "html";
-
-            }
-
-        });
-
-        $('#verifier').on('click', function () {
-
-            compteurbonsMots = 0;
-
-            verification(arrayHtml);
-
-        });
-
-        $('#Raz').on('click', function () {
-
-            compteurmots = -1;
-            console.log(compteurmots);
-            retry(arrayHtml);
-
-        });
-
-
-        $('#Rec').on('click', function () {
-
-            compteurmots = -1;
-
-            recommencer(arrayHtml);
-
-        });
-
-    }
-
-
-    if (this.id == 'jeuCss') {
-
-
-        game_of_words(arrayCss);
-
-    }
-
-
-    if (this.id == 'jeuJs') {
-
-
-        game_of_words(arrayJs);
-
-    }
-
-    if (this.id == 'jeuPhp') {
-
-        game_of_words(arrayPhp);
     }
 });

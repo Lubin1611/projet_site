@@ -12,6 +12,7 @@ class Ajax
     private $sql;
     private $toto;
     private $dede;
+    private $classement;
 
     public function __construct()
     {
@@ -29,7 +30,7 @@ class Ajax
 
     public function getscore()
     {
-        session_start();
+
 
         $id_session = $_SESSION['id'];
 
@@ -57,7 +58,7 @@ class Ajax
 
     public function generate_graph() {
 
-        session_start();
+
 
         $id_session = $_SESSION['id'];
 
@@ -71,7 +72,7 @@ class Ajax
 
     public function generate_graph2() {
 
-        session_start();
+
 
         $id_session = $_SESSION['id'];
 
@@ -99,4 +100,120 @@ class Ajax
 
     }
 
+    public function content1() {
+
+        $this->sql = $this->bdd->query("select * from db_questions")->fetchall(PDO::FETCH_OBJ);
+
+        echo json_encode($this->sql);
+
+    }
+
+    public function content2() {
+
+        $this->sql = $this->bdd->query("select * from db_quizz")->fetchall(PDO::FETCH_OBJ);
+
+        echo json_encode($this->sql);
+
+    }
+
+    public function content_html() {
+
+        $this->sql = $this->bdd->query("select * from db_html")->fetchall(PDO::FETCH_OBJ);
+
+        echo json_encode($this->sql);
+
+    }
+
+    public function content_css() {
+
+        $this->sql = $this->bdd->query("select * from db_css")->fetchall(PDO::FETCH_OBJ);
+
+        echo json_encode($this->sql);
+
+    }
+
+    public function content_js() {
+
+        $this->sql = $this->bdd->query("select * from db_js")->fetchall(PDO::FETCH_OBJ);
+
+        echo json_encode($this->sql);
+
+    }
+
+    public function content_php() {
+
+        $this->sql = $this->bdd->query("select * from db_php")->fetchall(PDO::FETCH_OBJ);
+
+        echo json_encode($this->sql);
+
+    }
+
+
+    public function set_quizz_score($score, $id) {
+
+        date_default_timezone_set('Europe/Paris');
+        $date = date("d/m/y H:i:s");
+
+        $this->sql = $this->bdd->prepare("INSERT INTO `score_quizz` (`score`, `date_quizz`, `id_users`) VALUES (?,?,?)");
+        $this->sql->bindParam(1, $score);
+        $this->sql->bindParam(2, $date);
+        $this->sql->bindParam(3, $id);
+        $this->sql->execute();
+
+        echo json_encode($score, $id);
+
+    }
+
+    public function set_scores($id_session, $score, $matiere) {
+
+        date_default_timezone_set('Europe/Paris');
+        $date = date("d/m/y H:i:s");
+
+        $this->sql = $this->bdd->prepare("INSERT INTO `score_users` (`score`, `date`, `id_users`, `matiere`) VALUES (?,?,?,?)");
+        $this->sql->bindParam(1, $score);
+        $this->sql->bindParam(2, $date);
+        $this->sql->bindParam(3, $id_session);
+        $this->sql->bindParam(4, $matiere);
+        $this->sql->execute();
+
+        echo json_encode($matiere);
+        echo json_encode($score);
+
+    }
+
+    public function set_data_jeu1($quest_jeu1, $rep_jeu1) {
+
+
+        $this->sql = $this->bdd->prepare("INSERT INTO `db_questions` (`questions`, `reponses`) VALUES (?,?)");
+        $this->sql->bindParam(1, $quest_jeu1);
+        $this->sql->bindParam(2, $rep_jeu1);
+
+        $this->sql->execute();
+
+        echo json_encode($quest_jeu1);
+        echo json_encode($rep_jeu1);
+    }
+
+    public function get_data_game($table) {
+
+        $this->sql = $this->bdd->query("select * from $table")->fetchall(PDO::FETCH_OBJ);
+
+        echo json_encode($this->sql);
+
+    }
+
+    public function set_db_words($question, $reponse, $table) {
+
+        $this->sql = $this->bdd->prepare("INSERT INTO $table (`question`, `phrase`, `bonnerep`) VALUES (?,?,?)");
+        $this->sql->bindParam(1, $question);
+        $this->sql->bindParam(2, $reponse);
+        $this->sql->bindParam(3, $reponse);
+
+        $this->sql->execute();
+
+        echo json_encode($question);
+        echo json_encode($reponse);
+        echo json_encode($table);
+
+    }
 }

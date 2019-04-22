@@ -5,6 +5,8 @@
  * Date: 09/03/2019
  * Time: 16:08
  */
+if (session_id() == "") session_start();
+
 
 
 if (isset($_GET['controler'])) { // isset GET['controler'] verifie si une valeur est indiquée en parametre dans l'url
@@ -140,7 +142,97 @@ if (isset($_GET['controler'])) { // isset GET['controler'] verifie si une valeur
                 case "get_classement":
                     $classement = new controler_ajax();
                     $classement->request_classement();
+                    break;
 
+                case "get_questions":
+                    $request_questions = new controler_ajax();
+                    $request_questions->get_content1();
+                    break;
+
+                case "get_quizz":
+                    $request_quizz = new controler_ajax();
+                    $request_quizz->get_content2();
+                    break;
+
+                case "add_score":
+                    $add_score = new controler_ajax();
+                    $add_score->send_quizz_score();
+                    break;
+
+                case "get_words_db":
+                    $request_words = new controler_ajax();
+                    $request_words->get_content_html();
+                    break;
+
+                case "get_csswords_db":
+                    $request_csswords = new controler_ajax();
+                    $request_csswords->get_content_css();
+                    break;
+
+                case "get_jswords_db":
+                    $request_jswords = new controler_ajax();
+                    $request_jswords->get_content_js();
+                    break;
+
+                case "get_phpwords_db":
+                    $request_phpwords = new controler_ajax();
+                    $request_phpwords->get_content_php();
+                    break;
+
+                case "scores_phrases":
+                    $save_score = new controler_ajax();
+                    $save_score->submit_scores();
+                    break;
+
+                case "add_data1":
+                    $add_jeu1 = new controler_ajax();
+                    $add_jeu1->add_data_jeu1();
+                    break;
+
+                case "read_data1":
+                    $read_jeu1 = new controler_ajax();
+                    $read_jeu1->read_game_data1();
+                    break;
+
+                case "html":
+                    $add_html = new controler_ajax();
+                    $add_html->send_game_html();
+                    break;
+
+                case "css":
+                    $add_css = new controler_ajax();
+                    $add_css->send_game_css();
+                    break;
+
+                case "js":
+                    $add_js = new controler_ajax();
+                    $add_js->send_game_js();
+                    break;
+
+                case "php":
+                    $add_php = new controler_ajax();
+                    $add_php->send_game_php();
+                    break;
+
+                case "read_html":
+                    $read_html = new controler_ajax();
+                    $read_html->get_content_html();
+                    break;
+
+                case "read_css":
+                    $read_css = new controler_ajax();
+                    $read_css->get_content_css();
+                    break;
+
+                case "read_php":
+                    $read_php = new controler_ajax();
+                    $read_php->get_content_php();
+                    break;
+
+                case "read_js":
+                    $read_js = new controler_ajax();
+                    $read_js->get_content_js();
+                    break;
             }
 
     }

@@ -1,18 +1,56 @@
-var questions = ["Que veux dire bastano ?", "Que veux dire conferenze ?", "Que veux dire arginare ?", "Que veux dire scomparso ?",
-    "Que veux dire sperare ?", "Que veux dire fare ?", "Que veux dire fanculo ?", "Que veux dire tanta?", "Que veux dire scherzo?", "Que veux dire ti auguro ?"
-    , "Que veux dire andare ?", "Que veux dire dovere ?", "Que veux dire conoscere ?", "Que veux dire sapere ?", "Que veux dire sedersi ?", "Que veux dire casa ?",
-    "Que veux dire giornale ?", "Que veux dire addormentare ?", "Que veux dire portare a spasso?", "Que veux dire una strada ?", "Que veux dire une città ?", "Que veux dire in campagna ?"
-    , "Que veux dire un contadino ?", "Que veux dire una finestra ?", "Que veux dire un giardino ?", "Que veux dire una gallina ?", "Que veux dire quadro d'autore ?", "Que veux dire cucinare ?"];
-
-var reponses = ["suffisant", "conference", "enrayer", "disparaitre", "esperer", "faire", "putain", "beaucoup", "canular", "je te souhaite", "aller"
-    , "devoir", "connaitre", "savoir", "s'assoir", "maison", "journal", "s'endormir", "se promener", "une rue", "une ville", "a la campagne", "un paysan",
-    "une fenetre", "un jardin", "une poule", "tableau de maitre", "faire la cuisine"];
+var questions = [];
+var reponses = [];
+var randQuestions;
 
 
 
+function ajax_loadDB() {
 
-var randQuestions = Math.floor(Math.random() * questions.length);
-document.getElementById("questions").innerHTML = questions[randQuestions];
+
+
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function () {
+
+        if (this.readyState == 4 && this.status == 200) {
+
+            var content = JSON.parse(this.responseText);
+            console.log(content);
+
+            for (var index = 0; index < content.length; index++) {
+
+                    questions.push(content[index].questions);
+                    reponses.push(content[index].reponses);
+
+            }
+
+            randQuestions =  Math.floor(Math.random() * questions.length);
+            console.log(randQuestions);
+            document.getElementById("questions").innerHTML = questions[randQuestions];
+
+            console.log(questions);
+            console.log(reponses);
+        }
+
+    };
+
+    xhttp.open("GET", "index.php?controler=ajax&action=get_questions", true);
+
+    xhttp.send();
+
+}
+
+window.onload = function () {
+
+
+    ajax_loadDB();
+
+
+
+};
+
+
+
 var highscore;
 
 var pts = 0;
@@ -29,6 +67,7 @@ $('#start').on('click', function () {
 
 
 function boutonReponse() {
+
 
     var utilisateur = champUtilisateur.value;
 
@@ -733,6 +772,7 @@ function boutonReponse() {
         tentatives++;
         pts_serie++;
         compteur_highscore++;
+
     } else if (randQuestions == 28 && utilisateur !== reponses[28]) {
 
 
@@ -757,9 +797,23 @@ function boutonReponse() {
 
             if (this.readyState == 4 && this.status == 200) {
 
+                var obj = JSON.parse(this.responseText);
+
+                console.log(obj);
+
+                for (var i = 0; i < obj.length; i++) {
+
+                    var obj1 = document.createElement('div');
+                    obj1.innerHTML =  "Nom : " + obj[i].id_highscore;
+                    document.getElementById('nom').appendChild(obj1);
+
+                    var obj2 = document.createElement('div');
+                    obj2.innerHTML =  "Score : " + obj[i].score;
+                    document.getElementById('score').appendChild(obj2);
 
 
-                console.log(this.responseText);
+                }
+
             }
 
         };
@@ -779,9 +833,8 @@ function boutonReponse() {
 
             if (this.readyState == 4 && this.status == 200) {
 
-
-
                 console.log(this.responseText);
+
             }
 
         };
@@ -808,13 +861,15 @@ function boutonReponse() {
         document.getElementById("resultat_quest").value = pts_serie;
         document.getElementById("score_jeuquestions").value = pts_serie;
 
-        ajax_classement();
+
     }
 
     if (compteur_highscore == 5) {
 
             pts_serie = pts_serie + 500;
+
             document.getElementById("highScore").innerHTML = pts_serie;
+
             compteur_highscore = 0;
             console.log(compteur_highscore);
         }
@@ -860,8 +915,10 @@ function recommencer() {
 
     document.getElementById("questions").innerHTML = questions[randQuestions];
     document.getElementById("nextButton").innerHTML = " ";
+    document.getElementById("note_serie").innerHTML = " ";
     document.getElementById("reponse").innerHTML = " ";
     document.getElementById("champUtilisateur").innerHTML = " ";
 }
 
 
+console.log("compteur : " + compteur_highscore);

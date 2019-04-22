@@ -107,6 +107,7 @@
         <form action="index.php?controler=jeux&action=coms_words" method="post">
             <label>Commentez :</label><textarea name="contenu_com" id="contenu_com"></textarea>
             <input type="submit" value="Envoyez" class="btn btn-primary mb-2" id="btn">
+        </form>
     </div>
 
 <div id = "commentaires">
@@ -129,12 +130,12 @@
     <div id="message"></div>
 
     <div id="recupmots">
-        <button id="verifier">Vérifiez</button>
+        <button id="verifier" >Vérifiez</button>
     </div>
 
     <div id="boutons">
-        <button id="Raz">Ré-essayer</button>
-        <button id="Rec">Recommencer</button>
+        <button id="Retry">Ré-essayer</button>
+        <button id="Restart">Recommencer</button>
         <button id="NouvMot">Suivant</button>
     </div>
 </div>
@@ -143,14 +144,6 @@
 
     <div><span>Vous avez totalisé un score de :</span>&nbsp;
         <span id="resultatjeu"></span>
-        <form action="index.php?controler=scores&action=envoi&id=<?php echo $_SESSION['id']; ?>" method="post">
-            <!-- infos sur le joueur : score effectué, et la matière (html, css, php ou js) selectionnée -->
-            <input type="hidden" id="score_jeuphrase" name="score_jeuphrase">
-            <input type="hidden" id="matiere" name="matiere">
-            <!-- les infos sont collectées avec les input hidden -->
-            <input type="submit" value="sauvegarder mes resultats">
-        </form>
-    </div>
     <input type="button" value="réessayer ?">
 
 </div>

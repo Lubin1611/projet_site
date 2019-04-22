@@ -94,12 +94,12 @@
     Félicitations ! vous avez fini une série de 10 questions !
     <span>Vous avez un score de :</span><span id = "resultat_quest"></span>
 
-    <form action="index.php?controler=scores&action=envoi_reponses&id=<?php echo $_SESSION['id']; ?>" method="post">
-        <!-- infos sur le joueur : score effectué -->
-        <input type="hidden" id="score_jeuquestions" name="score_jeuquestions">
-        <!-- les infos sont collectées avec les input hidden -->
-        <input type="submit" value="sauvegarder mes resultats">
-    </form>
+    <h1>Classement</h1>
+
+    <div id = 'classement'>
+        <div id = 'nom'></div>
+        <div id = 'score'></div>
+    </div>
 
     <span>Recommencer une serie de questions ? </span><span onclick="recommencer()">Cliquez ici</span>
 </div>

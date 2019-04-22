@@ -5,7 +5,7 @@
  * Date: 09/04/2019
  * Time: 15:59
  */
-session_start();
+
 
 class Jeux
 {
@@ -24,7 +24,7 @@ class Jeux
 
     public function jeu1() {
 
-        session_start();
+
         $session_id = $_SESSION['id'];
 
         $commentaires = $this->model->get_all_coms2();
@@ -37,7 +37,7 @@ class Jeux
 
     public function jeu2() {
 
-        session_start();
+
 
         $commentaires = $this->model->get_all_coms();
         include "View/game_of_words.php";
@@ -46,7 +46,6 @@ class Jeux
 
     public function jeu3() {
 
-        session_start();
 
         $commentaires = $this->model->get_all_coms3();
         include "View/vue_quizz.php";

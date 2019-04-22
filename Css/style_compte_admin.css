@@ -1,0 +1,101 @@
+#choix_parametres_jeu, #ajout_donnees_jeu1, #liste_donnees_jeu1, #liste_donnees_jeuHTML, #ajout_donnees_jeuHTML,
+#liste_donnees_jeuCSS, #ajout_donnees_jeuCSS, #liste_donnees_jeuJS, #ajout_donnees_jeuJS, #liste_donnees_jeuPHP,
+#ajout_donnees_jeuPHP  {
+
+    display: none;
+
+}
+
+#menu_buttons {
+
+    position: relative;
+    top: 200px;
+    left: 650px;
+
+}
+
+#menu_data {
+
+    display: none;
+    position: relative;
+    top: 200px;
+    left: 550px;
+}
+
+#choix_parametres_jeu {
+
+    position: relative;
+    top: 350px;
+    left: 750px;
+
+}
+
+#choix_parametres_jeu > button {
+
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+
+}
+
+#choix_matieres_phrases > button {
+
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+    width: 10%;
+
+}
+
+
+
+#ajout_donnees_jeu1, #ajout_donnees_jeuCSS, #ajout_donnees_jeuHTML, #ajout_donnees_jeuJS, #ajout_donnees_jeuPHP {
+
+    position: relative;
+    width: 50%;
+    top: 350px;
+    left: 450px;
+
+}
+
+#liste_jeu1, #liste_jeuCSS, #liste_jeuJS, #liste_jeuHTML, #liste_jeuPHP {
+
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    top: 250px;
+    left: 450px;
+}
+
+#liste_jeu1 > div {
+
+    margin-right: 5%;
+}
+
+#liste_jeuHTML > div {
+
+    margin-right: 5%;
+}
+#liste_jeuJS > div {
+
+    margin-right: 5%;
+}
+#liste_jeuPHP > div {
+
+    margin-right: 5%;
+}
+
+#liste_jeuCSS > div {
+
+    margin-right: 5%;
+}
+
+
+#choix_matieres_phrases {
+
+    display: none;
+    position: relative;
+    top: 300px;
+    left: 750px;
+
+}

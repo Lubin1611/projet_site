@@ -8,6 +8,10 @@
 
 class Users
 {
+
+    private $sql;
+
+
     public function __construct()
     {
         try {
@@ -75,7 +79,6 @@ class Users
 
     public function infos_membres() {
 
-        session_start();
 
         $id_session = $_SESSION['id'];
 

@@ -97,7 +97,7 @@ body {
 
 
 
-#Rec {
+#Restart {
 
     display: none;
 
@@ -132,7 +132,7 @@ body {
     margin-left: 2%;
 }
 
-#Rec, #Raz, #NouvMot, #verifier {
+#Restart, #Retry, #NouvMot, #verifier {
     font-size: 20px;
     padding: 2%;
 }
