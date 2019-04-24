@@ -22,11 +22,11 @@ class controler_ajax
 
     }
 
-    public function send_request()
+    public function request_words_scores()
     {
+        $id_session = $_SESSION['id'];
 
-        $this->model->getscore();
-
+        $this->model->get_words_scores($id_session);
     }
 
     public function request_graph()
@@ -174,6 +174,20 @@ class controler_ajax
         $table = 'db_php';
 
         $this->model->set_db_words($quest_html, $rep_html, $table);
+
+    }
+
+    function new_quizz_content() {
+
+        $quest_quizz = $_GET['question'];
+        $first_choice = $_GET['reponseA'];
+        $second_choice = $_GET['reponseB'];
+        $third_choice = $_GET['reponseC'];
+        $fourth_choice = $_GET['reponseD'];
+        $bonne_reponse = $_GET['bonnerep'];
+        $solution = $_GET['solution'];
+
+        $this->model->set_quizz_content($quest_quizz, $first_choice, $second_choice, $third_choice, $fourth_choice, $bonne_reponse, $solution);
 
     }
 

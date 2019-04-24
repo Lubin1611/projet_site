@@ -1,7 +1,7 @@
 #sub_menu_buttons {
 
     position: relative;
-    top: 25%;
+    top: 15%;
     left: 15%;
     width: 80%;
     display: flex;
@@ -21,7 +21,7 @@
 
 #informations_compte {
     position: relative;
-    top: 35%;
+    top: 20%;
     left: 15%;
 }
 
@@ -54,3 +54,33 @@ img {
     margin-left: 1%;
 }
 
+#affichage_words {
+    display: inline-block;
+    position: relative;
+    display: none;
+    width: 70%;
+    height: 50%;
+    top: 25%;
+    left: 15%;
+}
+
+#graphique_game_words {
+
+    width: 40%;
+    height: 40%;
+}
+
+#score_words {
+    float: right;
+    line-height: 50px;
+}
+
+#graphique_revisions, #graphique_quizz {
+    position: relative;
+    max-width: 60%;
+    height: 400px;
+
+    top: 20%;
+    left: 20%;
+
+}

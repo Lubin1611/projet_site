@@ -8,9 +8,13 @@ var question_jeu1;
 var reponse_jeu1;
 var question_jeu2;
 var reponse_jeu2;
-var question_jeu3;
-var reponse_jeu3;
-
+var question_quizz;
+var reponse_quizz1;
+var reponse_quizz2;
+var reponse_quizz3;
+var reponse_quizz4;
+var bonne_reponse;
+var solution;
 var id;
 var question;
 var reponse;
@@ -58,6 +62,31 @@ function ajax_add_data_words(matiere, question_jeu, reponse_jeu) {
     xhttp.send();
 
 }
+
+function ajax_add_quiz_data() {
+
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function () {
+
+        if (this.readyState == 4 && this.status == 200) {
+
+
+            console.log(this.responseText);
+            alert('envoyé');
+
+        }
+    };
+
+    xhttp.open("GET", "index.php?controler=ajax&action=add_quizz_data&question=" + question_quizz + "&reponseA="
+        + reponse_quizz1 + "&reponseB=" + reponse_quizz2 + "&reponseC=" + reponse_quizz3 + "&reponseD=" + reponse_quizz4
+         + "&bonnerep=" + bonne_reponse + "&solution=" + solution, true);
+
+    xhttp.send();
+}
+
+
+
 
 function ajax_read_data_jeu1() {
 
@@ -125,6 +154,56 @@ function ajax_read_data_jeu2(div_id, div_questions, div_reponses, table) {
 
 }
 
+function ajax_read_data_quizz() {
+
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function () {
+
+        if (this.readyState == 4 && this.status == 200) {
+
+            var obj = JSON.parse(this.responseText);
+            console.log(obj);
+
+            for (var i = 0; i < obj.length; i++) {
+
+                var obj1 = document.createElement('div');
+                obj1.innerHTML = "Question : " + obj[i].question;
+                document.getElementById("donnees_questions").appendChild(obj1);
+
+                var obj2 = document.createElement('div');
+                obj2.innerHTML = "Reponse 1 : " + obj[i].reponse1;
+                document.getElementById("reponse_donnee_1").appendChild(obj2);
+
+                var obj3 = document.createElement('div');
+                obj3.innerHTML = "Reponse 2 : " + obj[i].reponse2;
+                document.getElementById("reponse_donnee_2").appendChild(obj3);
+
+                var obj4 = document.createElement('div');
+                obj4.innerHTML = "Reponse 3 : " + obj[i].reponse3;
+                document.getElementById("reponse_donnee_3").appendChild(obj4);
+
+                var obj5 = document.createElement('div');
+                obj5.innerHTML = "Reponse 4 : " + obj[i].reponse4;
+                document.getElementById("reponse_donnee_4").appendChild(obj5);
+
+                var obj6 = document.createElement('div');
+                obj6.innerHTML = "Bonne réponse  : " + obj[i].bonnereponse;
+                document.getElementById("bonnerep_donnees").appendChild(obj6);
+
+                var obj7 = document.createElement('div');
+                obj7.innerHTML = "Explications  : " + obj[i].contenusolution;
+                document.getElementById("donnee_solution").appendChild(obj7);
+            }
+        }
+    };
+    xhttp.open("GET", "index.php?controler=ajax&action=get_quizz", true);
+
+    xhttp.send();
+
+}
+
+
 $("#add_data_jeu_1").on('click', function () {
 
     question_jeu1 =$('#question_jeu_1').val();
@@ -178,6 +257,19 @@ $("#add_data_jeu_PHP").on('click', function () {
 
 });
 
+$("#add_data_quizz").on('click', function () {
+
+    question_quizz = $('#question_jeu_quizz').val();
+    reponse_quizz1 = $('#reponse_quizz_1').val();
+    reponse_quizz2 = $('#reponse_quizz_2').val();
+    reponse_quizz3 = $('#reponse_quizz_3').val();
+    reponse_quizz4 = $('#reponse_quizz_4').val();
+    bonne_reponse = $('#bonne_reponse_quizz').val();
+    solution = $('#explications_quizz').val();
+
+    ajax_add_quiz_data();
+});
+
 $("#home_admin").on('click', function () {
 
     jeu1 = false;
@@ -185,12 +277,14 @@ $("#home_admin").on('click', function () {
     jeuJS = false;
     jeuPHP = false;
     jeuCSS= false;
+    jeu3 = false;
 
     $("#liste_jeu1 > div").html("");
     $("#liste_jeuHTML > div").html("");
     $("#liste_jeuCSS > div").html("");
     $("#liste_jeuJS > div").html("");
     $("#liste_jeuPHP > div").html("");
+    $("#liste_quizz > div").html("");
 
     document.getElementById('menu_data').style.display = "none";
     document.getElementById('ajout_donnees_jeu1').style.display = "none";
@@ -198,6 +292,7 @@ $("#home_admin").on('click', function () {
     document.getElementById('ajout_donnees_jeuCSS').style.display = "none";
     document.getElementById('ajout_donnees_jeuJS').style.display = "none";
     document.getElementById('ajout_donnees_jeuPHP').style.display = "none";
+    document.getElementById('ajout_donnees_jeu3').style.display = "none";
     document.getElementById('informations_membres').style.display = "block";
     document.getElementById('menu_buttons').style.display = "block";
     document.getElementById('liste_donnees_jeu1').style.display = "none";
@@ -205,6 +300,7 @@ $("#home_admin").on('click', function () {
     document.getElementById('liste_donnees_jeuCSS').style.display = "none";
     document.getElementById('liste_donnees_jeuJS').style.display = "none";
     document.getElementById('liste_donnees_jeuPHP').style.display = "none";
+    document.getElementById('liste_donnees_quizz').style.display = "none";
 });
 
 $("#data_list").on('click', function () {
@@ -294,6 +390,20 @@ $("#data_list").on('click', function () {
 
     }
 
+    if (jeu3 == true) {
+
+        document.getElementById('ajout_donnees_jeu3').style.display = "none";
+        document.getElementById('liste_donnees_quizz').style.display = "block";
+
+        ajax_read_data_quizz();
+
+    } else {
+
+        document.getElementById('ajout_donnees_jeu3').style.display = "none";
+        document.getElementById('liste_donnees_quizz').style.display = "none";
+
+    }
+
 });
 
 $("#write_new_data").on('click', function () {
@@ -357,7 +467,7 @@ $("#write_new_data").on('click', function () {
         document.getElementById('ajout_donnees_jeuJS').style.display = "block";
         document.getElementById('liste_donnees_jeuJS').style.display = "none";
 
-        $("#liste_jeuPHP > div").html("");
+        $("#liste_jeuJS > div").html("");
 
     } else {
 
@@ -365,7 +475,19 @@ $("#write_new_data").on('click', function () {
         document.getElementById('liste_donnees_jeuJS').style.display = "none";
 
     }
+    if (jeu3 == true) {
 
+        document.getElementById('ajout_donnees_jeu3').style.display = "block";
+        document.getElementById('liste_donnees_quizz').style.display = "none";
+
+        $("#liste_quizz > div").html("");
+
+    } else {
+
+        document.getElementById('ajout_donnees_jeu3').style.display = "none";
+        document.getElementById('liste_donnees_quizz').style.display = "none";
+
+    }
 
 });
 
@@ -401,6 +523,17 @@ $("#jeu2").on('click', function () {
     document.getElementById('choix_parametres_jeu').style.display = "none";
     document.getElementById('menu_buttons').style.display = "none";
     document.getElementById('choix_matieres_phrases').style.display = "block";
+
+});
+
+$("#jeu3").on('click', function () {
+
+    jeu3 = true;
+
+    document.getElementById('choix_parametres_jeu').style.display = "none";
+    document.getElementById('menu_buttons').style.display = "none";
+    document.getElementById('menu_data').style.display = "block";
+    document.getElementById('ajout_donnees_jeu3').style.display = "block";
 
 });
 

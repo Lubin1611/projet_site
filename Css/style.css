@@ -13,10 +13,7 @@ body {
 }
 
 #start {
-    width: 7%;
-    height: 50px;
     cursor: pointer;
-    background-color: black;
     color: white;
 }
 
@@ -60,6 +57,10 @@ h1 {
     position: absolute;
     top: 78.5%;
     margin-left: 70%;
+    padding: 1%;
+    background-color: lightblue;
+    color: white;
+    border-radius: 10px;
 }
 
 #bonsPts {
@@ -92,6 +93,32 @@ h1 {
 
 }
 
+#commenter {
+    position: relative;
+    top: 20%;
+    width: 80%;
+    left: 10%;
+}
+ #contenu_com {
+     height: 20vh;
+ }
+
+#commentaires {
+    position: relative;
+    top: 30%;
+    width: 80%;
+    left: 10%;
+
+}
+ #affichage_commentaires {
+
+     width: 50%;
+     margin-top: 5%;
+ }
+  #affichage_commentaires > img {
+      width: 15%;
+      height: 15%;
+  }
 
 .tailleBouton {
     height: 35px;
@@ -99,12 +126,21 @@ h1 {
 
 #fin_serie {
     display: none;
-    margin-top: 400px;
-    margin-left: 200px;
 }
 
 #classement {
 
     display: flex;
     flex-direction: row;
+}
+
+#info_start {
+
+
+}
+
+#info_end {
+    position: relative;
+    left: 10%;
+    width: 80%;
 }

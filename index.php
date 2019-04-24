@@ -119,9 +119,9 @@ if (isset($_GET['controler'])) { // isset GET['controler'] verifie si une valeur
 
             switch ($_GET['action']) {
 
-                case "getscores":
+                case "get_words_scores":
                     $get= new controler_ajax();
-                    $get->send_request();
+                    $get->request_words_scores();
                 break;
 
                 case "get_graph":
@@ -233,6 +233,10 @@ if (isset($_GET['controler'])) { // isset GET['controler'] verifie si une valeur
                     $read_js = new controler_ajax();
                     $read_js->get_content_js();
                     break;
+
+                case "add_quizz_data":
+                    $quizz_data = new controler_ajax();
+                    $quizz_data->new_quizz_content();
             }
 
     }

@@ -1,12 +1,45 @@
+$('#graphique_jeu_1').on('click', function () {
 
+    ajaxcallscores();
 
-$('#page_graph').on('click', function () {
-    document.getElementById('graphiques').style.display = "block";
-    document.getElementById('succes').style.display = "none";
     document.getElementById('informations_compte').style.display = "none";
+    document.getElementById('affichage_words').style.display = "block";
+    document.getElementById('graphique_revisions').style.display = "none";
+    document.getElementById('graphique_quizz').style.display = "none";
+});
+
+$('#infos_compte').on('click', function () {
+
+
+    document.getElementById('informations_compte').style.display = "block";
+    document.getElementById('affichage_words').style.display = "none";
+    document.getElementById('graphique_revisions').style.display = "none";
+    document.getElementById('graphique_quizz').style.display = "none";
 
 });
 
+$('#graphique_jeu_2').on('click', function () {
+
+
+    document.getElementById('informations_compte').style.display = "none";
+    document.getElementById('affichage_words').style.display = "none";
+    document.getElementById('graphique_revisions').style.display = "block";
+    document.getElementById('graphique_quizz').style.display = "none";
+    ajaxcallgraph();
+
+});
+
+$('#graphique_jeu_3').on('click', function () {
+
+
+    document.getElementById('informations_compte').style.display = "none";
+    document.getElementById('affichage_words').style.display = "none";
+    document.getElementById('graphique_revisions').style.display = "none";
+    document.getElementById('graphique_quizz').style.display = "block";
+
+    ajaxcallgraph2();
+
+});
 
 function ajaxcallscores() {
 
@@ -18,9 +51,84 @@ function ajaxcallscores() {
 
             obj = JSON.parse(this.responseText);
 
-            //console.log(obj[0].score + "score_phrases" + "score qui manquait " + obj[1].score + " dernier score + " + obj[2].score);
+            console.log(obj);
 
-             console.log(obj);
+            var score_Html = [];
+            var score_Css = [];
+            var score_Js = [];
+            var score_Php = [];
+
+            for (var i = 0; i < obj[0].length; i++) {
+
+                score_Html.push(obj[0][i].score);
+
+            }
+
+            for (var i = 0; i < obj[1].length; i++) {
+
+                score_Css.push(obj[1][i].score);
+
+            }
+
+            for (var i = 0; i < obj[2].length; i++) {
+
+                score_Js.push(obj[2][i].score);
+
+            }
+
+            for (var i = 0; i < obj[3].length; i++) {
+
+                score_Php.push(obj[3][i].score);
+
+            }
+
+             var moyenne_HTML = function () {
+
+                var compteur_Html = 0;
+
+                for(var j = 0; j < score_Html.length; j++) {
+
+                    compteur_Html += parseFloat(score_Html[j]) / score_Html.length;
+                }
+                    return compteur_Html;
+            }
+
+            var moyenne_Css = function () {
+
+                var compteur_Css = 0;
+
+                for(var t = 0; t < score_Css.length; t++) {
+
+                    compteur_Css += parseFloat(score_Css[t]) / score_Css.length;
+                }
+                return compteur_Css;
+            }
+
+            var moyenne_Js = function () {
+
+                var compteur_js = 0;
+
+                for(var q = 0; q < score_Js.length; q++) {
+
+                    compteur_js += parseFloat(score_Js[q]) / score_Js.length;
+                }
+                return compteur_js;
+            }
+
+            var moyenne_Php = function () {
+
+                var compteur_Php = 0;
+
+                for(var b = 0; b < score_Css.length; b++) {
+
+                    compteur_Php += parseFloat(score_Php[b]) / score_Php.length;
+                }
+                return compteur_Php;
+            }
+            $('#score_Html').html('Moyenne matière Html :' + moyenne_HTML() + '/10');
+            $('#score_Css').html('Moyenne matière Css :' + moyenne_Css() + '/10');
+            $('#score_Js').html('Moyenne matière Js :' + moyenne_Js() + '/10');
+            $('#score_Php').html('Moyenne matière Php :' + moyenne_Php() + '/10');
 
             var ctx = document.getElementById('myChart').getContext('2d');
 
@@ -30,14 +138,14 @@ function ajaxcallscores() {
 
                 // The data for our dataset
                 data: {
-                    labels: ['Quizz', 'Vocabulaire', 'Jeu'],
+                    labels: ['PHP', 'HTML', 'CSS', 'JS'],
                     datasets: [{
-                        data: [obj[0].score, obj[1].score, obj[2].score]
+                        data: [moyenne_Php(), moyenne_HTML(), moyenne_Css(), moyenne_Js()]
                     }]
                 },
 
                 // Configuration options go here
-                options : {
+                options: {
                     scale: {
 
                         ticks: {
@@ -62,7 +170,7 @@ function ajaxcallscores() {
 
     };
 
-    xhttp.open("GET", 'index.php?controler=ajax&action=getscores', true);
+    xhttp.open("GET", 'index.php?controler=ajax&action=get_words_scores', true);
 
     xhttp.send();
 
@@ -91,14 +199,14 @@ function ajaxcallgraph() {
 
             console.log("Retour de la fonction get_graph" + new_obj.date_reponses);
 
-            var ctx = document.getElementById('myCanvas').getContext('2d');
+            var ctx = document.getElementById('myChart2').getContext('2d');
 
-            var myCanvas = new Chart(ctx, {
+            var myChart2 = new Chart(ctx, {
                 type: 'line',
                 data: {
                     labels: date,
                     datasets: [{
-                        label: 'score_quizz',
+                        label: 'score_questions',
                         data: score,
                         borderWidth: 1
                     }]
@@ -150,14 +258,14 @@ function ajaxcallgraph2() {
 
             console.log("Retour de la fonction get_graph" + new_obj2.date_quizz);
 
-            var ctx = document.getElementById('myGraph2').getContext('2d');
+            var ctx = document.getElementById('myChart3').getContext('2d');
 
-            var myGraph2 = new Chart(ctx, {
+            var myChart3 = new Chart(ctx, {
                 type: 'line',
                 data: {
                     labels: date,
                     datasets: [{
-                        label: 'score_questions',
+                        label: 'score_quizz',
                         data: score,
                         borderWidth: 1
                     }]
@@ -183,14 +291,4 @@ function ajaxcallgraph2() {
 
     xhttp.send();
 
-
 }
-
-
-window.onload = function () {
-
-    ajaxcallscores();
-    ajaxcallgraph();
-    ajaxcallgraph2();
-
-};

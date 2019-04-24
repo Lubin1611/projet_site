@@ -13,6 +13,7 @@
     <title>Entraine-toi a l'italien</title>
     <link rel="stylesheet" type="text/css" href="Css/style.css">
     <link rel="stylesheet" type="text/css" href="Css/stylr.css">
+    <link rel="stylesheet" href="bootstrap/bootstrap.css">
     <script src="lib/jquery.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Federant|Lobster" rel="stylesheet">
 </head>
@@ -80,30 +81,40 @@
 
     </div>
 </div>
-
-<div id="accueil_jeu">
-    <h1>Bienvenue sur votre espace de revision !</h1>
-    <p>Dans ce jeu, vous devez simplement traduire en francais le mot anglais generé aleatoirement</p>
-    <p>Vous jouez par série de 10 questions, et vous avez votre score a la fin de chaque série.</p>
-    <p>Plus vous répondez, et plus vous marquez des points, alors faites péter votre high-score !</p>
-
-    <div id ="start">Commencez !</div>
-
-    <div id="commenter">
-        <form action="index.php?controler=jeux&action=coms_revisions" method="post">
-            <label>Commentez :</label><textarea name="contenu_com" id="contenu_com"></textarea>
-            <input type="submit" value="Envoyez" class="btn btn-primary mb-2" id="btn">
-        </form>
+<div id = "accueil_jeu">
+    <div class="jumbotron" id = "info_start">
+        <h1 class="display-3">Bienvenue sur votre espace de revision !</h1>
+        <p class="lead">Dans ce jeu, vous devez simplement traduire en francais le mot anglais generé aleatoirement.</p>
+        <hr class="my-2">
+        <p>Vous jouez par série de 10 questions, et vous avez votre score a la fin de chaque série.</p>
+        <p>Plus vous répondez, et plus vous marquez des points, alors faites péter votre high-score !</p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" id ="start" role="button">Commencez !</a>
+        </p>
     </div>
+
+<div id="commenter">
+    <form action="index.php?controler=jeux&action=coms_revisions" method="post">
+        <label>Commentez :</label>
+        <input class="form-control" type="text" name="contenu_com" id="contenu_com" >
+        <input type="submit" value="Envoyez" class="btn btn-primary mb-2" id="btn">
+
+    </form>
+</div>
+
+
 
     <div id = "commentaires">
 
         <?php foreach ($commentaires as $com) { ?>
 
-            <h5>De : <?= $com->pseudo_user ?>, Date d'émission : <?= $com->date_com ?></h5>
-
-            <div id="contenu_commentaire"><?= $com->contenu_com ?></div>
-
+        <div class="media" id="affichage_commentaires">
+            <img class="d-flex mr-3" src="http://ikonal.com/wp-content/uploads/2011/06/100-chats-1662099.jpg" >
+                <div class="media-body">
+                    <h5 class="mt-0">De : <?= $com->pseudo_user ?>, Date d'émission : <?= $com->date_com ?></h5>
+                    <?= $com->contenu_com ?>
+                </div>
+        </div>
         <?php } ?>
     </div>
 </div>
@@ -120,7 +131,6 @@
     </div>
 
     <div id = "reponse"></div>
-    <div id = "nextButton"></div>
 
     <div id = "note_serie"><span id = bonsPts ></span></div>
     <div id = "highScore"><?php echo $highscore['score'] ?></div>
@@ -128,18 +138,21 @@
 </div>
 
 <div id = "fin_serie">
-    Félicitations ! vous avez fini une série de 10 questions !
-    <span>Vous avez un score de :</span><span id = "resultat_quest"></span>
+    <div class="jumbotron" id = "info_end">
+        <h1 class="display-3"> Félicitations ! vous avez fini une série de 10 questions !</h1>
+        <p class="lead"> <span>Vous avez un score de :</span><span id = "resultat_quest"></span> </p>
+        <hr class="my-2">
+        <h1>Classement</h1>
 
-    <h1>Classement</h1>
+        <div id = 'classement'>
+            <div id ='nom'></div>
+            <div id ='score'></div>
+        </div>
 
-  <div id = 'classement'>
-      <div id ='nom'></div>
-      <div id ='score'></div>
-  </div>
-
-    <span>Recommencer une serie de questions ? </span><span onclick="recommencer()">Cliquez ici</span>
-</div>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" role="button" onclick="recommencer()">Recommencer !</a>
+        </p>
+    </div>
 
 <script src="Js/javavoca.js"></script>
 <script src="Js/java.js"></script>

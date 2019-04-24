@@ -300,6 +300,59 @@
 
 </div>
 
+<div id = ajout_donnees_jeu3>
+
+    <h1>Inserer des questions/reponses pour le quizz</h1>
+
+    <form>
+        <div class="form-group">
+            <label for= "question_jeu_1">Votre question : </label>
+            <input type="text" class="form-control" id="question_jeu_quizz">
+        </div>
+        <div class="form-group">
+            <label for="reponse_quizz_1"> Réponse 1 : </label>
+            <input type="text" class="form-control" id="reponse_quizz_1">
+        </div><br/>
+        <div class="form-group">
+            <label for="reponse_quizz_2"> Reponse 2 : </label>
+            <input type="text" class="form-control" id="reponse_quizz_2">
+        </div><br/>
+        <div class="form-group">
+            <label for="reponse_quizz_3"> Reponse 3 :  </label>
+            <input type="text" class="form-control" id="reponse_quizz_3">
+        </div><br/>
+        <div class="form-group">
+            <label for="reponse_quizz_4"> Reponse 4 : </label>
+            <input type="text" class="form-control" id="reponse_quizz_4">
+        </div><br/>
+        <div class="form-group">
+            <label for="bonne_reponse_quizz"> Bonne reponse :  </label>
+            <input type="text" class="form-control" id="bonne_reponse_quizz">
+        </div><br/>
+        <div class="form-group">
+            <label for="explications_quizz"> Explications solution :</label>
+            <input type="text" class="form-control" id="explications_quizz">
+        </div><br/>
+        <button type="button" class="btn btn-primary mb-2" id="add_data_quizz">Envoyez</button>
+    </form>
+
+</div>
+
+<div id="liste_donnees_quizz">
+
+    <div id = 'liste_quizz'>
+        <div id ='donnees_questions'></div>
+        <div id ='reponse_donnee_1'></div>
+        <div id ='reponse_donnee_2'></div>
+        <div id ='reponse_donnee_3'></div>
+        <div id ='reponse_donnee_4'></div>
+        <div id ='bonnerep_donnees'></div>
+        <div id = "donnee_solution"></div>
+    </div>
+
+
+
+</div>
 
 <script src="Js/page_admin.js"></script>
 <script src="Js/java.js"></script>

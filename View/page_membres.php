@@ -15,6 +15,7 @@
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="Css/stylr.css">
     <link rel="stylesheet" type="text/css" href="Css/style_compte_membre.css">
+    <link rel="stylesheet" href="bootstrap/bootstrap.css">
     <link href="https://fonts.googleapis.com/css?family=Courgette|Crete+Round|Noto+Sans+TC" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
           integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -91,10 +92,10 @@
 </div>
 
 <div id="sub_menu_buttons">
-    <span id = 'infos'>Informations de compte</span>
-    <span id = 'page_succes'>Succès</span>
-    <span id = 'page_graph'>Graphique de progression</span>
-    <span>A voir </span>
+    <button type="button" class="btn btn-primary" id = 'infos_compte'>Informations de compte</button>
+    <button type="button" class="btn btn-primary" id = 'graphique_jeu_1'>Graphique de progression - game of words</button>
+    <button type="button" class="btn btn-primary" id = 'graphique_jeu_2'>Graphique de progression - revisions</button>
+    <button type="button" class="btn btn-primary" id = 'graphique_jeu_3'>Graphique de progression - quizz</button>
 </div>
 
 <div id="informations_compte">
@@ -109,23 +110,39 @@
 
 </div>
 
-<div id="succes">
+<div id = 'affichage_words'>
+
+<div id="graphique_game_words">
 
 
-
+    <canvas id="myChart" width="400" height="400"></canvas>
 
 </div>
 
-<div id="graphiques">
-    <canvas id="myCanvas"></canvas>
 
-    <canvas id="myGraph2"></canvas>
+<div id ='score_words'>
+    <div id = 'score_Html'></div>
+    <div id = 'score_Css'></div>
+    <div id = 'score_Js'></div>
+    <div id = 'score_Php'></div>
+</div>
+
+</div>
+
+<div id ='graphique_revisions'>
+
+    <canvas id="myChart2"></canvas>
+
+</div>
+
+<div id ='graphique_quizz'>
+
+    <canvas id="myChart3"></canvas>
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script src="Js/js_page_membre.js"></script>
 <script src="Js/java.js"></script>
-
-
 </body>
 </html>

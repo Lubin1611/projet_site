@@ -1,4 +1,3 @@
-
 $("#boutonListe").click(function () {
 
     $(this).hide(1000);
@@ -16,5 +15,4 @@ $(".menuderoulant").on("mouseleave", function () {
     $("#boutonListe").show(1000);
 
 });
-
 
