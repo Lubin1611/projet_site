@@ -72,31 +72,12 @@ class controler_ajax
 
     }
 
-    public function get_content_html()
+    public function get_words_content()
     {
 
-        $this->model->content_html();
+        $table = $_GET['choice'];
 
-    }
-
-    public function get_content_css()
-    {
-
-        $this->model->content_css();
-
-    }
-
-    public function get_content_js()
-    {
-
-        $this->model->content_js();
-
-    }
-
-    public function get_content_php()
-    {
-
-        $this->model->content_php();
+        $this->model->content_words($table);
 
     }
 
@@ -137,45 +118,16 @@ class controler_ajax
 
     }
 
-    public function send_game_html() {
+    public function send_game_words() {
 
         $quest_html = $_GET['question'];
         $rep_html =  $_GET['reponse'];
-        $table = 'db_html';
+        $table = $_GET['matiere'];
 
         $this->model->set_db_words($quest_html, $rep_html, $table);
 
     }
 
-    public function send_game_css() {
-
-        $quest_html = $_GET['question'];
-        $rep_html =  $_GET['reponse'];
-        $table = 'db_css';
-
-        $this->model->set_db_words($quest_html, $rep_html, $table);
-
-    }
-
-    public function send_game_js() {
-
-        $quest_html = $_GET['question'];
-        $rep_html =  $_GET['reponse'];
-        $table = 'db_js';
-
-        $this->model->set_db_words($quest_html, $rep_html, $table);
-
-    }
-
-    public function send_game_php() {
-
-        $quest_html = $_GET['question'];
-        $rep_html =  $_GET['reponse'];
-        $table = 'db_php';
-
-        $this->model->set_db_words($quest_html, $rep_html, $table);
-
-    }
 
     function new_quizz_content() {
 

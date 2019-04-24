@@ -1,6 +1,4 @@
-#choix_parametres_jeu, #ajout_donnees_jeu1, #liste_donnees_jeu1, #liste_donnees_jeuHTML, #ajout_donnees_jeuHTML,
-#liste_donnees_jeuCSS, #ajout_donnees_jeuCSS, #liste_donnees_jeuJS, #ajout_donnees_jeuJS, #liste_donnees_jeuPHP,
-#ajout_donnees_jeuPHP, #ajout_donnees_jeu3, #liste_donnees_quizz  {
+#choix_parametres_jeu, #ajout_donnees_jeu1, #liste_donnees_jeu1, #ajout_game_of_words, #liste_game_of_words, #ajout_donnees_jeu3, #liste_donnees_quizz  {
 
     display: none;
 
@@ -49,16 +47,16 @@
 
 
 
-#ajout_donnees_jeu1, #ajout_donnees_jeuCSS, #ajout_donnees_jeuHTML, #ajout_donnees_jeuJS, #ajout_donnees_jeuPHP, #ajout_donnees_jeu3 {
+#ajout_donnees_jeu1, #ajout_game_of_words, #ajout_donnees_jeu3 {
 
     position: relative;
-    width: 50%;
+    width: 70%;
     top: 250px;
-    left: 450px;
+    left: 15%;
 
 }
 
-#liste_jeu1, #liste_jeuCSS, #liste_jeuJS, #liste_jeuHTML, #liste_jeuPHP #liste_quizz {
+#liste_jeu1, #liste_game_of_words, #liste_quizz {
 
     display: flex;
     flex-direction: row;

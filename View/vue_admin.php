@@ -82,7 +82,6 @@
                 <input type="submit" name="Connectez-vous"><br><br>
             </form>
             <a href="index.php?controler=users&action=vue_inscription">Inscrivez-vous ici</a>
-
             <?php
         }
         ?>
@@ -175,130 +174,57 @@
 
 </div>
 
-<div id = "choix_matieres_phrases">
 
-    <button type="button" class="btn btn-primary" id = 'back'>Revenir au menu précédent</button>
-    <button type="button" class="btn btn-primary" id = 'HTML'>Matière HTML</button>
-    <button type="button" class="btn btn-primary" id = 'CSS'>Matière CSS</button>
-    <button type="button" class="btn btn-primary" id = 'PHP'>Matière PHP</button>
-    <button type="button" class="btn btn-primary" id = 'JS'>Matière JS</button>
+<div id = 'ajout_game_of_words'>
 
-
-</div>
-
-<div id = ajout_donnees_jeuHTML>
-
-    <h1>Inserer des questions/reponses pour la matière HTML</h1>
+    <h1>Inserer des questions/reponses pour le game of words</h1>
 
     <form>
         <div class="form-group">
-            <label for= "question_jeu_HTML">Votre question : </label>
-            <input type="text" class="form-control" id="question_jeu_HTML">
+            <label for= "game_question">Votre question : </label>
+            <input type="text" class="form-control" id="game_question">
         </div>
         <div class="form-group">
-            <label for="reponse_jeu_HTML">Votre réponse : </label>
-            <input type="text" class="form-control" id="reponse_jeu_HTML">
-        </div><br/>
-        <button type="button" class="btn btn-primary mb-2" id="add_data_jeu_HTML">Envoyez</button>
+            <label for="game_answer">Votre réponse : </label>
+            <input type="text" class="form-control" id="game_answer">
+        </div>
+
+        <label for="select_matiere">Choisir la matière concernée : </label>
+        <select class="custom-select" id = "select_matiere">
+            <option selected>Open this select menu</option>
+            <option value="db_html">Matière HTML</option>
+            <option value="db_css">Matière CSS</option>
+            <option value="db_js">Matière Javascript</option>
+            <option value="db_php">Matière PHP</option>
+        </select>
+
+        <button type="button" class="btn btn-primary mb-2" id="add_data_game_words">Envoyez</button>
     </form>
 
 </div>
 
-<div id="liste_donnees_jeuHML">
+<div id="liste_game_of_words">
 
-    <div id = 'liste_jeuHTML'>
-        <div id ='id_game_html'></div>
-        <div id ='quest_game_html'></div>
-        <div id ='rep_game_html'></div>
+    <label for="liste_matiere">Choisir la matière concernée : </label>
+
+    <select class="custom-select" id = "liste_matiere">
+        <option selected>Open this select menu</option>
+        <option value="db_html">Matière HTML</option>
+        <option value="db_css">Matière CSS</option>
+        <option value="db_js">Matière Javascript</option>
+        <option value="db_php">Matière PHP</option>
+    </select>
+
+    <div id = 'liste_jeu'>
+        <div id ='id_game'></div>
+        <div id ='quest_game'></div>
+        <div id ='rep_game'></div>
     </div>
 
 
 
 </div>
 
-<div id = ajout_donnees_jeuCSS>
-
-    <h1>Inserer des questions/reponses pour la matière CSS</h1>
-
-    <form>
-        <div class="form-group">
-            <label for= "question_jeu_CSS">Votre question : </label>
-            <input type="text" class="form-control" id="question_jeu_CSS">
-        </div>
-        <div class="form-group">
-            <label for="reponse_jeu_CSS">Votre réponse : </label>
-            <input type="text" class="form-control" id="reponse_jeu_CSS">
-        </div><br/>
-        <button type="button" class="btn btn-primary mb-2" id="add_data_jeu_CSS">Envoyez</button>
-    </form>
-
-</div>
-
-<div id="liste_donnees_jeuCSS">
-
-    <div id = 'liste_jeuCSS'>
-        <div id ='id_game_css'></div>
-        <div id ='quest_game_css'></div>
-        <div id ='rep_game_css'></div>
-    </div>
-
-</div>
-
-<div id = ajout_donnees_jeuJS>
-
-    <h1>Inserer des questions/reponses pour la matière Javascript</h1>
-
-    <form>
-        <div class="form-group">
-            <label for= "question_jeu_JS">Votre question : </label>
-            <input type="text" class="form-control" id="question_jeu_JS">
-        </div>
-        <div class="form-group">
-            <label for="reponse_jeu_JS">Votre réponse : </label>
-            <input type="text" class="form-control" id="reponse_jeu_JS">
-        </div><br/>
-        <button type="button" class="btn btn-primary mb-2" id="add_data_jeu_JS">Envoyez</button>
-    </form>
-
-</div>
-
-<div id="liste_donnees_jeuJS">
-
-    <div id = 'liste_jeuJS'>
-        <div id ='id_game_js'></div>
-        <div id ='quest_game_js'></div>
-        <div id ='rep_game_js'></div>
-    </div>
-
-</div>
-
-<div id = ajout_donnees_jeuPHP>
-
-    <h1>Inserer des questions/reponses pour la matiere PHP</h1>
-
-    <form>
-        <div class="form-group">
-            <label for= "question_jeu_PHP">Votre question : </label>
-            <input type="text" class="form-control" id="question_jeu_PHP">
-        </div>
-        <div class="form-group">
-            <label for="reponse_jeu_PHP">Votre réponse : </label>
-            <input type="text" class="form-control" id="reponse_jeu_PHP">
-        </div><br/>
-        <button type="button" class="btn btn-primary mb-2" id="add_data_jeu_PHP">Envoyez</button>
-    </form>
-
-</div>
-
-<div id="liste_donnees_jeuPHP">
-
-    <div id = 'liste_jeuPHP'>
-        <div id ='id_game_PHP'></div>
-        <div id ='quest_game_PHP'></div>
-        <div id ='rep_game_PHP'></div>
-    </div>
-
-</div>
 
 <div id = ajout_donnees_jeu3>
 

@@ -135,12 +135,15 @@ h1 {
 }
 
 #info_start {
-
+    position: relative;
+    left: 10%;
+    width: 80%;
 
 }
 
 #info_end {
     position: relative;
+    top: 170px;
     left: 10%;
     width: 80%;
 }

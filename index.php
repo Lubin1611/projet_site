@@ -194,49 +194,19 @@ if (isset($_GET['controler'])) { // isset GET['controler'] verifie si une valeur
                     $read_jeu1->read_game_data1();
                     break;
 
-                case "html":
-                    $add_html = new controler_ajax();
-                    $add_html->send_game_html();
-                    break;
-
-                case "css":
-                    $add_css = new controler_ajax();
-                    $add_css->send_game_css();
-                    break;
-
-                case "js":
-                    $add_js = new controler_ajax();
-                    $add_js->send_game_js();
-                    break;
-
-                case "php":
-                    $add_php = new controler_ajax();
-                    $add_php->send_game_php();
-                    break;
-
-                case "read_html":
+                case "read_list":
                     $read_html = new controler_ajax();
-                    $read_html->get_content_html();
-                    break;
-
-                case "read_css":
-                    $read_css = new controler_ajax();
-                    $read_css->get_content_css();
-                    break;
-
-                case "read_php":
-                    $read_php = new controler_ajax();
-                    $read_php->get_content_php();
-                    break;
-
-                case "read_js":
-                    $read_js = new controler_ajax();
-                    $read_js->get_content_js();
+                    $read_html->get_words_content();
                     break;
 
                 case "add_quizz_data":
                     $quizz_data = new controler_ajax();
                     $quizz_data->new_quizz_content();
+                    break;
+
+                case "data_words":
+                    $add_data_words = new controler_ajax();
+                    $add_data_words->send_game_words();
             }
 
     }

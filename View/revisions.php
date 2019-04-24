@@ -133,7 +133,16 @@
     <div id = "reponse"></div>
 
     <div id = "note_serie"><span id = bonsPts ></span></div>
+
+    <?php if (isset($_SESSION['rang']) and $_SESSION['rang'] == 1 or $_SESSION['rang'] == 0) { ?>
+
     <div id = "highScore"><?php echo $highscore['score'] ?></div>
+
+    <?php } else { ?>
+
+    <div id = "highScore">no high score</div>
+
+    <?php } ?>
 
 </div>
 

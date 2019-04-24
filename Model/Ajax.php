@@ -124,41 +124,15 @@ class Ajax
 
     }
 
-    public function content_html()
+    public function content_words($table)
     {
 
-        $this->sql = $this->bdd->query("select * from db_html")->fetchall(PDO::FETCH_OBJ);
+        $this->sql = $this->bdd->query("select * from $table")->fetchall(PDO::FETCH_OBJ);
 
         echo json_encode($this->sql);
 
     }
 
-    public function content_css()
-    {
-
-        $this->sql = $this->bdd->query("select * from db_css")->fetchall(PDO::FETCH_OBJ);
-
-        echo json_encode($this->sql);
-
-    }
-
-    public function content_js()
-    {
-
-        $this->sql = $this->bdd->query("select * from db_js")->fetchall(PDO::FETCH_OBJ);
-
-        echo json_encode($this->sql);
-
-    }
-
-    public function content_php()
-    {
-
-        $this->sql = $this->bdd->query("select * from db_php")->fetchall(PDO::FETCH_OBJ);
-
-        echo json_encode($this->sql);
-
-    }
 
 
     public function set_quizz_score($score, $id)
