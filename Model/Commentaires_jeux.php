@@ -46,49 +46,52 @@ class Commentaires_jeux
         return $this->commentaires;
     }
 
-    public function write_com_tbl1 ($pseudo, $contenu) {
+    public function write_com_tbl1 ($pseudo, $contenu, $avatar) {
 
         date_default_timezone_set('Europe/Paris');
         $date = date("d/m/y H:i:s");
 
 
-        $this->sql = $this->bdd->prepare("INSERT INTO `commentaires` (date_com, contenu_com, pseudo_user) VALUES (?,?,?) ;");
+        $this->sql = $this->bdd->prepare("INSERT INTO `commentaires` (date_com, contenu_com, pseudo_user) VALUES (?,?,?,?) ;");
 
         $this->sql->bindParam(1, $date);
         $this->sql->bindParam(2, $contenu);
         $this->sql->bindParam(3, $pseudo);
+        $this->sql->bindParam(4, $avatar);
 
         $this->sql->execute();
 
     }
 
-    public function write_com_tbl2 ($pseudo, $contenu) {
+    public function write_com_tbl2 ($pseudo, $contenu, $avatar) {
 
         date_default_timezone_set('Europe/Paris');
         $date = date("d/m/y H:i:s");
 
 
-        $this->sql = $this->bdd->prepare("INSERT INTO `commentaires_jeu1` (date_com, contenu_com, pseudo_user) VALUES (?,?,?) ;");
+        $this->sql = $this->bdd->prepare("INSERT INTO `commentaires_jeu1` (date_com, contenu_com, pseudo_user, avatar) VALUES (?,?,?,?) ;");
 
         $this->sql->bindParam(1, $date);
         $this->sql->bindParam(2, $contenu);
         $this->sql->bindParam(3, $pseudo);
+        $this->sql->bindParam(4, $avatar);
 
         $this->sql->execute();
 
     }
 
-    public function write_com_tbl3 ($pseudo, $contenu) {
+    public function write_com_tbl3 ($pseudo, $contenu, $avatar) {
 
         date_default_timezone_set('Europe/Paris');
         $date = date("d/m/y H:i:s");
 
 
-        $this->sql = $this->bdd->prepare("INSERT INTO `commentaires_jeu2` (date_com, contenu_com, pseudo_user) VALUES (?,?,?) ;");
+        $this->sql = $this->bdd->prepare("INSERT INTO `commentaires_jeu2` (date_com, contenu_com, pseudo_user, avatar) VALUES (?,?,?,?) ;");
 
         $this->sql->bindParam(1, $date);
         $this->sql->bindParam(2, $contenu);
         $this->sql->bindParam(3, $pseudo);
+        $this->sql->bindParam(4, $avatar);
 
         $this->sql->execute();
 

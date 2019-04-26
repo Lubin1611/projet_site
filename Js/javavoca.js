@@ -92,16 +92,6 @@ function boutonReponse() {
         }
     }
 
-    function create_next_button() {
-
-        var newButton = document.createElement('div');
-        newButton.innerHTML = "Suivant";
-       // newButton.className = 'tailleBouton';
-       // newButton.id = nextButton;
-        newButton.onclick = nextBtn;
-        document.getElementById('container_questions').appendChild(newButton);
-
-    }
 
     function ajax_classement() {
 
@@ -160,13 +150,19 @@ function boutonReponse() {
 
         highscore = document.getElementById("highScore").innerHTML;
         console.log(highscore);
-        ajaxadd_highscore();
+
 
         document.getElementById("container_questions").style.display = "none";
         document.getElementById("fin_serie").style.display = "block";
 
-        ajax_classement();
+        if ($('#welcome_message').html("")) {
 
+            console.log('no result');
+
+        } else {
+            ajaxadd_highscore();
+            ajax_classement();
+        }
         document.getElementById("resultat_quest").innerHTML = pts + " /10";
         document.getElementById("resultat_quest").value = pts_serie;
         document.getElementById("score_jeuquestions").value = pts_serie;

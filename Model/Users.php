@@ -64,6 +64,7 @@ class Users
             $_SESSION['prenom'] = $this->sql['prenom'];
             $_SESSION['pseudo'] = $this->sql['pseudo'];
             $_SESSION['password'] = $this->sql['password'];
+            $_SESSION['avatar'] = $this->sql['avatar'];
             $_SESSION['rang'] = $this->sql['rang'];
 
 
@@ -93,13 +94,45 @@ class Users
 
     public function get_all_members() {
 
-        $this->sql = $this->bdd->query("select * from users where rang = 0")->fetchAll(PDO::FETCH_OBJ);
+        $this->sql = $this->bdd->query("select * from users ")->fetchAll(PDO::FETCH_OBJ);
         return $this->sql;
+
+    }
+
+    public function check($pseudo, $mail)
+    {
+
+        $this->sql = $this->bdd->query("select * from users where `pseudo` = '$pseudo' and `mail` = '$mail'");
+        $this->sql->execute(array($pseudo, $mail));
+        $donnees = $this->sql->fetch();
+
+        if (empty($donnees['pseudo']) and empty($donnees['mail'])) {
+
+            return '0';
+
+        } else {
+
+            return '1';
+
+        }
+
+    }
+    public function check_credentials($pseudo, $password)
+    {
+        $this->sql = $this->bdd->query("select * from users where password = '$password' and pseudo = '$pseudo' ")->fetchAll(PDO::FETCH_OBJ);
+        return $this->sql;
+
+       if  ($pseudo == $this->sql['pseudo']) {
+
+           return 1;
+       }
+
 
     }
 
     public function logout() {
 
+        $_SESSION['rang'] = "";
         session_destroy();
 
     }

@@ -13,6 +13,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="Css/stylePhrases.css">
     <link rel="stylesheet" type="text/css" href="Css/stylr.css">
+    <link rel="stylesheet" href="bootstrap/bootstrap.css">
     <script src="lib/jquery.js"></script>
 </head>
 <body>
@@ -33,22 +34,26 @@
         <a href="index.php?controler=jeux&action=quizz" id="bloc5">
             <div>Quizz</div>
         </a>
-
         <?php
 
         if (isset($_SESSION['rang']) and $_SESSION['rang'] == 0) {
 
             ?>
 
-            <a href="index.php?page=membres" id="bloc4">
+            <a href="index.php?controler=users&action=vue_espace_membres" id="bloc4">
                 <div>Espace membres</div>
             </a>
 
             <?php
 
+        } else if (isset($_SESSION['rang']) and $_SESSION['rang'] == 1) { ?>
+            <a href="index.php?controler=users&action=panel_admin" id="bloc4">
+                <div>Espace admin</div>
+            </a>
+            <?php
         } else {
-
             ?>
+
             <?php
         }
         ?>
@@ -91,17 +96,23 @@
 
 <div id="menuJeu">
 
-    <h1>Bienvenue sur la page de jeu Find the Code !</h1>
+    <div class="jumbotron" id="info_start2">
+        <h1 class="display-3">Bienvenue sur la page de jeu Find the Code !</h1>
+        <p class="lead">Le but du jeu est simple : des exemples de mots-clefs vont seront demandés en français, et vous
+            devrez les
+            restituer en anglais, et respectant l'ordre des lettres.
+            Vous pouvez faire un choix dans plusieures matières, comme le html, le css, le javascript ou encore le php.
+            Bon jeu !
+        <hr class="my-2">
+        <div id='contain_buttons' class = "d-flex justify-content-around">
+                <button class="btn btn-primary btn-lg" id="jeuHtml">HTML</button>
+                <button class="btn btn-primary btn-lg" id="jeuCss">CSS</button>
+                <button class="btn btn-primary btn-lg" id="jeuJs">Javascript</button>
+                <button class="btn btn-primary btn-lg" id="jeuPhp">PHP</button>
+            </div>
 
-    <p>Le but du jeu est simple : des exemples de mots-clefs vont seront demandés en français, et vous devrez les
-        restituer en anglais, et respectant l'ordre des lettres.</p>
-    <p>Vous pouvez faire un choix dans plusieures matières, comme le html, le css, le javascript ou encore le php.</p>
-    <p>Bon jeu !</p>
+    </div>
 
-    <div id="jeuHtml">HTML</div>
-    <div id="jeuCss">CSS</div>
-    <div id="jeuJs">Javascript</div>
-    <div id="jeuPhp">PHP</div>
 
     <div id="commenter">
         <form action="index.php?controler=jeux&action=coms_words" method="post">
@@ -110,15 +121,19 @@
         </form>
     </div>
 
-<div id = "commentaires">
-    <?php foreach ($commentaires as $com) { ?>
+    <div id="commentaires">
+        <?php foreach ($commentaires as $com) { ?>
 
-    <h5>De : <?= $com->pseudo_user ?>, Date d'émission : <?= $com->date_com ?></h5>
+            <div class="media" id="affichage_commentaires">
+                <img class="d-flex mr-3" src=<?= $com->avatar ?>>
+                <div class="media-body">
+                    <h5 class="mt-0">De : <?= $com->pseudo_user ?>, Date d'émission : <?= $com->date_com ?></h5>
+                    <?= $com->contenu_com ?>
+                </div>
+            </div>
 
-    <div id="contenu_commentaire"><?= $com->contenu_com ?></div>
-
-    <?php } ?>
-</div>
+        <?php } ?>
+    </div>
 </div>
 
 
@@ -130,7 +145,7 @@
     <div id="message"></div>
 
     <div id="recupmots">
-        <button id="verifier" >Vérifiez</button>
+        <button id="verifier">Vérifiez</button>
     </div>
 
     <div id="boutons">
@@ -142,13 +157,16 @@
 
 <div id='resultats'>
 
-    <div><span>Vous avez totalisé un score de :</span>&nbsp;
-        <span id="resultatjeu"></span>
-    <input type="button" value="réessayer ?">
+    <div class="jumbotron" id = "info_end2">
+        <h1 class="display-3">Vous avez totalisé un score de :  <span id="resultatjeu"></span></h1>
+        <p class="lead">Félicitations, vous pouvez recommencer une série de questions</p>
+        <hr class="my-2">
 
-</div>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" role="button" onclick="recommencer()">Recommencer !</a>
+        </p>
 
-<script src="Js/java.js"></script>
-<script src="Js/java_phrases.js"></script>
+    <script src="Js/java.js"></script>
+    <script src="Js/java_phrases.js"></script>
 </body>
 </html>

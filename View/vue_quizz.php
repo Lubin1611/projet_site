@@ -35,22 +35,26 @@
         <a href="index.php?controler=jeux&action=quizz" id="bloc5">
             <div>Quizz</div>
         </a>
-
         <?php
 
         if (isset($_SESSION['rang']) and $_SESSION['rang'] == 0) {
 
             ?>
 
-            <a href="index.php?page=membres" id="bloc4">
+            <a href="index.php?controler=users&action=vue_espace_membres" id="bloc4">
                 <div>Espace membres</div>
             </a>
 
             <?php
 
+        } else if (isset($_SESSION['rang']) and $_SESSION['rang'] == 1) { ?>
+            <a href="index.php?controler=users&action=panel_admin" id="bloc4">
+                <div>Espace admin</div>
+            </a>
+            <?php
         } else {
-
             ?>
+
             <?php
         }
         ?>
@@ -92,10 +96,15 @@
 </div>
 <div id = 'accueil_quizz'>
 
-    <p>Bienvenue sur le quizz, vous aurez une serie de 10 questions !</p>
-    <p>A la fin de cette serie, vous pourrez sauvegarder vos scores, et un nouveau quizz sera généré aleatoirement</p>
-
-    <div id ="commencer">Commencez !</div>
+    <div class="jumbotron" id="info_start3">
+        <h1 class="display-3">Bienvenue sur le quizz, vous aurez une serie de 10 questions !</h1>
+        <p class="lead">A la fin de cette serie, vous pourrez sauvegarder vos scores, et un nouveau quizz sera généré aleatoirement,
+        et vos resultats seront sauvegardés. Bon jeu !
+        <hr class="my-2">
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" id ="commencer" role="button">Commencez !</a>
+        </p>
+    </div>
 
     <div id="commenter">
         <form action="index.php?controler=jeux&action=coms_quizz" method="post">
@@ -108,9 +117,13 @@
 
         <?php foreach ($commentaires as $com) { ?>
 
-            <h5>De : <?= $com->pseudo_user ?>, Date d'émission : <?= $com->date_com ?></h5>
-
-            <div id="contenu_commentaire"><?= $com->contenu_com ?></div>
+            <div class="media" id="affichage_commentaires">
+                <img class="d-flex mr-3" src=<?= $com->avatar ?> >
+                <div class="media-body">
+                    <h5 class="mt-0">De : <?= $com->pseudo_user ?>, Date d'émission : <?= $com->date_com ?></h5>
+                    <?= $com->contenu_com ?>
+                </div>
+            </div>
 
         <?php } ?>
 

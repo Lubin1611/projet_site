@@ -24,30 +24,36 @@ class Jeux
 
     public function jeu1() {
 
+        if (isset($_SESSION['id'])) {
 
-        $session_id = $_SESSION['id'];
+            $session_id = $_SESSION['id'];
 
-        $commentaires = $this->model->get_all_coms2();
+            $commentaires = $this->model->get_all_coms2();
 
-        $highscore = $this->model->get_highscore($session_id);
+            $highscore = $this->model->get_highscore($session_id);
 
+            include "View/revisions.php";
 
-        include "View/revisions.php";
+        } else {
+
+            $commentaires = $this->model->get_all_coms2();
+
+            include "View/revisions.php";
+        }
     }
 
     public function jeu2() {
 
-
-
         $commentaires = $this->model->get_all_coms();
+
         include "View/game_of_words.php";
 
     }
 
     public function jeu3() {
 
-
         $commentaires = $this->model->get_all_coms3();
+
         include "View/vue_quizz.php";
 
     }
@@ -56,8 +62,9 @@ class Jeux
 
         $pseudo = $_SESSION['pseudo'];
         $contenu = $_POST['contenu_com'];
+        $avatar = $_SESSION['avatar'];
 
-        $this->model->write_com_tbl1($pseudo, $contenu);
+        $this->model->write_com_tbl1($pseudo, $contenu, $avatar);
 
         $this->jeu2();
 
@@ -67,8 +74,9 @@ class Jeux
 
         $pseudo = $_SESSION['pseudo'];
         $contenu = $_POST['contenu_com'];
+        $avatar = $_SESSION['avatar'];
 
-        $this->model->write_com_tbl2($pseudo, $contenu);
+        $this->model->write_com_tbl2($pseudo, $contenu, $avatar);
 
         $this->jeu1();
     }
@@ -77,8 +85,9 @@ class Jeux
 
         $pseudo = $_SESSION['pseudo'];
         $contenu = $_POST['contenu_com'];
+        $avatar = $_SESSION['avatar'];
 
-        $this->model->write_com_tbl3($pseudo, $contenu);
+        $this->model->write_com_tbl3($pseudo, $contenu, $avatar);
 
         $this->jeu3();
 

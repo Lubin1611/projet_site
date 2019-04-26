@@ -74,7 +74,6 @@ class controler_ajax
 
     public function get_words_content()
     {
-
         $table = $_GET['choice'];
 
         $this->model->content_words($table);
@@ -125,7 +124,6 @@ class controler_ajax
         $table = $_GET['matiere'];
 
         $this->model->set_db_words($quest_html, $rep_html, $table);
-
     }
 
 

@@ -32,30 +32,54 @@ class users_controler
 
     }
 
+    public function check_credentials() {
+
+        $pseudo = $_POST['pseudo'];
+        filter_var($pseudo, FILTER_SANITIZE_STRING);
+
+        $mail = $_POST['mail'];
+        filter_var($mail, FILTER_SANITIZE_STRING);
+
+        $reponse =  $this->model->check($pseudo, $mail);
+
+        if ($reponse == 1) {
+
+            $message = "Pseudo ou mail déjà existants";
+
+            include "View/inscription.php";
+
+        }
+
+        elseif ($reponse == 0) {
+
+            include "View/Page_accueil.php";
+        }
+
+    }
+
+
     public function submit_sign_up() {
 
-        $this->nom = $_POST['nom'];
-        filter_var($this->nom, FILTER_SANITIZE_STRING);
+        $nom = $_POST['nom'];
+        filter_var($nom, FILTER_SANITIZE_STRING);
 
-        $this->prenom = $_POST['prenom'];
-        filter_var($this->prenom, FILTER_SANITIZE_STRING);
+        $prenom = $_POST['prenom'];
+        filter_var($prenom, FILTER_SANITIZE_STRING);
 
-        $this->pseudo = $_POST['pseudo'];
-        filter_var($this->pseudo, FILTER_SANITIZE_STRING);
+        $pseudo = $_POST['pseudo'];
+        filter_var($pseudo, FILTER_SANITIZE_STRING);
 
-        $this->motdepasse = $_POST['mdp'];
-        filter_var($this->motdepasse, FILTER_SANITIZE_STRING);
+        $motdepasse = $_POST['mdp'];
+        filter_var($motdepasse, FILTER_SANITIZE_STRING);
 
-        $this->avatar = $_POST['avatar'];
-        filter_var($this->avatar, FILTER_SANITIZE_STRING);
+        $avatar = $_POST['valeur_image'];
+        filter_var($avatar, FILTER_SANITIZE_STRING);
 
-        $this->mail = $_POST['mail'];
-        filter_var($this->mail, FILTER_SANITIZE_STRING);
+        $mail = $_POST['mail'];
+        filter_var($mail, FILTER_SANITIZE_STRING);
 
-        $this->rang = '0';
+        $rang = '0';
 
-        $this->model->sign_up($this->nom, $this->prenom, $this->pseudo, $this->motdepasse, $this->avatar, $this->mail, $this->mail);
-        include "View/Page_accueil.php";
 
     }
 
@@ -85,10 +109,16 @@ class users_controler
 
     public function vue_membres() {
 
-       $utilisateur =  $this->model->infos_membres();
+        if ($_SESSION['rang'] === NULL and $_SESSION != 0 ) {
 
-        include "View/page_membres.php";
+            header("Location:View/acces_interdit.html");
 
+        } else {
+
+            $utilisateur = $this->model->infos_membres();
+
+            include "View/page_membres.php";
+        }
     }
 
     public function vue_admin() {

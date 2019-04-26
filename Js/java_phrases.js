@@ -7,13 +7,14 @@ var bonneReponse = 0;
 var shuffledmot;
 var matiere;
 var score;
-
+var db_table;
 
 $("#jeuHtml, #jeuCss, #jeuJs, #jeuPhp").on("click", function () {
 
 
     if (this.id == 'jeuHtml') {
 
+        db_table = 'db_html';
         ajax_loadDB_html();
 
 
@@ -49,8 +50,8 @@ $("#jeuHtml, #jeuCss, #jeuJs, #jeuPhp").on("click", function () {
 
 
     if (this.id == 'jeuCss') {
-
-        ajax_loadDB_css();
+        db_table = 'db_css';
+        ajax_loadDB_html();
 
 
         $('#NouvMot').on('click', function () {
@@ -88,7 +89,8 @@ $("#jeuHtml, #jeuCss, #jeuJs, #jeuPhp").on("click", function () {
 
     if (this.id == 'jeuJs') {
 
-        ajax_loadDB_js();
+        db_table = 'db_js';
+        ajax_loadDB_html();
 
 
         $('#NouvMot').on('click', function () {
@@ -126,7 +128,8 @@ $("#jeuHtml, #jeuCss, #jeuJs, #jeuPhp").on("click", function () {
 
     if (this.id == 'jeuPhp') {
 
-        ajax_loadDB_php();
+        db_table = 'db_php';
+        ajax_loadDB_html();
 
 
         $('#NouvMot').on('click', function () {
@@ -182,7 +185,7 @@ function ajax_loadDB_html() {
         }
     };
 
-    xhttp.open("GET", "index.php?controler=ajax&action=get_words_db", true);
+    xhttp.open("GET", "index.php?controler=ajax&action=read_list&choice=" + db_table, true);
 
     xhttp.send();
 
@@ -463,3 +466,10 @@ document.getElementById('Restart').addEventListener('click', function () {
 
     }
 });
+
+function recommencer() {
+
+ window.location.reload();
+
+
+}

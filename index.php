@@ -7,8 +7,6 @@
  */
 if (session_id() == "") session_start();
 
-
-
 if (isset($_GET['controler'])) { // isset GET['controler'] verifie si une valeur est indiquée en parametre dans l'url
 
     switch ($_GET['controler']) {
@@ -27,18 +25,22 @@ if (isset($_GET['controler'])) { // isset GET['controler'] verifie si une valeur
 
                 case "inscription":
                     $sign_up = new users_controler();
-                    $sign_up->submit_sign_up();
+                    $sign_up->check_credentials();
                     break;
 
                 case "vue_espace_membres":
-                    $espace_membre = new users_controler();
-                    $espace_membre->vue_membres();
-                    break;
+
+                        $espace_membre = new users_controler();
+                        $espace_membre->vue_membres();
+                        break;
+
 
                 case "panel_admin":
-                    $admin = new users_controler();
-                    $admin->vue_admin();
-                    break;
+
+                        $admin = new users_controler();
+                        $admin->vue_admin();
+                        break;
+
 
                 case "connection":
                     $login = new users_controler();
@@ -207,6 +209,8 @@ if (isset($_GET['controler'])) { // isset GET['controler'] verifie si une valeur
                 case "data_words":
                     $add_data_words = new controler_ajax();
                     $add_data_words->send_game_words();
+
+
             }
 
     }

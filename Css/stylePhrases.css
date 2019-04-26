@@ -24,26 +24,10 @@ body {
 #menuJeu  {
 
     position: relative;
-    top: 200px;
+    top: 150px;
 
 }
 
-#menuJeu > #jeuJs, #jeuPhp, #jeuCss, #jeuHtml {
-
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 300px;
-    height: 50px;
-    left: 40%;
-    top: 10%;
-    margin-bottom: 5%;
-    border: 1px solid black;
-    background-color: orange;
-    cursor: pointer;
-    color: white;
-}
 
 
 #Question {
@@ -127,9 +111,18 @@ body {
     left: 400px;
     top: 350px;
 }
+
 #commentaires {
-    width: 100%;
-    margin-left: 2%;
+    position: relative;
+    top: 10%;
+    width: 80%;
+    left: 10%;
+
+}
+#affichage_commentaires {
+
+    width: 50%;
+    margin-top: 5%;
 }
 
 #Restart, #Retry, #NouvMot, #verifier {
@@ -141,8 +134,43 @@ body {
     display: flex;
     align-self: center;
 }
+#contain_buttons {
+
+    height: 33%;
+
+}
 
 #resultats {
-    margin-top: 20%;
+    position: relative;
+    top: 200px;
+    left: 10%;
+    width: 80%;
     display: none;
+}
+
+#info_start2 {
+    position: relative;
+    left: 10%;
+    width: 80%;
+
+}
+
+info_end2 {
+
+
+}
+#commenter {
+    position: relative;
+    top: 10%;
+    width: 80%;
+    left: 10%;
+}
+#contenu_com{
+    width: 100%;
+    height: 20vh;
+}
+
+#affichage_commentaires > img {
+    width: 15%;
+    height: 15%;
 }

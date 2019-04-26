@@ -3,29 +3,28 @@
     display: none;
 
 }
-
-#menu_buttons {
-
+#div_boutons {
+    width: 100%;
     position: relative;
     top: 200px;
-    left: 650px;
-
 }
 
 #menu_data {
 
     display: none;
-    position: relative;
-    top: 200px;
-    left: 550px;
 }
 
-#choix_parametres_jeu {
-
+#div_choix_jeu {
     position: relative;
     top: 350px;
-    left: 750px;
+    width: 100%;
+}
 
+#div_options_jeu {
+
+    position: relative;
+    top: 200px;
+    width: 100%;
 }
 
 #choix_parametres_jeu > button {
@@ -45,6 +44,15 @@
 
 }
 
+#liste_jeu {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    top: 50px;
+
+}
 
 
 #ajout_donnees_jeu1, #ajout_game_of_words, #ajout_donnees_jeu3 {
@@ -56,45 +64,42 @@
 
 }
 
-#liste_jeu1, #liste_game_of_words, #liste_quizz {
-
+#liste_game_of_words {
     display: flex;
     flex-direction: row;
+    justify-content: center;
     position: relative;
-    top: 250px;
-    left: 450px;
+    left: 10%;
+    width: 80%;
+    top: 200px;
 }
 
-#liste_quizz {
-
-    display: flex;
-    flex-direction: row;
-    position: relative;
-    top: 250px;
-
+ #liste_quizz  {
+     position: relative;
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     justify-content: center;
+     top: 50px;
 }
+
+ #liste_jeu1 {
+     position: relative;
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     justify-content: center;
+     top: 250px;
+  }
 
 #liste_jeu1 > div {
 
     margin-right: 5%;
 }
 
-#liste_jeuHTML > div {
+#liste_game_of_words {
 
-    margin-right: 5%;
-}
-#liste_jeuJS > div {
-
-    margin-right: 5%;
-}
-#liste_jeuPHP > div {
-
-    margin-right: 5%;
-}
-
-#liste_jeuCSS > div {
-
-    margin-right: 5%;
+    display: none;
 }
 
 

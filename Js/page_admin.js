@@ -1,5 +1,6 @@
 var jeu1 = false;
 var jeu2 = false
+var jeu3 = false;
 var question_jeu1;
 var reponse_jeu1;
 var question_jeu2;
@@ -238,10 +239,7 @@ $("#add_data_quizz").on('click', function () {
 $("#home_admin").on('click', function () {
 
     jeu1 = false;
-    jeuHTML = false;
-    jeuJS = false;
-    jeuPHP = false;
-    jeuCSS= false;
+    jeu2 = false;
     jeu3 = false;
 
     $("#liste_jeu1 > div").html("");
@@ -253,18 +251,12 @@ $("#home_admin").on('click', function () {
 
     document.getElementById('menu_data').style.display = "none";
     document.getElementById('ajout_donnees_jeu1').style.display = "none";
-    document.getElementById('ajout_donnees_jeuHTML').style.display = "none";
-    document.getElementById('ajout_donnees_jeuCSS').style.display = "none";
-    document.getElementById('ajout_donnees_jeuJS').style.display = "none";
-    document.getElementById('ajout_donnees_jeuPHP').style.display = "none";
+    document.getElementById('ajout_game_of_words').style.display = "none";
     document.getElementById('ajout_donnees_jeu3').style.display = "none";
     document.getElementById('informations_membres').style.display = "block";
     document.getElementById('menu_buttons').style.display = "block";
     document.getElementById('liste_donnees_jeu1').style.display = "none";
-    document.getElementById('liste_donnees_jeuHML').style.display = "none";
-    document.getElementById('liste_donnees_jeuCSS').style.display = "none";
-    document.getElementById('liste_donnees_jeuJS').style.display = "none";
-    document.getElementById('liste_donnees_jeuPHP').style.display = "none";
+    document.getElementById('liste_game_of_words').style.display = "none";
     document.getElementById('liste_donnees_quizz').style.display = "none";
 });
 
@@ -341,7 +333,18 @@ $("#write_new_data").on('click', function () {
         document.getElementById('ajout_donnees_jeu1').style.display = "none";
     }
 
+    if (jeu2 == true) {
 
+        document.getElementById('liste_game_of_words').style.display = "none";
+        document.getElementById('ajout_game_of_words').style.display = "block";
+
+        $("#liste_game_of_words > div").html("");
+
+    } else {
+
+        document.getElementById('liste_game_of_words').style.display = "none";
+        document.getElementById('ajout_game_of_words').style.display = "none";
+    }
     if (jeu3 == true) {
 
         document.getElementById('ajout_donnees_jeu3').style.display = "block";
@@ -398,6 +401,7 @@ $("#jeu2").on('click', function () {
 $("#jeu3").on('click', function () {
 
     jeu3 = true;
+    console.log(jeu3);
 
     document.getElementById('choix_parametres_jeu').style.display = "none";
     document.getElementById('menu_buttons').style.display = "none";

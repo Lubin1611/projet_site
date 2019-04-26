@@ -76,7 +76,7 @@
                 ?>
 
                 <p>Bienvenue, <?php echo $_SESSION['nom'];
-                    echo $_SESSION['prenom']; ?></p>
+                    echo $_SESSION['prenom']; echo $_SESSION['pseudo'];?></p>
                 <p>Id de session : <?php echo $_SESSION['id']; ?></p>
                 <p>vous pouvez désormais accéder à votre espace personnel a partir du menu</p>
                 <a href="index.php?controler=users&action=log_out">Se déconnecter</a>

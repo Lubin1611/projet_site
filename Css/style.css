@@ -110,11 +110,11 @@ h1 {
     left: 10%;
 
 }
- #affichage_commentaires {
+#affichage_commentaires {
 
-     width: 50%;
-     margin-top: 5%;
- }
+    width: 50%;
+    margin-top: 5%;
+}
   #affichage_commentaires > img {
       width: 15%;
       height: 15%;
