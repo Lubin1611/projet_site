@@ -14,91 +14,93 @@
     <link rel="stylesheet" type="text/css" href="Css/style.css">
     <link rel="stylesheet" type="text/css" href="Css/stylr.css">
     <link rel="stylesheet" href="bootstrap/bootstrap.css">
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <script src="lib/jquery.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Federant|Lobster" rel="stylesheet">
+
 </head>
 <body>
+<div class="menu">
+    <div id="sidebar">
+        <ul>
+            <li><a id="bloc1" href='index.php?'>Accueil</a></li>
+            <li><a id="bloc2" href='index.php?controler=jeux&action=entrainement'>Jeu 1</a></li>
+            <li><a id="bloc3" href='index.php?controler=jeux&action=jeu_mots'>Jeu 2</a></li>
+            <li><a id="bloc5" href='index.php?controler=jeux&action=quizz'>Jeu 3</a></li>
+            <?php
 
+            if (isset($_SESSION['rang']) and $_SESSION['rang'] == 0) {
 
-<div id="boutonListe">+</div>
+                ?>
 
-<aside class="menuderoulant">
-    <div id="menu">
-        <a href="index.php?" id="bloc1">
-            <div>Accueil</div>
-        </a>
-        <a href="index.php?controler=jeux&action=entrainement" id="bloc2">
-            <div>Entrainement au vocabulaire Italien</div>
-        </a>
-        <a href="index.php?controler=jeux&action=jeu_mots" id="bloc3">
-            <div>Jeu phrases</div>
-        </a>
-        <a href="index.php?controler=jeux&action=quizz" id="bloc5">
-            <div>Quizz</div>
-        </a>
-        <?php
+                <li><a id="bloc4" href='index.php?controler=users&action=vue_espace_membres'>Membres</a></li>
 
-        if (isset($_SESSION['rang']) and $_SESSION['rang'] == 0) {
+                <?php
 
+            } else if (isset($_SESSION['rang']) and $_SESSION['rang'] == 1) { ?>
+
+                <li><a id="bloc4" href='index.php?controler=users&action=panel_admin'>Admin</a></li>
+
+                <?php
+            } else {
+                ?>
+
+                <?php
+            }
             ?>
-
-            <a href="index.php?controler=users&action=vue_espace_membres" id="bloc4">
-                <div>Espace membres</div>
-            </a>
-
-            <?php
-
-        } else if (isset($_SESSION['rang']) and $_SESSION['rang'] == 1) { ?>
-            <a href="index.php?controler=users&action=panel_admin" id="bloc4">
-                <div>Espace admin</div>
-            </a>
-            <?php
-        } else {
-            ?>
-
-            <?php
-        }
-        ?>
+        </ul>
     </div>
-</aside>
-
-<div id="titre">
-    <h1>Accueil site</h1>
-    <div id="connection">
-
-        <?php
-
-        if (isset($_SESSION['rang']) and $_SESSION['rang'] == 0 || $_SESSION['rang'] == 1) {
-
-            ?>
-            <p>Bienvenue, <span id = 'welcome_message'>Bienvenue<?php echo $_SESSION['nom']; ?>&nbsp;<?php $_SESSION['prenom']; ?></span></p>
-            <p>vous pouvez désormais accéder à votre espace membre a partir du menu</p>
-            <a href="index.php?controler=users&action=log_out">Se déconnecter</a>
-
-            <?php
-
-        } else {
-            ?>
-
-            <h3>Connectez-vous</h3>
-            <span id = 'welcome_message'></span>
-            <form action="index.php?controler=users&action=connection" method="post">
-                <label>Votre Pseudo : </label><input type="text" name="logPseudo">
-                <label>Votre mot de passe : </label><input type="text" name="logMdp">
-                <input type="submit" name="Connectez-vous"><br><br>
-            </form>
-            <a href="index.php?controler=users&action=vue_inscription">Inscrivez-vous ici</a>
-
-            <?php
-        }
-        ?>
-
-    </div>
+    <div><a id="btn">X</a></div>
 </div>
+
+
+<header class="d-flex">
+    <div id="first-level">
+        <div id='container_btn'>
+            <div id="btn_menu">Menu</div>
+        </div>
+        <div id='titre_site'>
+            <h1>Page d'accueil</h1>
+            <div id="connection">
+
+                <?php
+                if (isset($_SESSION['rang']) and $_SESSION['rang'] == 0 || $_SESSION['rang'] == 1) {
+                    ?>
+
+                    <p>Bienvenue, <?php echo $_SESSION['nom'];
+                        echo $_SESSION['prenom'];?>
+                    </p>
+                    <p>Id de session : <?php echo $_SESSION['id']; ?></p>
+                    <p>vous pouvez désormais accéder à votre espace personnel a partir du menu</p>
+                    <a href="index.php?controler=users&action=log_out">Se déconnecter</a>
+
+                    <?php
+                } else {
+                ?>
+                <form action="index.php?controler=users&action=connection" method="post">
+                    <label>Votre pseudo : </label>
+                    <input type="text" name="logPseudo" id='pseudo'>
+
+                    <label>Votre mot de passe : </label>
+                    <input type="password" name="logMdp" id='password'>
+                    <input type="submit" name="Envoyez" id='envoyez'>
+                </form>
+                <div id="btn_submit">
+                    <a href="index.php?controler=users&action=vue_inscription">Inscrivez-vous ici</a>
+                </div>
+            </div>
+
+            <?php
+            }
+            ?>
+
+        </div>
+    </div>
+</header>
+
 <div id="accueil_jeu">
     <div class="jumbotron" id="info_start">
-        <h1 class="display-3">Bienvenue sur votre espace de revision !</h1>
-        <p class="lead">Dans ce jeu, vous devez simplement traduire en francais le mot anglais generé aleatoirement.</p>
+        <h1>Bienvenue sur votre espace de revision !</h1>
+        <p class="prez">Dans ce jeu, vous devez simplement traduire en francais le mot anglais generé aleatoirement.</p>
         <hr class="my-2">
         <p>Vous jouez par série de 10 questions, et vous avez votre score a la fin de chaque série.</p>
         <p>Plus vous répondez, et plus vous marquez des points, alors faites péter votre high-score !</p>
@@ -107,22 +109,33 @@
         </p>
     </div>
 
+    <?php
+    if (isset($_SESSION['rang']) and $_SESSION['rang'] == 1 || $_SESSION['rang'] == 0) {
+    ?>
+
     <div id="commenter">
-        <form action="index.php?controler=jeux&action=coms_revisions" method="post">
+        <form action="index.php?controler=jeux&action=comsRevisions" method="post">
             <label>Commentez :</label>
             <input class="form-control" type="text" name="contenu_com" id="contenu_com">
-            <input type="submit" value="Envoyez" class="btn btn-primary mb-2" id="btn">
-
+            <input type="submit" value="Envoyez" class="btn btn-primary mb-2" id="btn_com">
         </form>
     </div>
 
+        <?php
+    } else {
+        ?>
+        <div class="alert alert-info">Connectez-vous pour écrire un commentaire</div>
+        <?php
+    }
+
+    ?>
 
     <div id="commentaires">
 
         <?php foreach ($commentaires as $com) { ?>
 
             <div class="media" id="affichage_commentaires">
-                <img class="d-flex mr-3" src=<?=$com->avatar ?>>
+                <img class="d-flex mr-3" src=<?= $com->avatar ?>>
                 <div class="media-body">
                     <h5 class="mt-0">De : <?= $com->pseudo_user ?>, Date d'émission : <?= $com->date_com ?></h5>
                     <?= $com->contenu_com ?>
@@ -133,49 +146,64 @@
 </div>
 
 
-<div id="container_questions">
-
-    <div id="questions"></div>
-
-    <div id="placementJeu">
-        <label for="champUtilisateur"> Ecris ta réponse : </label>
-        <input type="text" placeholder="Ta réponse ici ..." id="champUtilisateur" class="tailleBouton"/>
-        <button id="bouton" class="tailleBouton" onclick="boutonReponse()">Envoyer la réponse</button>
-    </div>
-
-    <div id="reponse"></div>
-
-    <div id="note_serie"><span id=bonsPts></span></div>
-
-    <div id="highScore">
-
-        <?php if (isset($_SESSION['rang']) and $_SESSION['rang'] == 0) { ?>
+<div id ='dim'>
 
 
-            <?= $highscore ?>
+    <div id="container_questions">
+
+        <div id='box_questions'>
+
+            <div id="questions"></div>
+
+            <div id="note_serie"><span id='bonsPts'></span></div>
+
+        </div>
+
+        <div id="placementJeu">
+            <label for="champUtilisateur"> Ecris ta réponse : </label>
+            <input type="text" placeholder="Ta réponse ici ..." id="champUtilisateur" class="tailleBouton"/>
+            <button id="bouton" class="tailleBouton" onclick="boutonReponse()">Envoyer la réponse</button>
+        </div>
+
+        <div id="reponse"></div>
 
 
-        <?php } else { ?>
+        <div id="highScore">
 
-            no high score
+            <?php if (isset($_SESSION['rang']) and $_SESSION['rang'] == 1 || $_SESSION['rang'] == 0){ ?>
 
-        <?php } ?>
 
+                <?= $highscore['score'] ?>
+
+
+            <?php } else { ?>
+
+                no high score
+
+            <?php } ?>
+
+        </div>
     </div>
 </div>
+
 
 <div id="fin_serie">
     <div class="jumbotron" id="info_end">
         <h1 class="display-3"> Félicitations ! vous avez fini une série de 10 questions !</h1>
         <p class="lead"><span>Vous avez un score de :</span><span id="resultat_quest"></span></p>
+        <span id ='info'></span>
         <hr class="my-2">
+
+        <p>Pour voir le classement, </p><input type="button" id = 'table_membres' value="cliquez ici">
+        <div id = "affichage_classement">
+            <span id ='info'>
         <h1>Classement</h1>
 
         <div id='classement'>
             <div id='nom'></div>
             <div id='score'></div>
         </div>
-
+        </span>
         <p class="lead">
             <a class="btn btn-primary btn-lg" role="button" onclick="recommencer()">Recommencer !</a>
         </p>

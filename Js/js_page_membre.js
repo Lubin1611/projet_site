@@ -170,7 +170,7 @@ function ajaxcallscores() {
 
     };
 
-    xhttp.open("GET", 'index.php?controler=ajax&action=get_words_scores', true);
+    xhttp.open("GET", 'index.php?controler=ajax&action=getWordsScores', true);
 
     xhttp.send();
 
@@ -228,7 +228,7 @@ function ajaxcallgraph() {
 
     };
 
-    xhttp.open("GET", 'index.php?controler=ajax&action=get_graph2', true);
+    xhttp.open("GET", 'index.php?controler=ajax&action=getGraph2', true);
 
     xhttp.send();
 
@@ -287,7 +287,7 @@ function ajaxcallgraph2() {
 
     };
 
-    xhttp.open("GET", 'index.php?controler=ajax&action=get_graph', true);
+    xhttp.open("GET", 'index.php?controler=ajax&action=getGraph', true);
 
     xhttp.send();
 

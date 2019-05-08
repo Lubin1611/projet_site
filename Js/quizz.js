@@ -2,6 +2,9 @@ var arrQuestions = [];
 var obj_quizz;
 var index;
 
+
+// Je fais un appel AJAX pour récuperer mes données.
+
 function ajax_loadDB() {
 
     var xhttp = new XMLHttpRequest();
@@ -13,8 +16,8 @@ function ajax_loadDB() {
             obj_quizz = JSON.parse(this.responseText);
 
 
-             index = Math.floor(Math.random() * obj_quizz.length);
-            console.log(index);
+            index = Math.floor(Math.random() * obj_quizz.length);
+
 
             $("#questions").html(obj_quizz[index].intitule + " " + obj_quizz[index].question);
 
@@ -23,43 +26,44 @@ function ajax_loadDB() {
             $("#reponse3").html(obj_quizz[index].reponse3);
             $("#reponse4").html(obj_quizz[index].reponse4);
 
+        } else {
+
+            $("#message_erreur").html("Les données du jeu n'ont pas pu être chargées, le jeu est temporairement " +
+                "inaccessible. Vous pouvez signaler ce problème dans la partie commentaires du jeu")
 
         }
 
     };
 
-    xhttp.open("GET", "index.php?controler=ajax&action=get_quizz", true);
+    xhttp.open("GET", "index.php?controler=ajax&action=getQuizz", true);
 
     xhttp.send();
 
 }
 
-
-window.onload = function () {
-
-
-    ajax_loadDB();
-
-
-
-
-};
-
+// En cliquant sur le bouton, je passe a l'affichage du jeu et la partie peut commencer.
 
 $('#commencer').on('click', function () {
 
+    ajax_loadDB();
+
     document.getElementById('accueil_quizz').style.display = "none";
     document.getElementById('container_qcm').style.display = "block";
+
+
 });
+
+
+
 
 var failUser = [];
 var solutionFail = [];
 var reponseUser = [];
 
-
 var compteurBon = 0;
 var compteurpasbon = 0;
 var compteurReponse = 0;
+
 
 
 function add_score() {
@@ -78,11 +82,12 @@ function add_score() {
 
     };
 
-    xhttp.open("GET", "index.php?controler=ajax&action=add_score&score=" + compteurBon, true);
+    xhttp.open("GET", "index.php?controler=ajax&action=addScore&score=" + compteurBon, true);
 
     xhttp.send();
 
 }
+
 
 
 $("#reponse1, #reponse2, #reponse3, #reponse4").on("click", function () {

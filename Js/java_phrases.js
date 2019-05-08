@@ -185,86 +185,12 @@ function ajax_loadDB_html() {
         }
     };
 
-    xhttp.open("GET", "index.php?controler=ajax&action=read_list&choice=" + db_table, true);
+    xhttp.open("GET", "index.php?controler=ajax&action=readList&choice=" + db_table, true);
 
     xhttp.send();
 
 }
 
-function ajax_loadDB_css() {
-
-    var xhttp = new XMLHttpRequest();
-
-    xhttp.onreadystatechange = function () {
-
-        if (this.readyState == 4 && this.status == 200) {
-
-            obj_mots = JSON.parse(this.responseText);
-            console.log(obj_mots);
-
-            aleaTab =  Math.floor(Math.random() * obj_mots.length);
-
-
-            game_of_words(); // on déclenche le jeu une fois que le tableau de mots est chargé, car ici on se place dans la partie reponse de notre appel ajax
-
-        }
-    };
-
-    xhttp.open("GET", "index.php?controler=ajax&action=get_csswords_db", true);
-
-    xhttp.send();
-
-}
-
-function ajax_loadDB_js() {
-
-    var xhttp = new XMLHttpRequest();
-
-    xhttp.onreadystatechange = function () {
-
-        if (this.readyState == 4 && this.status == 200) {
-
-            obj_mots = JSON.parse(this.responseText);
-            console.log(obj_mots);
-
-            aleaTab =  Math.floor(Math.random() * obj_mots.length);
-
-
-            game_of_words(); // on déclenche le jeu une fois que le tableau de mots est chargé, car ici on se place dans la partie reponse de notre appel ajax
-
-        }
-    };
-
-    xhttp.open("GET", "index.php?controler=ajax&action=get_jswords_db", true);
-
-    xhttp.send();
-
-}
-
-function ajax_loadDB_php() {
-
-    var xhttp = new XMLHttpRequest();
-
-    xhttp.onreadystatechange = function () {
-
-        if (this.readyState == 4 && this.status == 200) {
-
-            obj_mots = JSON.parse(this.responseText);
-            console.log(obj_mots);
-
-            aleaTab =  Math.floor(Math.random() * obj_mots.length);
-
-
-            game_of_words(); // on déclenche le jeu une fois que le tableau de mots est chargé, car ici on se place dans la partie reponse de notre appel ajax
-
-        }
-    };
-
-    xhttp.open("GET", "index.php?controler=ajax&action=get_phpwords_db", true);
-
-    xhttp.send();
-
-}
 
 function ajax_send_scores(matiere, score) {
 
@@ -281,7 +207,7 @@ function ajax_send_scores(matiere, score) {
         }
     };
 
-    xhttp.open("GET", "index.php?controler=ajax&action=scores_phrases&score=" + score + "&matiere=" + matiere, true);
+    xhttp.open("GET", "index.php?controler=ajax&action=scoresPhrases&score=" + score + "&matiere=" + matiere, true);
 
     xhttp.send();
 

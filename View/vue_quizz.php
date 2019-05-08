@@ -19,81 +19,93 @@
     <link rel="stylesheet" type="text/css" href="Css/stylr.css">
 </head>
 <body>
-<div id="boutonListe">+</div>
+<div class="menu">
+    <div id="sidebar">
+        <ul>
+            <li><a id="bloc1" href='index.php?'>Accueil</a></li>
+            <li><a id="bloc2" href='index.php?controler=jeux&action=entrainement'>Jeu 1</a></li>
+            <li><a id="bloc3" href='index.php?controler=jeux&action=jeu_mots'>Jeu 2</a></li>
+            <li><a id="bloc5" href='index.php?controler=jeux&action=quizz'>Jeu 3</a></li>
+            <?php
 
-<aside class="menuderoulant">
-    <div id="menu">
-        <a href="index.php?" id="bloc1">
-            <div>Accueil</div>
-        </a>
-        <a href="index.php?controler=jeux&action=entrainement" id="bloc2">
-            <div>Entrainement au vocabulaire Italien</div>
-        </a>
-        <a href="index.php?controler=jeux&action=jeu_mots" id="bloc3">
-            <div>Jeu phrases</div>
-        </a>
-        <a href="index.php?controler=jeux&action=quizz" id="bloc5">
-            <div>Quizz</div>
-        </a>
-        <?php
+            if (isset($_SESSION['rang']) and $_SESSION['rang'] == 0) {
 
-        if (isset($_SESSION['rang']) and $_SESSION['rang'] == 0) {
+                ?>
 
+                <li><a id="bloc4" href='index.php?controler=users&action=vue_espace_membres'>Membres</a></li>
+
+                <?php
+
+            } else if (isset($_SESSION['rang']) and $_SESSION['rang'] == 1) { ?>
+
+                <li><a id="bloc4" href='index.php?controler=users&action=panel_admin'>Admin</a></li>
+
+                <?php
+            } else {
+                ?>
+
+                <?php
+            }
             ?>
-
-            <a href="index.php?controler=users&action=vue_espace_membres" id="bloc4">
-                <div>Espace membres</div>
-            </a>
-
-            <?php
-
-        } else if (isset($_SESSION['rang']) and $_SESSION['rang'] == 1) { ?>
-            <a href="index.php?controler=users&action=panel_admin" id="bloc4">
-                <div>Espace admin</div>
-            </a>
-            <?php
-        } else {
-            ?>
-
-            <?php
-        }
-        ?>
+        </ul>
     </div>
-</aside>
+    <div><a id="btn">X</a></div>
+</div>
 
-<div id="titre">
-    <h1>Accueil site</h1>
+
+<header class="d-flex flex-wrap">
+    <div id="first-level">
+        <div id='container_btn'>
+            <div id="btn_menu">Menu</div>
+        </div>
+        <div id='titre_site'>
+            <h1>Page d'accueil</h1>
+
+        </div>
+    </div>
     <div id="connection">
 
         <?php
-
         if (isset($_SESSION['rang']) and $_SESSION['rang'] == 0 || $_SESSION['rang'] == 1) {
-
             ?>
-            <p>Bienvenue, <?php echo $_SESSION['nom']; ?>&nbsp;<?php $_SESSION['prenom']; ?></p>
-            <p>vous pouvez désormais accéder à votre espace membre a partir du menu</p>
+
+            <p>Bienvenue, <?php echo $_SESSION['nom'];
+                echo $_SESSION['prenom'];
+                echo $_SESSION['pseudo']; ?></p>
+            <p>Id de session : <?php echo $_SESSION['id']; ?></p>
+            <p>vous pouvez désormais accéder à votre espace personnel a partir du menu</p>
             <a href="index.php?controler=users&action=log_out">Se déconnecter</a>
 
             <?php
-
         } else {
             ?>
-
-            <h3>Connectez-vous</h3>
-
             <form action="index.php?controler=users&action=connection" method="post">
-                <label>Votre Pseudo : </label><input type="text" name="logPseudo">
-                <label>Votre mot de passe : </label><input type="text" name="logMdp">
-                <input type="submit" name="Connectez-vous"><br><br>
-            </form>
-            <a href="index.php?controler=users&action=vue_inscription">Inscrivez-vous ici</a>
+                <div id='groupe'>
+                    <div>
+                        <label>Votre pseudo : </label>
+                        <input type="text" name="logPseudo" id='pseudo'>
+                    </div>
+                    <div>
+                        <label>Votre mot de passe : </label>
+                        <input type="password" name="logMdp" id='password'>
+                    </div>
+                </div>
 
+                <div id="voyez">
+                    <input type="submit" class="btn btn-primary mb-2" name="Envoyez" id='envoyez'>
+                </div>
+            </form>
+            <div id="btn_submit">
+                <a href="index.php?controler=users&action=vue_inscription">Inscrivez-vous ici</a>
+            </div>
             <?php
         }
         ?>
 
     </div>
-</div>
+
+</header>
+
 <div id = 'accueil_quizz'>
 
     <div class="jumbotron" id="info_start3">
@@ -106,12 +118,24 @@
         </p>
     </div>
 
+
+    <?php
+    if (isset($_SESSION['rang']) and $_SESSION['rang'] == 1 || $_SESSION['rang'] == 0) {
+    ?>
     <div id="commenter">
-        <form action="index.php?controler=jeux&action=coms_quizz" method="post">
+        <form action="index.php?controler=jeux&action=comsQuizz" method="post">
             <label>Commentez :</label><textarea name="contenu_com" id="contenu_com"></textarea>
             <input type="submit" value="Envoyez" class="btn btn-primary mb-2" id="btn">
         </form>
     </div>
+        <?php
+    } else {
+        ?>
+        <div class="alert alert-info">Connectez-vous pour écrire un commentaire</div>
+        <?php
+    }
+    ?>
+
 
     <div id = "commentaires">
 
@@ -136,7 +160,7 @@
 
     <div id="container_quiz">
 
-
+        <span id = 'message_erreur'></span>
         <span id="questions"></span>
 
         <div id="container_reponses">

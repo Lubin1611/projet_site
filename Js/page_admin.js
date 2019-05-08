@@ -34,7 +34,7 @@ function ajax_add_data_jeu1() {
         }
     };
 
-    xhttp.open("GET", "index.php?controler=ajax&action=add_data1&question=" + question_jeu1 + "&reponse=" + reponse_jeu1, true);
+    xhttp.open("GET", "index.php?controler=ajax&action=Data1&question=" + question_jeu1 + "&reponse=" + reponse_jeu1, true);
 
     xhttp.send();
 
@@ -55,7 +55,7 @@ function ajax_add_data_words(matiere, question_jeu, reponse_jeu) {
         }
     };
 
-    xhttp.open("GET", "index.php?controler=ajax&action=data_words&matiere=" + matiere + "&question=" + question_jeu + "&reponse=" + reponse_jeu, true);
+    xhttp.open("GET", "index.php?controler=ajax&action=dataWords&matiere=" + matiere + "&question=" + question_jeu + "&reponse=" + reponse_jeu, true);
 
     xhttp.send();
 
@@ -76,7 +76,7 @@ function ajax_add_quiz_data() {
         }
     };
 
-    xhttp.open("GET", "index.php?controler=ajax&action=add_quizz_data&question=" + question_quizz + "&reponseA="
+    xhttp.open("GET", "index.php?controler=ajax&action=quizzData&question=" + question_quizz + "&reponseA="
         + reponse_quizz1 + "&reponseB=" + reponse_quizz2 + "&reponseC=" + reponse_quizz3 + "&reponseD=" + reponse_quizz4
          + "&bonnerep=" + bonne_reponse + "&solution=" + solution, true);
 
@@ -113,7 +113,7 @@ function ajax_read_data_jeu1() {
             }
         }
     };
-    xhttp.open("GET", "index.php?controler=ajax&action=read_data1", true);
+    xhttp.open("GET", "index.php?controler=ajax&action=readData1", true);
 
     xhttp.send();
 
@@ -146,7 +146,7 @@ function ajax_read_data_jeu2() {
             }
         }
     };
-    xhttp.open("GET", "index.php?controler=ajax&action=read_list&choice="+ table, true);
+    xhttp.open("GET", "index.php?controler=ajax&action=readList&choice="+ table, true);
 
     xhttp.send();
 
@@ -195,7 +195,7 @@ function ajax_read_data_quizz() {
             }
         }
     };
-    xhttp.open("GET", "index.php?controler=ajax&action=get_quizz", true);
+    xhttp.open("GET", "index.php?controler=ajax&action=getQuizz", true);
 
     xhttp.send();
 
@@ -375,6 +375,7 @@ $("#add_data").on('click', function () {
     document.getElementById('choix_parametres_jeu').style.display = "block";
 
 });
+
 
 $("#jeu1").on('click', function () {
 

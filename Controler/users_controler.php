@@ -34,32 +34,6 @@ class users_controler
 
     public function check_credentials() {
 
-        $pseudo = $_POST['pseudo'];
-        filter_var($pseudo, FILTER_SANITIZE_STRING);
-
-        $mail = $_POST['mail'];
-        filter_var($mail, FILTER_SANITIZE_STRING);
-
-        $reponse =  $this->model->check($pseudo, $mail);
-
-        if ($reponse == 1) {
-
-            $message = "Pseudo ou mail déjà existants";
-
-            include "View/inscription.php";
-
-        }
-
-        elseif ($reponse == 0) {
-
-            include "View/Page_accueil.php";
-        }
-
-    }
-
-
-    public function submit_sign_up() {
-
         $nom = $_POST['nom'];
         filter_var($nom, FILTER_SANITIZE_STRING);
 
@@ -80,8 +54,33 @@ class users_controler
 
         $rang = '0';
 
+        $reponse =  $this->model->check($pseudo, $mail);
+
+        var_dump($reponse);
+
+
+        if ($reponse == "1") {
+
+            $this->model->sign_up($nom, $prenom, $pseudo, $motdepasse, $avatar, $mail, $rang);
+
+            include "View/confirmation_inscription.html";
+
+        }
+
+
+       else {
+
+            $message = "Pseudo ou Mail déjà existants";
+
+            include "View/inscription.php";
+
+        }
+
 
     }
+
+
+
 
    public function vue_sign_up() {
 
@@ -90,12 +89,17 @@ class users_controler
 
     public function login() {
 
-        $this->log_pseudo = $_POST['logPseudo'];
-        $this->log_password = $_POST['logMdp'];
+        $log_pseudo = $_POST['logPseudo'];
+        htmlspecialchars($log_pseudo);
 
-        $this->model->log($this->log_pseudo, $this->log_password);
+        $log_password = $_POST['logMdp'];
+        htmlspecialchars($log_password);
 
-        include "View/Page_accueil.php";
+        $this->model->log($log_pseudo, $log_password);
+
+
+            include "View/Page_accueil.php";
+
 
     }
 
@@ -103,7 +107,7 @@ class users_controler
 
         $this->model->logout();
 
-        include "View/Page_accueil.php";
+        include "View/vue_deconnection.html";
 
     }
 

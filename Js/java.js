@@ -1,18 +1,13 @@
-$("#boutonListe").click(function () {
+$('#btn').on('click', function () {
 
-    $(this).hide(1000);
-    $(this).addClass("effetmenu");
-    $(".menuderoulant").show(1000);
+    $('.menu').addClass('retire');
+    $('.menu').removeClass('side');
+});
+
+$('#btn_menu').on('click', function () {
+
+    $('.menu').addClass('side');
+    $('.menu').removeClass('retire');
 
 
 });
-
-$(".menuderoulant").on("mouseleave", function () {
-
-
-    $(this).hide(1000);
-    $("#boutonListe").addClass("effetmenu");
-    $("#boutonListe").show(1000);
-
-});
-

@@ -49,7 +49,10 @@ class controler_ajax
         $id_session = $_SESSION['id'];
         $score = $_GET['score'];
 
-        $this->model->set_highscore($score, $id_session);
+
+        $this->model->check_highscore($id_session, $score);
+
+
     }
 
     public function request_classement()

@@ -94,13 +94,49 @@ class Ajax
         $this->sql = "UPDATE `highscore` SET score=? WHERE id_users = ?";
         $this->bdd->prepare($this->sql)->execute([$score, $id]);
 
-        echo json_encode($score, $id);
     }
+
+
+    public function create_highscore($score, $id) {
+
+        $highscore = $this->bdd->prepare("INSERT INTO `highscore` (`score`,`id_users`) VALUES (?,?)");
+
+        $highscore->bindParam('1', $score);
+        $highscore->bindParam('2', $id);
+        $highscore->execute();
+
+    }
+
+
+    public function check_highscore($id, $score) {
+
+        $highscore= $this->bdd->prepare("select * from highscore where `id_users` = ?");
+
+        $highscore->bindValue(1, $id);
+
+        $highscore->execute();
+
+        $resultat = $highscore->fetch();
+
+        if (!empty($resultat['score'])) {
+
+            $this->set_highscore($score, $id);
+
+        }
+
+        else {
+
+            $this->create_highscore($score, $id);
+        }
+
+    }
+
 
     public function classement()
     {
 
-        $this->classement = $this->bdd->query("select * from highscore order by score desc")->fetchall(PDO::FETCH_OBJ);
+        $this->classement = $this->bdd->query("select * from highscore order by score desc")
+            ->fetchall(PDO::FETCH_OBJ);
 
         echo json_encode($this->classement);
 

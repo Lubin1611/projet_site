@@ -66,7 +66,7 @@ class Jeux
 
         $this->model->write_com_tbl1($pseudo, $contenu, $avatar);
 
-        $this->jeu2();
+        $this->jeu1();
 
     }
 
@@ -78,7 +78,7 @@ class Jeux
 
         $this->model->write_com_tbl2($pseudo, $contenu, $avatar);
 
-        $this->jeu1();
+        $this->jeu2();
     }
 
     public function write_com3() {
@@ -91,5 +91,44 @@ class Jeux
 
         $this->jeu3();
 
+    }
+
+    public function get_com2() {
+
+        $id_commentaire = $_GET['id'];
+
+        $commentaire = $this->model->get_com_memo_by_id($id_commentaire);
+
+        include "View/editionCommentaire.php";
+
+    }
+
+    public function set_com2() {
+
+        $id_com = $_GET['id'];
+        $commentaire = $_POST['contenu_com'];
+
+        $this->model->set_com_memo_by_id($id_com, $commentaire);
+
+        $this->jeu2();
+    }
+
+    public function to_delete_com2() {
+
+        $id_commentaire = $_GET['id'];
+
+        $commentaire = $this->model->get_com_memo_by_id($id_commentaire);
+
+        include "View/deleteCommentaires.php";
+
+    }
+
+    public function delete_com2() {
+
+        $id_com= $_GET['id'];
+
+        $this->model->delete_com_memo_by_id($id_com);
+
+        $this->jeu2();
     }
 }

@@ -1,6 +1,8 @@
+
 #choix_user {
-    width: 10%;
-    height: 50%;
+    width: 200px;
+    height: 150px;
+    background-size: contain;
     margin-right: 2%;
     margin-left: 2%;
 }
@@ -13,3 +15,48 @@
     height: 200px;
 }
 
+
+#inscription {
+    width: 400px;
+    text-align: center;
+
+
+}
+
+#inscription form {
+
+    margin-top: 10%;
+
+}
+
+i {
+
+    cursor: pointer;
+
+}
+
+
+#inscription input {
+
+    margin-bottom: 5%;
+
+}
+
+#inscription label {
+
+    width: 200px;
+    display: block;
+    float: left;
+
+}
+
+.container_inscription {
+
+    position: relative;
+    top: 7%;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+
+}

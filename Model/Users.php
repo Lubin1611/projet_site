@@ -10,7 +10,7 @@ class Users
 {
 
     private $sql;
-
+    private $result;
 
     public function __construct()
     {
@@ -27,7 +27,7 @@ class Users
 
     function sign_up($nom, $prenom, $pseudo, $motdepasse, $avatar, $mail, $rang)
     {
-        $motdepasse = sha1($motdepasse);
+        $motdepasse = password_hash($motdepasse, PASSWORD_DEFAULT);
 
         $this->sql = $this->bdd->prepare("INSERT INTO `users` (`nom`, `prenom`, `pseudo`, `password`, `avatar`, `mail`, `rang`) VALUES (?,?,?,?,?,?,?)");
 
@@ -47,31 +47,31 @@ class Users
 
     function log($pseudo, $password)
     {
-        $password = sha1($password);
 
-        $this->sql = $this->bdd->query("select * from users where password = '$password' and pseudo = '$pseudo'");
+        $this->sql = $this->bdd->prepare("select * from users where pseudo = ?");
 
-        $this->sql = $this->sql->fetch();
+        $this->sql->bindValue(1, $pseudo, PDO::PARAM_STR);
 
-        if ($password == $this->sql['password'] and $pseudo == $this->sql['pseudo']) {
+        $this->sql->execute();
 
-            ?><div id = "access_granted">Vous êtes bien connecté</div> <?php
+        $result = $this->sql->fetch();
+
+        $hash = $result['password'];
+
+
+        if (password_verify($password, $hash) and $pseudo == $result['pseudo']) {
+
 
             session_start();
 
-            $_SESSION['id'] = $this->sql['id_users'];
-            $_SESSION['nom'] = $this->sql['nom'];
-            $_SESSION['prenom'] = $this->sql['prenom'];
-            $_SESSION['pseudo'] = $this->sql['pseudo'];
-            $_SESSION['password'] = $this->sql['password'];
-            $_SESSION['avatar'] = $this->sql['avatar'];
-            $_SESSION['rang'] = $this->sql['rang'];
+            $_SESSION['id'] = $result['id_users'];
+            $_SESSION['nom'] = $result['nom'];
+            $_SESSION['prenom'] = $result['prenom'];
+            $_SESSION['pseudo'] = $result['pseudo'];
+            $_SESSION['password'] = $result['password'];
+            $_SESSION['avatar'] = $result['avatar'];
+            $_SESSION['rang'] = $result['rang'];
 
-
-        } else {
-
-            ?>
-            <div id="access_denied">Identifiant ou mot de passe non valide</div><?php
 
         }
 
@@ -102,30 +102,30 @@ class Users
     public function check($pseudo, $mail)
     {
 
-        $this->sql = $this->bdd->query("select * from users where `pseudo` = '$pseudo' and `mail` = '$mail'");
-        $this->sql->execute(array($pseudo, $mail));
-        $donnees = $this->sql->fetch();
+        var_dump($pseudo, $mail);
 
-        if (empty($donnees['pseudo']) and empty($donnees['mail'])) {
+        $this->sql = $this->bdd->prepare("select * from users where `pseudo` = ? or `mail` = ?");
 
-            return '0';
+        $this->sql->bindValue(1, $pseudo);
+        $this->sql->bindValue(2, $mail);
 
-        } else {
+        $this->sql->execute();
 
-            return '1';
+        $resultat = $this->sql->fetch();
+
+        var_dump($resultat['pseudo'], $resultat['mail']);
+
+
+        if (empty($resultat['pseudo']) or empty($resultat['mail'])) {
+
+            return "1";
 
         }
 
-    }
-    public function check_credentials($pseudo, $password)
-    {
-        $this->sql = $this->bdd->query("select * from users where password = '$password' and pseudo = '$pseudo' ")->fetchAll(PDO::FETCH_OBJ);
-        return $this->sql;
+       else {
 
-       if  ($pseudo == $this->sql['pseudo']) {
-
-           return 1;
-       }
+            return "2";
+        }
 
 
     }

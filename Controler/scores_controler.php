@@ -34,6 +34,7 @@ class scores_controler
     }
 
     public function resultat_quizz() {
+
         $id =  $_SESSION['id'];
         $resultat_quizz =  $_POST['score_jeuquizz'];
 

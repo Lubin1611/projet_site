@@ -13,93 +13,96 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="Css/stylr.css">
+
     <link href="https://fonts.googleapis.com/css?family=Courgette|Crete+Round|Noto+Sans+TC" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
           integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <script src="lib/jquery.js"></script>
+    <link rel="stylesheet" href="bootstrap/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="Css/stylr.css">
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
 </head>
 <body>
 
-<div class="container">
+<div class="container_page">
 
+    <div class="menu">
+        <div id="sidebar">
+            <ul>
+                <li><a id="bloc1" href='index.php?'>Accueil</a></li>
+                <li><a id="bloc2" href='index.php?controler=jeux&action=entrainement'>Jeu 1</a></li>
+                <li><a id="bloc3" href='index.php?controler=jeux&action=jeuMots'>Jeu 2</a></li>
+                <li><a id="bloc5" href='index.php?controler=jeux&action=quizz'>Jeu 3</a></li>
+                <?php
 
-    <div id="boutonListe">+</div>
+                if (isset($_SESSION['rang']) and $_SESSION['rang'] == 0) {
 
-    <aside class="menuderoulant">
-        <div id="menu">
-            <a href="index.php?" id="bloc1">
-                <div>Accueil</div>
-            </a>
-            <a href="index.php?controler=jeux&action=entrainement" id="bloc2">
-                <div>Entrainement au vocabulaire Italien</div>
-            </a>
-            <a href="index.php?controler=jeux&action=jeu_mots" id="bloc3">
-                <div>Jeu phrases</div>
-            </a>
-            <a href="index.php?controler=jeux&action=quizz" id="bloc5">
-                <div>Quizz</div>
-            </a>
-            <?php
+                    ?>
 
-            if (isset($_SESSION['rang']) and $_SESSION['rang'] == 0) {
+                    <li><a id="bloc4" href='index.php?controler=users&action=espaceMembres'>Membres</a></li>
 
+                    <?php
+
+                } else if (isset($_SESSION['rang']) and $_SESSION['rang'] == 1) { ?>
+
+                    <li><a id="bloc4" href='index.php?controler=users&action=panelAdmin'>Admin</a></li>
+
+                    <?php
+                } else {
+                    ?>
+
+                    <?php
+                }
                 ?>
-
-                <a href="index.php?controler=users&action=vue_espace_membres" id="bloc4">
-                    <div>Espace membres</div>
-                </a>
-
-                <?php
-
-            } else if (isset($_SESSION['rang']) and $_SESSION['rang'] == 1) { ?>
-                <a href="index.php?controler=users&action=panel_admin" id="bloc4">
-                    <div>Espace admin</div>
-                </a>
-                <?php
-            } else {
-                ?>
-
-                <?php
-            }
-            ?>
+            </ul>
         </div>
-    </aside>
-
-
-    <div id="titre">
-        <h1>Page d'accueil</h1>
-        <div id="connection">
-
-            <?php
-            if (isset($_SESSION['rang']) and $_SESSION['rang'] == 0 || $_SESSION['rang'] == 1) {
-                ?>
-
-                <p>Bienvenue, <?php echo $_SESSION['nom'];
-                    echo $_SESSION['prenom']; echo $_SESSION['pseudo'];?></p>
-                <p>Id de session : <?php echo $_SESSION['id']; ?></p>
-                <p>vous pouvez désormais accéder à votre espace personnel a partir du menu</p>
-                <a href="index.php?controler=users&action=log_out">Se déconnecter</a>
-
-                <?php
-            } else {
-                ?>
-
-                <h3>Connectez-vous</h3>
-
-                <form action="index.php?controler=users&action=connection" method="post">
-                    <label>Votre Pseudo : </label><input type="text" name="logPseudo">
-                    <label>Votre mot de passe : </label><input type="text" name="logMdp">
-                    <input type="submit" name="Connectez-vous"><br><br>
-                </form>
-                <a href="index.php?controler=users&action=vue_inscription">Inscrivez-vous ici</a>
-
-                <?php
-            }
-            ?>
-
-        </div>
+        <div><a id="btn">X</a></div>
     </div>
+
+
+    <header class="d-flex">
+        <div id="first-level">
+            <div id='container_btn'>
+                <div id="btn_menu">Menu</div>
+            </div>
+            <div id='titre_site'>
+                <h1>Page d'accueil</h1>
+                <div id="connection">
+
+                    <?php
+                    if (isset($_SESSION['rang']) and $_SESSION['rang'] == 0 || $_SESSION['rang'] == 1) {
+                        ?>
+
+                        <p>Bienvenue, <?php echo $_SESSION['nom'];
+                            echo $_SESSION['prenom'];?>
+                        </p>
+                        <p>Id de session : <?php echo $_SESSION['id']; ?></p>
+                        <p>vous pouvez désormais accéder à votre espace personnel a partir du menu</p>
+                        <a href="index.php?controler=users&action=deconnection">Se déconnecter</a>
+
+                        <?php
+                    } else {
+                        ?>
+                        <form action="index.php?controler=users&action=connection" method="post">
+                                    <label>Votre pseudo : </label>
+                                    <input type="text" name="logPseudo" id='pseudo'>
+
+                                    <label>Votre mot de passe : </label>
+                                    <input type="password" name="logMdp" id='password'>
+                                <input type="submit" name="Envoyez" id='envoyez'>
+                        </form>
+                    <div id="btn_submit">
+                        <a href="index.php?controler=users&action=vueInscription">Inscrivez-vous ici</a>
+                    </div>
+                </div>
+
+                        <?php
+                    }
+                    ?>
+
+                </div>
+            </div>
+    </header>
 
 
     <div class="containerActu">

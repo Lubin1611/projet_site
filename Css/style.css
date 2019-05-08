@@ -1,15 +1,31 @@
 body {
 
-    font-size: 1vw;
-    font-family: lobster, sans-serif;
+
+}
+
+.prez {
+    font-weight: 300;
+}
+
+#dim {
+
+    position: relative;
+    top: 5%;
+    width: 100%;
+    height: 80%;
 }
 
 #container_questions {
+
     display: none;
+    width: 100%;
+   height: 100%;
+
 }
 
 #accueil_jeu {
-    margin-top: 10%;
+    position: relative;
+    top: 5%;
 }
 
 #start {
@@ -26,71 +42,80 @@ h1 {
 
 
 #reponse {
-
     position: relative;
-    top: 65%;
-    margin-left: 25%;
+    top: 20%;
+    width: 100%;
+    height: 50px;
+    text-align: center;
 }
 
-#questions {
+#box_questions {
 
     position: relative;
-    top: 300px;
-    margin-left: 38%;
-    border: 3px black solid;
-    width: 300px;
-    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 200px;
+    top: 5%;
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 2%;
     color: black;
-    font-family: lobster, sans-serif;
+}
+
+
+#questions {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 25%;
+    height: 50%;
+    width: 43%;
+    border: 3px black solid;
+
+
 }
 
 #placementJeu {
 
     position: relative;
-    top: 40%;
-    margin-left: 31%;
+    text-align: center;
+    top: 15%;
+    width: 100%;
+
 }
 
 #nextButton {
-    position: absolute;
-    top: 78.5%;
-    margin-left: 70%;
-    padding: 1%;
+    margin-left: 5%;
+    padding: 0.5%;
     background-color: lightblue;
     color: white;
     border-radius: 10px;
 }
 
-#bonsPts {
-    position: absolute;
-    top: 40%;
-    margin-left: 85%;
-    width: 10%;
-    height: 15%;
-    border: 3px black solid;;
+#note_serie {
+    position: relative;
+    left: 35%;
+    width: 13vw;
+    height: 13vw;
+    border: 3px black solid;
     text-align: center;
     background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 2%;
     color: black;
 }
 
 
 #highScore {
 
-    position: absolute;
-    top: 70%;
-    margin-left: 85%;
-    width: 10%;
-    height: 15%;
-    border: 3px black solid;;
+    position: relative;
+    top: 25%;
+    left: 78%;
+    border: 3px black solid;
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 2%;
     color: black;
-
-
+    width: 13vw;
+    height: 13vw;
 }
 
 #commenter {
@@ -99,9 +124,10 @@ h1 {
     width: 80%;
     left: 10%;
 }
- #contenu_com {
-     height: 20vh;
- }
+
+#contenu_com {
+    height: 20vh;
+}
 
 #commentaires {
     position: relative;
@@ -110,15 +136,17 @@ h1 {
     left: 10%;
 
 }
+
 #affichage_commentaires {
 
     width: 50%;
     margin-top: 5%;
 }
-  #affichage_commentaires > img {
-      width: 15%;
-      height: 15%;
-  }
+
+#affichage_commentaires > img {
+    width: 15%;
+    height: 15%;
+}
 
 .tailleBouton {
     height: 35px;
@@ -146,4 +174,69 @@ h1 {
     top: 170px;
     left: 10%;
     width: 80%;
+}
+
+#affichage_classement {
+
+    display: none;
+}
+
+@media (max-width: 812px) {
+
+    #dim {
+        top: 0;
+        display: flex;
+        align-items: center;
+
+    }
+
+    #container_questions {
+        height: 70%;
+        top: 5%;
+
+    }
+
+    #box_questions {
+        top: 0;
+        display: flex;
+        flex-wrap: wrap-reverse;
+        height: 20%;
+    }
+
+    #note_serie {
+        left: 5%;
+        display: block;
+        height: 50%;
+        width: 90%;
+        border-width: 1px;
+    }
+
+    #questions {
+        left: 15%;
+        min-width: 70%;
+        height: 50%;
+        border-width: 1px;
+        top: 10%;
+        font-size: 3vw;
+    }
+
+    #placementJeu {
+        top: 5%;
+    }
+
+
+    #reponse {
+        top: 8%;
+    }
+
+    #highScore {
+        position: relative;
+        top: 10%;
+        left: 5%;
+        width: 90%;
+        height: 10%;
+        border-width: 1px;
+    }
+
+
 }
