@@ -1,8 +1,7 @@
-// Ces variables sont déclarées globalement, elles seront utilisées
+// Ces variables sont déclarées globalement, elles seront utilisées pour plusieures fonctions js
 
 var randQuestions; // cette variable contiendra l'algorythme qui va permettre de trier au hasard les questions.
 var content; // cette variable contiendra les données du jeu (questions, et réponses par exemple).
-
 
 // Avec ajax_loadDB, nous créons un appel AJAX qui va récupérer le contenu du jeu en base de données.
 function ajax_loadDB() {
@@ -33,8 +32,6 @@ function ajax_loadDB() {
 
 }
 
-
-var highscore;
 var serie = 0; // cette variable s'incrémente a chaque bonne réponse.
 var cumul_score = document.getElementById('highScore').innerHTML;
 var vie = 3;
@@ -49,8 +46,8 @@ $('#start').on('click', function () {
 
     ajax_loadDB();
     document.getElementById('accueil_jeu').style.display = "none";
-    document.getElementById('container_questions').style.display = "block";
-    console.log(vie);
+    document.getElementById('dim').style.display = "block";
+
 });
 
 
@@ -60,7 +57,6 @@ function boutonReponse() {
 
     // Dans une condition, nous vérifions si l'utilisateur a fourni une réponse identique à celle stockée en base de
     // données
-
     if (utilisateur == content[randQuestions].reponses) {
 
         document.getElementById("bouton").disabled = true;
@@ -77,8 +73,6 @@ function boutonReponse() {
         serie++; // L'utilisateur gagne 1 point pour chaque bonne réponse.
 
         document.getElementById("bonsPts").innerHTML = "Bravo, vous avez : " + serie + " bons points";
-
-      //  pts_serie++;
         tentatives++;
         compteur_highscore++;
 
@@ -98,7 +92,6 @@ function boutonReponse() {
             nextButton.onclick = nextBtn;
             document.getElementById('reponse').appendChild(nextButton);
 
-
             tentatives++;
             vie = 3; // Nous réinitialisons le nombre de vies pour la prochine question.
         }
@@ -110,12 +103,12 @@ function boutonReponse() {
 
         console.log(highscore);
 
-        document.getElementById("container_questions").style.display = "none";
+        document.getElementById("dim").style.display = "none";
 
         ajaxadd_highscore();
 
         document.getElementById("fin_serie").style.display = "block";
-        document.getElementById("resultat_quest").innerHTML = pts + " /10";
+        document.getElementById("resultat_quest").innerHTML = serie + " /10";
 
     }
 
@@ -128,10 +121,7 @@ function boutonReponse() {
         document.getElementById("highScore").innerHTML = cumul_score;
 
         compteur_highscore = 0;
-
     }
-
-
 }
 
 $('#table_membres').on('click', function () {
@@ -201,18 +191,14 @@ $('#table_membres').on('click', function () {
 
     }
 
-
-
-
 function nextBtn() {
 
     document.getElementById("bouton").disabled = false;
     randQuestions =  Math.floor(Math.random() * content.length)
     document.getElementById("questions").innerHTML = content[randQuestions].questions;
-    $('#nextButton').remove();
     document.getElementById("reponse").innerHTML = " ";
     $('#champUtilisateur').val("");
-
+    $('#nextButton').remove();
 }
 
 function reset() {
@@ -231,10 +217,15 @@ function reset() {
 function recommencer() {
 
     tentatives = 0;
-    pts = 0;
+    serie = 0;
     vie = 3;
 
     $("#questions").html("");
+    $("#nom").html("");
+    $("#score").html("");
+    $("#bonsPts").html("");
+    $("#reponse").html("");
+
     document.getElementById('affichage_classement').style.display = 'none';
     document.getElementById("fin_serie").style.display = "none";
     document.getElementById("accueil_jeu").style.display = "block";
@@ -242,7 +233,6 @@ function recommencer() {
 
     $('#nextButton').remove();
 
-     document.getElementById("note_serie").innerHTML = " ";
     document.getElementById("reponse").innerHTML = " ";
     document.getElementById("champUtilisateur").value = " ";
 }

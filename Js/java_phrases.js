@@ -233,21 +233,17 @@ function reset() {
 
 function game_of_words() {
 
-
     document.getElementById("menuJeu").style.display = "none";
     document.getElementById("containerJeu").style.display = "block";
 
-    var conteneurQ = document.getElementById("Question");
+    var boxquestions = document.getElementById("Question");
     var conteneurP = document.getElementById("aleaphrase");
     var conteneurRecup = document.getElementById("recupmots");
     var compteurmots = -1;
 
+    boxquestions.innerHTML = obj_mots[aleaTab].question;
 
-
-    conteneurQ.innerHTML = obj_mots[aleaTab].question;
-
-    // algorythme qui melange les lettres d'un mot.
-
+    // algorythme qui melange les lettres du mot.
     function shuffelWord(word) {
         var shuffledWord = '';
         word = word.split('');
@@ -257,7 +253,6 @@ function game_of_words() {
         return shuffledWord;
     }
     shuffledmot = shuffelWord(obj_mots[aleaTab].phrase);
-
 
 
     for (var j = 0; j < shuffledmot.length; j++) { // attribue chaque span pour chaque lettre du mot gÃ©nÃ©rÃ©
@@ -282,7 +277,6 @@ function game_of_words() {
     }
 
     function jeu() {
-
 
         compteurmots++;
 

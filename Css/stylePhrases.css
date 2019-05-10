@@ -113,7 +113,6 @@ body {
 }
 
 #message {
-
     position: relative;
     font-size: 20px;
     width: 50%;
@@ -133,8 +132,12 @@ body {
 }
 #affichage_commentaires {
 
-    width: 50%;
+    width: 80%;
     margin-top: 5%;
+}
+
+#commenter form {
+    width: 100%;
 }
 
 #Restart, #Retry, #NouvMot, #verifier {
@@ -171,6 +174,7 @@ body {
     position: relative;
     top: 15%;
 }
+
 #commenter {
     position: relative;
     top: 10%;
@@ -235,7 +239,18 @@ body {
         left: 5%;
     }
 
+    #affichage_commentaires {
+        width: 100%;
+    }
 
+    #affichage_commentaires img {
+        width: 20%;
+    }
+
+    #info_start2, #commenter, #commentaires {
+        width: 95%;
+        left: 2.5%;
+    }
 
     #message {
         font-size: 12px;

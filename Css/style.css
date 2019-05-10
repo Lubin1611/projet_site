@@ -8,7 +8,7 @@ body {
 }
 
 #dim {
-
+    display: none;
     position: relative;
     top: 5%;
     width: 100%;
@@ -17,7 +17,6 @@ body {
 
 #container_questions {
 
-    display: none;
     width: 100%;
    height: 100%;
 
@@ -124,9 +123,13 @@ h1 {
     width: 80%;
     left: 10%;
 }
+#commenter form {
+    width: 100%;
+}
 
 #contenu_com {
     height: 20vh;
+    margin-bottom: 2%;
 }
 
 #commentaires {
@@ -139,7 +142,7 @@ h1 {
 
 #affichage_commentaires {
 
-    width: 50%;
+    width: 80%;
     margin-top: 5%;
 }
 
@@ -154,12 +157,17 @@ h1 {
 
 #fin_serie {
     display: none;
+    position: relative;
+    top: 5%;
 }
 
 #classement {
 
     display: flex;
     flex-direction: row;
+    width: 70%;
+    left: 15%;
+
 }
 
 #info_start {
@@ -171,7 +179,6 @@ h1 {
 
 #info_end {
     position: relative;
-    top: 170px;
     left: 10%;
     width: 80%;
 }
@@ -179,21 +186,39 @@ h1 {
 #affichage_classement {
 
     display: none;
+    width: 100%;
 }
 
 @media (max-width: 812px) {
+
+    #affichage_commentaires {
+        width: 100%;
+    }
+
+    #affichage_commentaires img {
+        width: 20%;
+    }
+
+    .media-body h5 {
+
+        font-size: 0.9em;
+
+    }
+
+    #info_start, #commenter, #commentaires {
+        width: 95%;
+        left: 2.5%;
+    }
 
     #dim {
         top: 0;
         display: flex;
         align-items: center;
-
     }
 
     #container_questions {
         height: 70%;
         top: 5%;
-
     }
 
     #box_questions {

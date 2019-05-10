@@ -26,7 +26,7 @@
         <ul>
             <li><a id="bloc1" href='index.php?'>Accueil</a></li>
             <li><a id="bloc2" href='index.php?controler=jeux&action=entrainement'>Jeu 1</a></li>
-            <li><a id="bloc3" href='index.php?controler=jeux&action=jeu_mots'>Jeu 2</a></li>
+            <li><a id="bloc3" href='index.php?controler=jeux&action=jeuMots'>Jeu 2</a></li>
             <li><a id="bloc5" href='index.php?controler=jeux&action=quizz'>Jeu 3</a></li>
             <?php
 
@@ -34,13 +34,13 @@
 
                 ?>
 
-                <li><a id="bloc4" href='index.php?controler=users&action=vue_espace_membres'>Membres</a></li>
+                <li><a id="bloc4" href='index.php?controler=users&action=espaceMembres'>Membres</a></li>
 
                 <?php
 
             } else if (isset($_SESSION['rang']) and $_SESSION['rang'] == 1) { ?>
 
-                <li><a id="bloc4" href='index.php?controler=users&action=panel_admin'>Admin</a></li>
+                <li><a id="bloc4" href='index.php?controler=users&action=panelAdmin'>Admin</a></li>
 
                 <?php
             } else {
@@ -51,7 +51,7 @@
             ?>
         </ul>
     </div>
-    <div><a id="btn"><i class="fas fa-times"></i></a></div>
+    <div><a id="btn">X</a></div>
 </div>
 
 

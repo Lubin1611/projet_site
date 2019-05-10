@@ -24,7 +24,7 @@
         <ul>
             <li><a id="bloc1" href='index.php?'>Accueil</a></li>
             <li><a id="bloc2" href='index.php?controler=jeux&action=entrainement'>Jeu 1</a></li>
-            <li><a id="bloc3" href='index.php?controler=jeux&action=jeu_mots'>Jeu 2</a></li>
+            <li><a id="bloc3" href='index.php?controler=jeux&action=jeuMots'>Jeu 2</a></li>
             <li><a id="bloc5" href='index.php?controler=jeux&action=quizz'>Jeu 3</a></li>
             <?php
 
@@ -32,13 +32,13 @@
 
                 ?>
 
-                <li><a id="bloc4" href='index.php?controler=users&action=vue_espace_membres'>Membres</a></li>
+                <li><a id="bloc4" href='index.php?controler=users&action=espaceMembres'>Membres</a></li>
 
                 <?php
 
             } else if (isset($_SESSION['rang']) and $_SESSION['rang'] == 1) { ?>
 
-                <li><a id="bloc4" href='index.php?controler=users&action=panel_admin'>Admin</a></li>
+                <li><a id="bloc4" href='index.php?controler=users&action=panelAdmin'>Admin</a></li>
 
                 <?php
             } else {
@@ -105,7 +105,7 @@
         <p>Vous jouez par série de 10 questions, et vous avez votre score a la fin de chaque série.</p>
         <p>Plus vous répondez, et plus vous marquez des points, alors faites péter votre high-score !</p>
         <p class="lead">
-            <a class="btn btn-primary btn-lg" id="start" role="button">Commencez !</a>
+            <a class="btn btn-primary mb-2" id="start" role="button">Commencez !</a>
         </p>
     </div>
 
@@ -115,7 +115,7 @@
 
     <div id="commenter">
         <form action="index.php?controler=jeux&action=comsRevisions" method="post">
-            <label>Commentez :</label>
+            <label><b>Section commentaires</b></label>
             <input class="form-control" type="text" name="contenu_com" id="contenu_com">
             <input type="submit" value="Envoyez" class="btn btn-primary mb-2" id="btn_com">
         </form>
@@ -172,7 +172,6 @@
 
             <?php if (isset($_SESSION['rang']) and $_SESSION['rang'] == 1 || $_SESSION['rang'] == 0){ ?>
 
-
                 <?= $highscore['score'] ?>
 
 
@@ -189,24 +188,21 @@
 
 <div id="fin_serie">
     <div class="jumbotron" id="info_end">
-        <h1 class="display-3"> Félicitations ! vous avez fini une série de 10 questions !</h1>
-        <p class="lead"><span>Vous avez un score de :</span><span id="resultat_quest"></span></p>
+        <h1> Félicitations ! vous avez fini une série de 10 questions !</h1>
+        <p><span>Vous avez un score de :</span>&nbsp;<span id="resultat_quest"></span></p>
         <span id ='info'></span>
         <hr class="my-2">
-
         <p>Pour voir le classement, </p><input type="button" id = 'table_membres' value="cliquez ici">
         <div id = "affichage_classement">
-            <span id ='info'>
-        <h1>Classement</h1>
+
+            <h1>Classement</h1>
 
         <div id='classement'>
             <div id='nom'></div>
             <div id='score'></div>
         </div>
-        </span>
-        <p class="lead">
+
             <a class="btn btn-primary btn-lg" role="button" onclick="recommencer()">Recommencer !</a>
-        </p>
     </div>
 
     <script src="Js/javavoca.js"></script>

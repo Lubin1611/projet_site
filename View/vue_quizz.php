@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="Css/style_quizz.css">
     <link rel="stylesheet" href="bootstrap/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="Css/stylr.css">
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
 </head>
 <body>
 <div class="menu">
@@ -24,7 +25,7 @@
         <ul>
             <li><a id="bloc1" href='index.php?'>Accueil</a></li>
             <li><a id="bloc2" href='index.php?controler=jeux&action=entrainement'>Jeu 1</a></li>
-            <li><a id="bloc3" href='index.php?controler=jeux&action=jeu_mots'>Jeu 2</a></li>
+            <li><a id="bloc3" href='index.php?controler=jeux&action=jeuMots'>Jeu 2</a></li>
             <li><a id="bloc5" href='index.php?controler=jeux&action=quizz'>Jeu 3</a></li>
             <?php
 
@@ -32,13 +33,13 @@
 
                 ?>
 
-                <li><a id="bloc4" href='index.php?controler=users&action=vue_espace_membres'>Membres</a></li>
+                <li><a id="bloc4" href='index.php?controler=users&action=espaceMembres'>Membres</a></li>
 
                 <?php
 
             } else if (isset($_SESSION['rang']) and $_SESSION['rang'] == 1) { ?>
 
-                <li><a id="bloc4" href='index.php?controler=users&action=panel_admin'>Admin</a></li>
+                <li><a id="bloc4" href='index.php?controler=users&action=panelAdmin'>Admin</a></li>
 
                 <?php
             } else {
@@ -109,11 +110,11 @@
 <div id = 'accueil_quizz'>
 
     <div class="jumbotron" id="info_start3">
-        <h1 class="display-3">Bienvenue sur le quizz, vous aurez une serie de 10 questions !</h1>
-        <p class="lead">A la fin de cette serie, vous pourrez sauvegarder vos scores, et un nouveau quizz sera généré aleatoirement,
+        <h1>Bienvenue sur le quizz, vous aurez une serie de 10 questions !</h1>
+        <p>A la fin de cette serie, vous pourrez sauvegarder vos scores, et un nouveau quizz sera généré aleatoirement,
         et vos resultats seront sauvegardés. Bon jeu !
         <hr class="my-2">
-        <p class="lead">
+        <p>
             <a class="btn btn-primary btn-lg" id ="commencer" role="button">Commencez !</a>
         </p>
     </div>
@@ -125,7 +126,7 @@
     <div id="commenter">
         <form action="index.php?controler=jeux&action=comsQuizz" method="post">
             <label>Commentez :</label><textarea name="contenu_com" id="contenu_com"></textarea>
-            <input type="submit" value="Envoyez" class="btn btn-primary mb-2" id="btn">
+            <input type="submit" value="Envoyez" class="btn btn-primary mb-2">
         </form>
     </div>
         <?php
@@ -135,7 +136,6 @@
         <?php
     }
     ?>
-
 
     <div id = "commentaires">
 
@@ -154,13 +154,8 @@
     </div>
 </div>
 
-<div id="container_qcm">
-
-    <!--<span id="titre_quizz">Quizz</span>-->
-
     <div id="container_quiz">
-
-        <span id = 'message_erreur'></span>
+       <!-- <span id = 'message_erreur'></span> -->
         <span id="questions"></span>
 
         <div id="container_reponses">
@@ -179,7 +174,6 @@
 
     <div id="container_scores">
 
-
         <div id="score" class="styleScore">
 
         </div>
@@ -191,7 +185,7 @@
 
 
     </div>
-</div>
+
 <script src="Js/quizz.js"></script>
 <script src="Js/java.js"></script>
 </body>

@@ -56,27 +56,18 @@ class users_controler
 
         $reponse =  $this->model->check($pseudo, $mail);
 
-        var_dump($reponse);
-
-
         if ($reponse == "1") {
 
             $this->model->sign_up($nom, $prenom, $pseudo, $motdepasse, $avatar, $mail, $rang);
 
             include "View/confirmation_inscription.html";
-
         }
-
 
        else {
 
             $message = "Pseudo ou Mail déjà existants";
-
             include "View/inscription.php";
-
         }
-
-
     }
 
 

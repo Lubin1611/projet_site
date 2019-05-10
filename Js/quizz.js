@@ -28,8 +28,8 @@ function ajax_loadDB() {
 
         } else {
 
-            $("#message_erreur").html("Les données du jeu n'ont pas pu être chargées, le jeu est temporairement " +
-                "inaccessible. Vous pouvez signaler ce problème dans la partie commentaires du jeu")
+          //  $("#message_erreur").html("Les données du jeu n'ont pas pu être chargées, le jeu est temporairement " +
+              //  "inaccessible. Vous pouvez signaler ce problème dans la partie commentaires du jeu")
 
         }
 
@@ -48,7 +48,7 @@ $('#commencer').on('click', function () {
     ajax_loadDB();
 
     document.getElementById('accueil_quizz').style.display = "none";
-    document.getElementById('container_qcm').style.display = "block";
+    document.getElementById('container_quiz').style.display = "block";
 
 
 });

@@ -16,9 +16,14 @@
     width: 80%;
     left: 10%;
 }
-#affichage_commentaires {
 
-    width: 50%;
+#commenter form {
+    width: 100%;
+}
+
+
+#affichage_commentaires {
+    width: 80%;
     margin-top: 5%;
 }
 
@@ -39,21 +44,8 @@
     height: 20vh;
 }
 
-body {
-    background-repeat: no-repeat;
-    background-size: cover;
-    color: lightgray;
-
-}
-
-#container_qcm {
-
-    margin-top: 150px;
-
-}
-
 #container_reponses {
-    margin-top: 50px;
+
 
 }
 
@@ -62,19 +54,29 @@ body {
     height: 40%;
 }
 
-#questions {
-    margin-left: 500px;
+#container_quiz {
+    display: none;
+    position: relative;
+    top: 5%;
+    width: 100%;
+    height: 80%;
 }
 
+#questions {
+    position: relative;
+    left: 15%;
+    width: 70%;
+}
 #reponse1, #reponse2, #reponse3, #reponse4 {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 200px;
     border: 1px solid white;
-
 }
-
+.col {
+    width: 20vw;
+    height: 20vw;
+}
 #reponse1 {
     background-color: yellow;
     color: white;
@@ -99,12 +101,6 @@ body {
     font-weight: bold;
 }
 
-
-#container_quiz {
-
-    display: block;
-
-}
 
 #accueil_quizz {
     position: relative;
@@ -133,16 +129,6 @@ body {
     margin-top: 5%;
 }
 
-#reponses > div, #questions, #explications_score, #score {
-
-    border: 3px outset lightgray;
-    color: white;
-    border-radius: 10px;
-    background-color: rgba(101, 81, 255, 0.7);
-    padding: 20px;
-    font-size: 1.5em;
-    font-family: Itc;
-}
 
 #explications_score {
 
@@ -157,8 +143,25 @@ body {
     width: 80%;
 }
 
-@media only screen and (min-device-width: 320px) and (max-device-width: 820px)
-and (orientation: portrait) {
+@media (max-width: 812px) {
+
+    #affichage_commentaires {
+        width: 100%;
+    }
+
+    #affichage_commentaires img {
+        width: 20%;
+    }
+
+    #info_start3, #commenter, #commentaires {
+        width: 95%;
+        left: 2.5%;
+    }
+
+    .media-body h5 {
+
+        font-size: 0.9em;
+    }
 
     h1 {
 
@@ -211,27 +214,5 @@ and (orientation: portrait) {
 
         font-size: 2.5em;
     }
-
-}
-
-@media only screen and (orientation: landscape) and (max-width: 820px) {
-
-
-    .styleJeu {
-
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        align-items: center;
-        height: 20vh;
-
-    }
-
-    #reponses > div, #questions {
-
-        padding: 20px;
-        font-size: 2em;
-    }
-
 
 }
