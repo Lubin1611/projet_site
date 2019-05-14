@@ -15,7 +15,7 @@ class Users
     public function __construct()
     {
         try {
-            $this->bdd = new PDO('mysql:host=localhost;dbname=id7331055_db_site;charset=utf8', 'id7331055_lulu', 'exobase',
+            $this->bdd = new PDO('mysql:host=localhost;dbname=projet_site;charset=utf8', 'root', '',
                 array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
 
 

@@ -114,7 +114,7 @@
     ?>
 
     <div id="commenter">
-        <form action="index.php?controler=jeux&action=comsRevisions" method="post">
+        <form action="index.php?controler=jeux&action=comsRevisions&table=<?php echo 'revisions' ?>" method="post">
             <label><b>Section commentaires</b></label>
             <input class="form-control" type="text" name="contenu_com" id="contenu_com">
             <input type="submit" value="Envoyez" class="btn btn-primary mb-2" id="btn_com">

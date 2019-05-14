@@ -124,7 +124,7 @@
     if (isset($_SESSION['rang']) and $_SESSION['rang'] == 1 || $_SESSION['rang'] == 0) {
     ?>
     <div id="commenter">
-        <form action="index.php?controler=jeux&action=comsQuizz" method="post">
+        <form action="index.php?controler=jeux&action=comsQuizz&table=<?php echo 'quiz' ?>" method="post">
             <label>Commentez :</label><textarea name="contenu_com" id="contenu_com"></textarea>
             <input type="submit" value="Envoyez" class="btn btn-primary mb-2">
         </form>

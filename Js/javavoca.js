@@ -101,11 +101,10 @@ function boutonReponse() {
 
         // highscore = document.getElementById("highScore").innerHTML;
 
-        console.log(highscore);
-
         document.getElementById("dim").style.display = "none";
 
         ajaxadd_highscore();
+        send_score();
 
         document.getElementById("fin_serie").style.display = "block";
         document.getElementById("resultat_quest").innerHTML = serie + " /10";
@@ -158,7 +157,34 @@ $('#table_membres').on('click', function () {
     }
 
 
+function send_score () {
 
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function () {
+
+        if (this.readyState == 4 && this.status == 200) {
+
+            $('#info').html("Votre highscore a été enregistré en base de données");
+                console.log(this.responseText);
+        }
+
+        else {
+
+            $('#info').html("un prohlème est survenu et votre highscore n'a pas pu être sauvegardé" +
+                "en base de données, vous pouvez signaler le probleme sur la page commentaires du jeu");
+
+        }
+
+    };
+
+    xhttp.open("GET", "index.php?controler=scores&action=envoiReponses&score=" + serie, true);
+
+    xhttp.send();
+
+
+
+}
 
     function ajaxadd_highscore() {
 

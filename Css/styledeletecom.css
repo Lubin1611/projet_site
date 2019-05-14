@@ -1,0 +1,26 @@
+.media {
+    position: relative;
+    width: 70%;
+    left: 15%;
+    top: 25%;
+}
+
+.media img {
+    width: 15%;
+}
+
+h1 {
+    position: relative;
+    top: 15%;
+    text-align: center;
+
+}
+
+#control_btn {
+    position: relative;
+    top: 35%;
+    width: 50%;
+    left: 25%;
+    text-align: center;
+}
+

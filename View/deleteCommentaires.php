@@ -25,6 +25,7 @@ if ($_SESSION['rang'] === NULL and $_SESSION['rang'] != 1) {
         <script src="lib/jquery.js"></script>
         <link rel="stylesheet" href="bootstrap/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="Css/stylr.css">
+        <link rel="stylesheet" type="text/css" href="Css/styledeletecom.css">
         <meta content="width=device-width, initial-scale=1" name="viewport"/>
     </head>
 
@@ -117,10 +118,10 @@ if ($_SESSION['rang'] === NULL and $_SESSION['rang'] != 1) {
             <?= $commentaire['contenu_com'] ?>
         </div>
     </div>
+    <div id ="control_btn">
     <a href="index.php?controler=jeux&action=confirmSuppr2&id=<?= $commentaire['id_com'] ?>">Oui</a>
-
     <a href="index.php?controler=jeux&action=jeuMots">Non</a> (retour a la page d'accueil du jeu)
-
+    </div>
 
 
 

@@ -27,8 +27,9 @@ class Jeux
         if (isset($_SESSION['id'])) {
 
             $session_id = $_SESSION['id'];
+            $jeu = 'revisions';
 
-            $commentaires = $this->model->get_all_coms2();
+            $commentaires = $this->model->get_all_coms($jeu);
 
             $highscore = $this->model->get_highscore($session_id);
 
@@ -36,58 +37,60 @@ class Jeux
 
         } else {
 
-            $commentaires = $this->model->get_all_coms2();
+            $jeu = 'revisions';
+            $commentaires = $this->model->get_all_coms($jeu);
 
             include "View/revisions.php";
         }
     }
 
     public function jeu2() {
-
-        $commentaires = $this->model->get_all_coms();
+        $jeu = 'memo';
+        $commentaires = $this->model->get_all_coms($jeu);
 
         include "View/game_of_words.php";
 
     }
 
     public function jeu3() {
-
-        $commentaires = $this->model->get_all_coms3();
+        $jeu = 'quiz';
+        $commentaires = $this->model->get_all_coms($jeu);
 
         include "View/vue_quizz.php";
 
     }
 
-    public function write_coms1() {
-
+    public function write_coms() {
+        $jeu = $_GET['table'];
         $pseudo = $_SESSION['pseudo'];
         $contenu = $_POST['contenu_com'];
         $avatar = $_SESSION['avatar'];
 
-        $this->model->write_com_tbl1($pseudo, $contenu, $avatar);
+        $this->model->write_tbl_com($pseudo, $contenu, $avatar, $jeu);
 
         $this->jeu1();
 
     }
 
     public function write_com2() {
-
+        $jeu = $_GET['table'];
         $pseudo = $_SESSION['pseudo'];
         $contenu = $_POST['contenu_com'];
         $avatar = $_SESSION['avatar'];
 
-        $this->model->write_com_tbl2($pseudo, $contenu, $avatar);
+        $this->model->write_tbl_com($pseudo, $contenu, $avatar, $jeu);
 
         $this->jeu2();
     }
 
     public function write_com3() {
 
+        $jeu = $_GET['table'];
         $pseudo = $_SESSION['pseudo'];
         $contenu = $_POST['contenu_com'];
         $avatar = $_SESSION['avatar'];
 
-        $this->model->write_com_tbl3($pseudo, $contenu, $avatar);
+        $this->model->write_tbl_com($pseudo, $contenu, $avatar, $jeu);
 
         $this->jeu3();
 

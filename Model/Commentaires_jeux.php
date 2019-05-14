@@ -31,26 +31,13 @@ class Commentaires_jeux
         $this->utils = new Utilitaires();
     }
 
-    public function get_all_coms()
+    public function get_all_coms($jeu)
     {
 
-        $this->commentaires = $this->bdd->query("select * from commentaires")->fetchAll(PDO::FETCH_OBJ);
+        $this->commentaires = $this->bdd->query("select * from commentaires WHERE jeu = '$jeu'")->fetchAll(PDO::FETCH_OBJ);
         return $this->commentaires;
     }
 
-    public function get_all_coms2()
-    {
-
-        $this->commentaires = $this->bdd->query("select * from commentaires_jeu1")->fetchAll(PDO::FETCH_OBJ);
-        return $this->commentaires;
-    }
-
-    public function get_all_coms3()
-    {
-
-        $this->commentaires = $this->bdd->query("select * from commentaires_jeu2")->fetchAll(PDO::FETCH_OBJ);
-        return $this->commentaires;
-    }
 
     public function get_com_memo_by_id($id)
     {
@@ -84,53 +71,17 @@ class Commentaires_jeux
     }
 
 
-    public function write_com_tbl1($pseudo, $contenu, $avatar)
+    public function write_tbl_com($pseudo, $contenu, $avatar, $jeu)
     {
-
         $time = $this->utils->get_date();
 
-        $this->sql = $this->bdd->prepare("INSERT INTO `commentaires_jeu1` (date_com, contenu_com, pseudo_user, avatar)VALUES(?,?,?,?);");
+        $this->sql = $this->bdd->prepare("INSERT INTO `commentaires` (date_com, contenu_com, pseudo_user, avatar, jeu)VALUES(?,?,?,?,?)");
 
         $this->sql->bindParam(1, $time);
         $this->sql->bindParam(2, $contenu);
         $this->sql->bindParam(3, $pseudo);
         $this->sql->bindParam(4, $avatar);
-
-        $this->sql->execute();
-
-    }
-
-    public function write_com_tbl2($pseudo, $contenu, $avatar)
-    {
-
-        date_default_timezone_set('Europe/Paris');
-        $date = date("d/m/y H:i:s");
-
-
-        $this->sql = $this->bdd->prepare("INSERT INTO `commentaires` (date_com, contenu_com, pseudo_user, avatar) VALUES (?,?,?,?) ;");
-
-        $this->sql->bindParam(1, $date);
-        $this->sql->bindParam(2, $contenu);
-        $this->sql->bindParam(3, $pseudo);
-        $this->sql->bindParam(4, $avatar);
-
-        $this->sql->execute();
-
-    }
-
-    public function write_com_tbl3($pseudo, $contenu, $avatar)
-    {
-
-        date_default_timezone_set('Europe/Paris');
-        $date = date("d/m/y H:i:s");
-
-
-        $this->sql = $this->bdd->prepare("INSERT INTO `commentaires_jeu2` (date_com, contenu_com, pseudo_user, avatar) VALUES (?,?,?,?) ;");
-
-        $this->sql->bindParam(1, $date);
-        $this->sql->bindParam(2, $contenu);
-        $this->sql->bindParam(3, $pseudo);
-        $this->sql->bindParam(4, $avatar);
+        $this->sql->bindParam(5, $jeu);
 
         $this->sql->execute();
 

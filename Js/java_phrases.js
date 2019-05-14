@@ -253,7 +253,7 @@ function game_of_words() {
         return shuffledWord;
     }
 
-    shuffledmot = shuffelWord(obj_mots[aleaTab].phrase);
+    shuffledmot = shuffelWord(obj_mots[aleaTab].mot);
 
 
     for (var j = 0; j < shuffledmot.length; j++) { // attribue chaque span pour chaque lettre du mot gÃ©nÃ©rÃ©
@@ -314,7 +314,7 @@ document.getElementById('verifier').addEventListener('click', function () {
             document.getElementById("mot" + index).style.borderColor = "red";
         }
 
-        if (compteurbonsMots == obj_mots[aleaTab].phrase.length) {
+        if (compteurbonsMots == obj_mots[aleaTab].mot.length) {
 
             bonneReponse++;
 
@@ -325,7 +325,7 @@ document.getElementById('verifier').addEventListener('click', function () {
             console.log("compteur de bonnes réponses :" + bonneReponse);
         }
 
-        if (compteurbonsMots < obj_mots[aleaTab].phrase.length) {
+        if (compteurbonsMots < obj_mots[aleaTab].mot.length) {
 
             document.getElementById("message").innerHTML = "Certains mots sont mal placés, ce sont ceux en rouge. Ceux en vert sont bien placés.";
             document.getElementById("verifier").disabled = true;
@@ -344,7 +344,7 @@ document.getElementById('Retry').addEventListener('click', function () {
 
     $("#recupmots > div").html("");
 
-    for (var i = 0; i < obj_mots[aleaTab].phrase.length; i++) {
+    for (var i = 0; i < obj_mots[aleaTab].mot.length; i++) {
 
         if (document.getElementById(i).style.display == "none") {
 
@@ -366,7 +366,7 @@ document.getElementById('Restart').addEventListener('click', function () {
     document.getElementById("Restart").style.display = "none";
     document.getElementById("Retry").style.display = "block";
 
-    for (var i = 0; i < obj_mots[aleaTab].phrase.length; i++) {
+    for (var i = 0; i < obj_mots[aleaTab].mot.length; i++) {
 
         if (document.getElementById(i).style.display = "none") {
 

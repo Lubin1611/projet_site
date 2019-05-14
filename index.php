@@ -120,7 +120,7 @@ if (isset($_GET['controler']) and preg_match("#^[a-zA-Z0-9]+$#", $_GET['controle
 
                     case "comsRevisions":
                         $com_jeu2 = new Jeux();
-                        $com_jeu2->write_coms1();
+                        $com_jeu2->write_coms();
                         break;
 
                     case "comsQuizz":
@@ -175,7 +175,7 @@ if (isset($_GET['controler']) and preg_match("#^[a-zA-Z0-9]+$#", $_GET['controle
                         $send_quizz->resultat_quizz();
                         break;
 
-                    case "envoi_reponses":
+                    case "envoiReponses":
                         $send_reponses = new scores_controler();
                         $send_reponses->resultat_reponses();
 

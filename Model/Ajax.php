@@ -163,7 +163,7 @@ class Ajax
     public function content_words($table)
     {
 
-        $this->sql = $this->bdd->query("select * from $table")->fetchall(PDO::FETCH_OBJ);
+        $this->sql = $this->bdd->query("select * from db_memo WHERE matiere = '$table'")->fetchall(PDO::FETCH_OBJ);
 
         echo json_encode($this->sql);
 
@@ -231,11 +231,11 @@ class Ajax
     public function set_db_words($question, $reponse, $table)
     {
 
-        $this->sql = $this->bdd->prepare("INSERT INTO $table (`question`, `phrase`, `bonnerep`) VALUES (?,?,?)");
+        $this->sql = $this->bdd->prepare("INSERT INTO db_memo (`question`, `mot`, `bonnerep`, `matiere`) VALUES (?,?,?,?)");
         $this->sql->bindParam(1, $question);
         $this->sql->bindParam(2, $reponse);
         $this->sql->bindParam(3, $reponse);
-
+        $this->sql->bindParam(4, $table);
         $this->sql->execute();
 
         echo json_encode($question);

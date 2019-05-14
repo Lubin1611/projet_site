@@ -46,7 +46,7 @@ class scores_controler
     public function resultat_reponses() {
 
         $id =  $_SESSION['id'];
-        $resultat_questions =  $_POST['score_jeuquestions'];
+        $resultat_questions =  $_POST['score'];
 
         $this->model->score_questions($id, $resultat_questions);
 

@@ -26,6 +26,7 @@ header('Location:View/acces_interdit.html');
         <script src="lib/jquery.js"></script>
         <link rel="stylesheet" href="bootstrap/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="Css/stylr.css">
+        <link rel="stylesheet" type="text/css" href="Css/styleditcom.css">
         <meta content="width=device-width, initial-scale=1" name="viewport"/>
     </head>
 
@@ -119,9 +120,9 @@ header('Location:View/acces_interdit.html');
 
         <label>Contenu du commentaire : </label>
 
-        <textarea name="contenu_com" id="contenu_com"><?php echo $commentaire['contenu_com'] ?></textarea>
+        <textarea name="contenu_com" id="contenu_com"><?php echo $commentaire['contenu_com'] ?></textarea></br>
 
-        <input type="submit" value="Editez">
+        <input type="submit" value="Editez" id = "confirm">
 
     </form>
 

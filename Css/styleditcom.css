@@ -1,0 +1,32 @@
+h1 {
+    position: relative;
+    font-size: 1.5em;
+    top: 10%;
+    text-align: center;
+}
+
+h2 {
+
+    position: relative;
+    font-size: 1.2em;
+    top: 20%;
+}
+
+form {
+    position: relative;
+    top: 25%;
+    width: 50%;
+    left: 25%;
+
+
+}
+
+label {
+    display: block;
+}
+
+form #contenu_com {
+    text-align: center;
+    width: 100%;
+}
+
