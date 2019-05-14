@@ -2,27 +2,24 @@
 /**
  * Created by PhpStorm.
  * User: Lubin
- * Date: 12/03/2019
- * Time: 17:56
+ * Date: 13/05/2019
+ * Time: 23:06
  */
 
+$token = $_GET['token'];
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-
-    <link href="https://fonts.googleapis.com/css?family=Courgette|Crete+Round|Noto+Sans+TC" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-    <script src="lib/jquery.js"></script>
+    <title>Title</title> <script src="lib/jquery.js"></script>
     <link rel="stylesheet" href="bootstrap/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="Css/stylr.css">
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
 </head>
 <body>
+
 
 <div class="container_page">
 
@@ -82,15 +79,15 @@
 
                         <?php
                     } else {
-                        ?>
-                        <form action="index.php?controler=users&action=connection" method="post">
-                                    <label>Votre pseudo : </label>
-                                    <input type="text" name="logPseudo" id='pseudo'>
+                    ?>
+                    <form action="index.php?controler=users&action=connection" method="post">
+                        <label>Votre pseudo : </label>
+                        <input type="text" name="logPseudo" id='pseudo'>
 
-                                    <label>Votre mot de passe : </label>
-                                    <input type="password" name="logMdp" id='password'>
-                                <input type="submit" name="Envoyez" id='envoyez'>
-                        </form>
+                        <label>Votre mot de passe : </label>
+                        <input type="password" name="logMdp" id='password'>
+                        <input type="submit" name="Envoyez" id='envoyez'>
+                    </form>
 
                     <h3>Mot de passe oublié ? </h3>
                     <a href = "index.php?controler=users&action=reinit">Cliquez ici</a>
@@ -99,42 +96,29 @@
                     </div>
                 </div>
 
-                        <?php
-                    }
-                    ?>
+                <?php
+                }
+                ?>
 
-                </div>
             </div>
+        </div>
     </header>
-
-
-    <div class="containerActu">
-
-        <h2>Actualités</h2>
-
-        <div id=infos>
-            <div class="logo">
-                <i class="fas fa-arrow-circle-right"></i>
-                <a href="https://www.lastampa.it/" target="_blank">
-                    <img src="Ressources/logoStampa.jpg"/>
-                </a>
-            </div>
-            <span class="description">Actualités en direct de la Stampa.</span>
-        </div>
-
-        <div id=infos2>
-            <div class="logo">
-                <i class="fas fa-arrow-circle-right"></i>
-                <a href="http://www.reverso.net/text_translation.aspx?lang=FR" target="_blank">
-                    <img src="Ressources/reverso.PNG"/>
-                </a>
-            </div>
-            <span class="description">Site de reverso pour aider à la traduction.</span>
-        </div>
-    </div>
-
 </div>
 
-<script src="Js/java.js"></script>
+
+<h1>Nouvelle demande de mot de passe</h1>
+
+
+<form action="index.php?controler=users&action=newmdp&jeton=<?php echo $token ?>" method="post">
+
+    <label>Indiquez un nouveau mot de passe : </label><input type="password" name="newpass" id = 'newpass'>
+    <label>Confirmez votre mot de passe : </label><input type="password" name="confirmpass" id = 'confirmpass'>
+    <input type="submit" value="envoyez">
+</form>
+
+
+
+
+    <script src="Js/java.js"></script>
 </body>
 </html>

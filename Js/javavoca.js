@@ -37,7 +37,7 @@ var cumul_score = document.getElementById('highScore').innerHTML;
 var vie = 3;
 var tentatives = 0;
 // La variable compteur_highscore sert de référence pour notre système de highscore.
-var compteur_highscore = 0;
+var compteur_pts_highscore = 0;
 
 
 // Quand l'utilisateur clique sur commencer, les données du jeu sont chargées et le jeu est affiché.
@@ -112,15 +112,12 @@ function boutonReponse() {
 
     }
 
-    if (compteur_highscore == 5) {
+    if (compteur_pts_highscore == 5) {
 
         cumul_score = parseInt(cumul_score);
-
         cumul_score += 500;
-
         document.getElementById("highScore").innerHTML = cumul_score;
-
-        compteur_highscore = 0;
+        compteur_pts_highscore = 0;
     }
 }
 

@@ -197,7 +197,6 @@ function ajaxcallgraph() {
                 score.push(new_obj[i].score);
             }
 
-            console.log("Retour de la fonction get_graph" + new_obj.date_reponses);
 
             var ctx = document.getElementById('myChart2').getContext('2d');
 

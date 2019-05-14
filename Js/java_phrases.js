@@ -248,10 +248,11 @@ function game_of_words() {
         var shuffledWord = '';
         word = word.split('');
         while (word.length > 0) {
-            shuffledWord +=  word.splice(word.length * Math.random() << 0, 1);
+            shuffledWord += word.splice(word.length * Math.random() << 0, 1);
         }
         return shuffledWord;
     }
+
     shuffledmot = shuffelWord(obj_mots[aleaTab].phrase);
 
 
@@ -263,7 +264,7 @@ function game_of_words() {
         conteneurP.appendChild(tirets);
     }
 
-    for (var q = 0; q < shuffledmot.length; q++) { // attribue chaque span pour chaque lettre du mot gÃ©nÃ©rÃ©
+    for (var q = 0; q < shuffledmot.length; q++) { // attribue chaque div pour chaque lettre du mot gÃ©nÃ©rÃ©
         var blocs = document.createElement("div");
         blocs.id = "mot" + q;
         blocs.style.display = "flex";
@@ -280,32 +281,25 @@ function game_of_words() {
 
         compteurmots++;
 
-        for (var p = 0; p < obj_mots[aleaTab].phrase.length; p++) {
+        for (var p = 0; p < shuffledmot.length; p++) {
 
             if (compteurmots == p) {
 
                 document.getElementById("mot" + p).innerHTML = this.innerHTML;
                 document.getElementById(this.id).style.display = "none";
             }
-
-
-            console.log("compteur lettre déplacée :" + compteurmots);
         }
-
     }
 
 }
 
-
 document.getElementById('verifier').addEventListener('click', function () {
 
-
-    for (var index = 0; index < obj_mots[aleaTab].phrase.length; index++) {
+    for (var index = 0; index < shuffledmot.length; index++) {
 
         if (document.getElementById("mot" + index).innerHTML == obj_mots[aleaTab].bonnerep[index]) {
 
             compteurbonsMots++;
-            console.log("compteur bons mots :" + compteurbonsMots);
 
             document.getElementById("mot" + index).style.backgroundColor = "green";
             document.getElementById("mot" + index).style.color = "white";

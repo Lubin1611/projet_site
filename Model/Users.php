@@ -15,7 +15,7 @@ class Users
     public function __construct()
     {
         try {
-            $this->bdd = new PDO('mysql:host=localhost;dbname=projet_site;charset=utf8', 'root', '',
+            $this->bdd = new PDO('mysql:host=localhost;dbname=id7331055_db_site;charset=utf8', 'id7331055_lulu', 'exobase',
                 array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
 
 
@@ -77,6 +77,67 @@ class Users
 
     }
 
+
+    public function verifmail($mail) {
+
+        $sql = $this->bdd->prepare("select * from users where `mail` = '$mail'");
+        $sql->bindValue(1, $mail);
+
+        $sql->execute();
+
+        $resultat = $sql->fetch();
+
+        if (empty($resultat['mail'])) {
+
+            return '0';
+
+        } else {
+
+            return '1';
+
+        }
+    }
+
+
+    public function setToken($mail, $token) {
+
+        $sql = "UPDATE users set jeton= ? where mail = ?";
+        $this->bdd->prepare($sql)->execute([$token, $mail]);
+
+    }
+
+    public function sendmail($token, $mail, $sender)
+    {
+
+        $message=  '<p>Bonjour, Nous ne pouvons pas vous renvoyer votre mot de passe, pour des raisons de sécurité</p>
+                    <a href="https://paced-nerve.000webhostapp.com/Projet_TEST/index.php?controler=users&action=changepass&token='.$token.'"> 
+                    cliquez sur ce lien pour créer un nouveau mot de passe </a>';
+
+        $titre= "modification de mot de passe";
+
+        $recepteur = $mail;
+
+        $headers = "MIME-Version: 1.0"."\r\n";
+        $headers .= "Content-type: text/html; charset=iso-8859-1"."\r\n";
+        $headers.='Content-Transfer-Encoding: 8bit';
+        $headers .= 'From:'.$sender . "\r\n";
+        $headers.='Reply-To:'.$sender . "\r\n";
+        $headers.= 'X-Mailer: PHP/' . phpversion();
+
+        mail($recepteur,$titre, $message, $headers);
+
+    }
+
+    public function set_pass($token, $mdp) {
+
+        var_dump($token);
+        var_dump($mdp);
+
+        $sql = "UPDATE users set password = ? where jeton = ?";
+        $this->bdd->prepare($sql)->execute([$mdp, $token]);
+
+
+    }
 
     public function infos_membres() {
 

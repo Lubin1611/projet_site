@@ -56,8 +56,8 @@ $('#commencer').on('click', function () {
 
 
 
-var failUser = [];
-var solutionFail = [];
+var tableQuestion = [];
+var tableSolution = [];
 var reponseUser = [];
 
 var compteurBon = 0;
@@ -93,21 +93,24 @@ function add_score() {
 $("#reponse1, #reponse2, #reponse3, #reponse4").on("click", function () {
 
     compteurReponse++;
-    console.log("essais :" + compteurReponse);
-
 
     //verification de la réponse
-    console.log(this.id);
 
     if (this.id == obj_quizz[index].bonnereponse) {
 
         compteurBon++;
-        console.log("bonne reponse : " + compteurBon);
 
-        failUser.push(obj_quizz[index].question);
-        solutionFail.push(obj_quizz[index].contenusolution);
+        tableQuestion.push(obj_quizz[index].question);
+        tableSolution.push(obj_quizz[index].contenusolution);
         reponseUser.push(this.innerHTML);
 
+    }
+
+    if (this.id != obj_quizz[index].bonnereponse) {
+
+        tableQuestion.push(obj_quizz[index].question);
+        tableSolution.push(obj_quizz[index].contenusolution);
+        reponseUser.push(this.innerHTML);
     }
 
 
@@ -122,20 +125,14 @@ $("#reponse1, #reponse2, #reponse3, #reponse4").on("click", function () {
 
         for (var j = 0; j < reponseUser.length; j++) {
 
-            document.getElementById("explications_score").innerHTML += "A la question " + failUser[j] + " , vous avez répondu " +
-                reponseUser[j] + " , et la réponse était : " + solutionFail[j] + "<br><br>";
+            document.getElementById("explications_score").innerHTML += "A la question " + tableQuestion[j] + " , vous avez répondu " +
+                reponseUser[j] + " , et la réponse était : " + tableSolution[j] + "<br><br>";
 
         }
 
     }
 
 
-
-    else {
-
-        compteurpasbon++;
-
-    }
 
 
     // Passage a la question suivante

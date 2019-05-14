@@ -71,7 +71,55 @@ class users_controler
     }
 
 
+    public function vue_reinit() {
 
+        include "View/vue_reinit.php";
+
+    }
+
+    public function check_mail() {
+        $header = 'Admin';
+        $mail = $_POST['mail'];
+        filter_var($mail,FILTER_SANITIZE_EMAIL);
+
+        $reponse =  $this->model->verifmail($mail);
+
+        if ($reponse == 0) {
+
+            echo "mail vide";
+
+        } else {
+            $token = $this->token();
+            $this->model->setToken($mail,$token);
+            $this->model->sendmail($token, $mail, $header);
+        }
+    }
+
+    public function token() {
+
+        $token = md5(time()."abcde012345".mt_rand(1,99999));
+        return $token;
+
+    }
+
+
+    public function change_mdp() {
+
+        include "View/vue_modification_mdp.php";
+
+
+
+    }
+
+    public function get_new_pass(){
+
+        $token = $_GET['jeton'];
+        $mdp = $_POST['confirmpass'];
+
+        $this->model->set_pass($token, $mdp);
+
+        include "View/Page_accueil.php";
+    }
 
    public function vue_sign_up() {
 

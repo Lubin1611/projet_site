@@ -56,7 +56,26 @@ if (isset($_GET['controler']) and preg_match("#^[a-zA-Z0-9]+$#", $_GET['controle
                     case "deconnection";
                         $to_log_out = new users_controler();
                         $to_log_out->submit_logout();
+                        break;
 
+                    case "reinit":
+                        $reinit = new users_controler();
+                        $reinit->vue_reinit();
+                        break;
+
+                    case "checkmail":
+                        $check= new users_controler();
+                        $check->check_mail();
+                        break;
+
+                    case "changepass":
+                        $change = new users_controler();
+                        $change->change_mdp();
+                        break;
+
+                    case "newmdp":
+                        $modification = new users_controler();
+                        $modification->get_new_pass();
                 }
 
             } else {
