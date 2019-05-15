@@ -75,7 +75,7 @@ class Commentaires_jeux
     {
         $time = $this->utils->get_date();
 
-        $this->sql = $this->bdd->prepare("INSERT INTO `commentaires` (date_com, contenu_com, pseudo_user, avatar, jeu)VALUES(?,?,?,?,?)");
+        $this->sql = $this->bdd->prepare("INSERT INTO `commentaires` (date_com, contenu_com, id_users, avatar, jeu)VALUES(?,?,?,?,?)");
 
         $this->sql->bindParam(1, $time);
         $this->sql->bindParam(2, $contenu);

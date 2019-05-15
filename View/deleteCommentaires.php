@@ -114,7 +114,7 @@ if ($_SESSION['rang'] === NULL and $_SESSION['rang'] != 1) {
     <div class="media">
         <img class="d-flex mr-3" src=<?= $commentaire['avatar'] ?>>
         <div class="media-body">
-            <h5 class="mt-0">De :  <?= $commentaire['pseudo_user'] ?>, Date d'émission :<?= $commentaire['date_com'] ?> </h5>
+            <h5 class="mt-0">De :  <?= $commentaire['id_users'] ?>, Date d'émission :<?= $commentaire['date_com'] ?> </h5>
             <?= $commentaire['contenu_com'] ?>
         </div>
     </div>

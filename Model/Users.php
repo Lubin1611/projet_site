@@ -62,8 +62,6 @@ class Users
         if (password_verify($password, $hash) and $pseudo == $result['pseudo']) {
 
 
-            session_start();
-
             $_SESSION['id'] = $result['id_users'];
             $_SESSION['nom'] = $result['nom'];
             $_SESSION['prenom'] = $result['prenom'];
@@ -71,7 +69,6 @@ class Users
             $_SESSION['password'] = $result['password'];
             $_SESSION['avatar'] = $result['avatar'];
             $_SESSION['rang'] = $result['rang'];
-
 
         }
 

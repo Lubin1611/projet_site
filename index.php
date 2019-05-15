@@ -7,8 +7,9 @@
  */
 
 
+session_start();
+//if (session_id() == "") session_start();
 
-if (session_id() == "") session_start();
 
 if (isset($_GET['controler']) and preg_match("#^[a-zA-Z0-9]+$#", $_GET['controler']) ) {   // isset GET['controler'] verifie si une valeur est indiquée en parametre dans l'url
 

@@ -152,7 +152,7 @@
             <div class="media" id="affichage_commentaires">
                 <img class="d-flex mr-3" src=<?= $com->avatar ?>>
                 <div class="media-body">
-                    <h5 class="mt-0">De : <?= $com->pseudo_user ?>, Date d'émission : <?= $com->date_com ?>
+                    <h5 class="mt-0">De : <?= $com->id_users ?>, Date d'émission : <?= $com->date_com ?>
                         <?php if (isset($_SESSION['rang']) and $_SESSION['rang'] == 1) { ?>
 
                             <a href="index.php?controler=jeux&action=editCom2&id=<?= $com->id_com ?>"><i

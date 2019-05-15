@@ -137,7 +137,7 @@
             <div class="media" id="affichage_commentaires">
                 <img class="d-flex mr-3" src=<?= $com->avatar ?>>
                 <div class="media-body">
-                    <h5 class="mt-0">De : <?= $com->pseudo_user ?>, Date d'émission : <?= $com->date_com ?></h5>
+                    <h5 class="mt-0">De : <?= $com->id_users ?>, Date d'émission : <?= $com->date_com ?></h5>
                     <?= $com->contenu_com ?>
                 </div>
             </div>

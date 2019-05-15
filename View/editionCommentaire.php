@@ -113,7 +113,7 @@ header('Location:View/acces_interdit.html');
     <h1>Editez le commentaire</h1>
 
 
-    <h2>De : <?= $commentaire['pseudo_user'] ?>, Date d'émission : <?= $commentaire['date_com'] ?></h2>
+    <h2>De : <?= $commentaire['id_users'] ?>, Date d'émission : <?= $commentaire['date_com'] ?></h2>
 
 
     <form action="index.php?controler=jeux&action=setCom2&id=<?= $commentaire['id_com'] ?>" method="post">

@@ -78,25 +78,29 @@
     height: 20vw;
 }
 #reponse1 {
-    background-color: yellow;
+    background-color: #6f6abb;
+    font-size: 1.5em;
     color: white;
     font-weight: bold;
 }
 
 #reponse2 {
     background-color: orange;
+    font-size: 1.5em;
     color: white;
     font-weight: bold;
 }
 
 #reponse3 {
-    background-color: greenyellow;
+    background-color: #30ce52;
+    font-size: 1.5em;
     color: white;
     font-weight: bold;
 }
 
 #reponse4 {
-    background-color: cyan;
+    background-color: #2b8068;
+    font-size: 1.5em;
     color: white;
     font-weight: bold;
 }
