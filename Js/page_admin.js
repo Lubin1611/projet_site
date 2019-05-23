@@ -99,17 +99,25 @@ function ajax_read_data_jeu1() {
 
             for (var i = 0; i < obj.length; i++) {
 
+                var ligne = document.createElement('div');
+                ligne.className= "row";
+                ligne.marginBottom = "2%";
+                document.getElementById('liste_jeu1').appendChild(ligne);
+
                 var obj1 = document.createElement('div');
                 obj1.innerHTML = "Id : " + obj[i].id;
-                document.getElementById('id_game_1').appendChild(obj1);
+                obj1.className = "col-sm-";
+                ligne.appendChild(obj1);
 
                 var obj2 = document.createElement('div');
                 obj2.innerHTML = "Question : " + obj[i].questions;
-                document.getElementById('quest_game_1').appendChild(obj2);
+                obj2.className = "col-sm-";
+                ligne.appendChild(obj2);
 
                 var obj3 = document.createElement('div');
                 obj3.innerHTML = "Reponse : " + obj[i].reponses;
-                document.getElementById('rep_game_1').appendChild(obj3);
+                obj3. className = "col-sm-";
+                ligne.appendChild(obj3);
             }
         }
     };
@@ -128,21 +136,29 @@ function ajax_read_data_jeu2() {
         if (this.readyState == 4 && this.status == 200) {
 
             var obj = JSON.parse(this.responseText);
-            console.log(obj);
 
             for (var i = 0; i < obj.length; i++) {
 
+                var ligne = document.createElement('div');
+                ligne.className= "row";
+                ligne.marginBottom = "2%";
+                document.getElementById('liste_jeu').appendChild(ligne);
+
+
                 var obj1 = document.createElement('div');
                 obj1.innerHTML = "Id : " + obj[i].id;
-                document.getElementById('id_game').appendChild(obj1);
+                obj1.className = "col-sm-";
+                ligne.appendChild(obj1);
 
                 var obj2 = document.createElement('div');
                 obj2.innerHTML = "Question : " + obj[i].question;
-                document.getElementById('quest_game').appendChild(obj2);
+                obj2.className = "col-sm-";
+                ligne.appendChild(obj2);
 
                 var obj3 = document.createElement('div');
                 obj3.innerHTML = "Reponse : " + obj[i].bonnerep;
-                document.getElementById('rep_game').appendChild(obj3);
+                obj3.className = "col-sm-";
+                ligne.appendChild(obj3);
             }
         }
     };
@@ -165,33 +181,51 @@ function ajax_read_data_quizz() {
 
             for (var i = 0; i < obj.length; i++) {
 
+                var ligne = document.createElement('div');
+                ligne.className= "row";
+                ligne.style.marginBottom = "2%";
+                document.getElementById('liste_donnees_quizz').appendChild(ligne);
+
                 var obj1 = document.createElement('div');
                 obj1.innerHTML = "Question : " + obj[i].question;
-                document.getElementById("donnees_questions").appendChild(obj1);
+                obj1.className = "col-";
+                obj1.style.marginRight = "1%";
+                ligne.appendChild(obj1);
 
                 var obj2 = document.createElement('div');
                 obj2.innerHTML = "Reponse 1 : " + obj[i].reponse1;
-                document.getElementById("reponse_donnee_1").appendChild(obj2);
+                obj2.className = "col-";
+                obj2.style.marginRight = "1%";
+                ligne.appendChild(obj2);
 
                 var obj3 = document.createElement('div');
                 obj3.innerHTML = "Reponse 2 : " + obj[i].reponse2;
-                document.getElementById("reponse_donnee_2").appendChild(obj3);
+                obj3.className = "col-";
+                obj3.style.marginRight = "1%";
+                ligne.appendChild(obj3);
 
                 var obj4 = document.createElement('div');
                 obj4.innerHTML = "Reponse 3 : " + obj[i].reponse3;
-                document.getElementById("reponse_donnee_3").appendChild(obj4);
+                obj4.className = "col-";
+                obj4.style.marginRight = "1%";
+                ligne.appendChild(obj4);
 
                 var obj5 = document.createElement('div');
                 obj5.innerHTML = "Reponse 4 : " + obj[i].reponse4;
-                document.getElementById("reponse_donnee_4").appendChild(obj5);
+                obj5.className = "col-";
+                obj5.style.marginRight = "1";
+                ligne.appendChild(obj5);
 
                 var obj6 = document.createElement('div');
                 obj6.innerHTML = "Bonne réponse  : " + obj[i].bonnereponse;
-                document.getElementById("bonnerep_donnees").appendChild(obj6);
+                obj6.className = "col-";
+                obj6.style.marginRight = "1%";
+                ligne.appendChild(obj6);
 
                 var obj7 = document.createElement('div');
                 obj7.innerHTML = "Explications  : " + obj[i].contenusolution;
-                document.getElementById("donnee_solution").appendChild(obj7);
+                obj7.className = "col-";
+                ligne.appendChild(obj7);
             }
         }
     };
@@ -256,6 +290,7 @@ $("#home_admin").on('click', function () {
     document.getElementById('informations_membres').style.display = "block";
     document.getElementById('menu_buttons').style.display = "block";
     document.getElementById('liste_donnees_jeu1').style.display = "none";
+    document.getElementById('liste_jeu').style.display = "none";
     document.getElementById('liste_game_of_words').style.display = "none";
     document.getElementById('liste_donnees_quizz').style.display = "none";
 });
@@ -291,13 +326,14 @@ $("#data_list").on('click', function () {
 
         document.getElementById('ajout_game_of_words').style.display = "none";
         document.getElementById('liste_game_of_words').style.display = "block";
-
+        document.getElementById('liste_jeu').style.display = "block";
 
 
     } else {
 
         document.getElementById('ajout_game_of_words').style.display = "none";
         document.getElementById('liste_game_of_words').style.display = "none";
+        document.getElementById('liste_jeu').style.display = "none";
 
     }
 
@@ -335,6 +371,7 @@ $("#write_new_data").on('click', function () {
 
     if (jeu2 == true) {
 
+        document.getElementById('liste_jeu').style.display = "none";
         document.getElementById('liste_game_of_words').style.display = "none";
         document.getElementById('ajout_game_of_words').style.display = "block";
 
@@ -383,7 +420,7 @@ $("#jeu1").on('click', function () {
 
     document.getElementById('choix_parametres_jeu').style.display = "none";
     document.getElementById('menu_buttons').style.display = "none";
-    document.getElementById('menu_data').style.display = "block";
+    document.getElementById('menu_data').style.display = "flex";
     document.getElementById('ajout_donnees_jeu1').style.display = "block";
 });
 
@@ -395,7 +432,7 @@ $("#jeu2").on('click', function () {
     document.getElementById('choix_parametres_jeu').style.display = "none";
     document.getElementById('menu_buttons').style.display = "none";
     document.getElementById('ajout_game_of_words').style.display = "block";
-    document.getElementById('menu_data').style.display = "block";
+    document.getElementById('menu_data').style.display = "flex";
 
 });
 
@@ -406,9 +443,20 @@ $("#jeu3").on('click', function () {
 
     document.getElementById('choix_parametres_jeu').style.display = "none";
     document.getElementById('menu_buttons').style.display = "none";
-    document.getElementById('menu_data').style.display = "block";
+    document.getElementById('menu_data').style.display = "flex";
     document.getElementById('ajout_donnees_jeu3').style.display = "block";
 
 });
 
 
+$('#choix').on('click', function () {
+
+    document.getElementById('reponseschoix').style.display = 'block';
+
+});
+
+$('#refusal').on('click', function () {
+
+    document.getElementById('reponseschoix').style.display = 'none';
+
+});

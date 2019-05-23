@@ -196,9 +196,9 @@ body {
 
     #Question {
         top: 5%;
-        font-size: 16px;
-        width: 90%;
-        left: 5%;
+        font-size: 14px;
+        width: 70%;
+        left: 15%;
     }
 
     #aleaphrase {
@@ -239,6 +239,7 @@ body {
         left: 5%;
     }
 
+
     #affichage_commentaires {
         width: 100%;
     }
@@ -252,6 +253,12 @@ body {
         left: 2.5%;
     }
 
+
+    #Question {
+
+        font-size: 16px;
+
+    }
     #message {
         font-size: 12px;
         width: 90%;

@@ -12,12 +12,12 @@ class controler_ajax
     private $model;
 
     /**
-     * @set model from Model/Ajax.php
+     * @set model from Model/Requetes_Ajax.php
      */
     public function __construct()
     {
 
-        $this->model = new Ajax();
+        $this->model = new Requetes_Ajax();
 
 
     }
@@ -25,41 +25,31 @@ class controler_ajax
     public function request_words_scores()
     {
         $id_session = $_SESSION['id'];
+        filter_var($id_session, FILTER_SANITIZE_NUMBER_INT);
 
         $this->model->get_words_scores($id_session);
+
     }
 
     public function request_graph()
     {
+        $id_session = $_SESSION['id'];
+        filter_var($id_session, FILTER_SANITIZE_NUMBER_INT);
 
-        $this->model->generate_graph();
+        $this->model->generate_graph($id_session);
 
     }
 
     public function request_questions()
     {
-
-        $this->model->generate_graph2();
-
-    }
-
-    public function send_highscore()
-    {
-
         $id_session = $_SESSION['id'];
-        $score = $_GET['score'];
+        filter_var($id_session, FILTER_SANITIZE_NUMBER_INT);
 
-
-        $this->model->check_highscore($id_session, $score);
-
+        $this->model->generate_graph2($id_session);
 
     }
 
-    public function request_classement()
-    {
 
-        $this->model->classement();
-    }
 
     public function get_content1()
     {
@@ -78,6 +68,7 @@ class controler_ajax
     public function get_words_content()
     {
         $table = $_GET['choice'];
+        filter_var($table, FILTER_SANITIZE_STRING);
 
         $this->model->content_words($table);
 
@@ -86,31 +77,16 @@ class controler_ajax
     public function add_data_jeu1() {
 
         $quest_jeu1 = $_GET['question'];
+        filter_var($quest_jeu1, FILTER_SANITIZE_STRING);
+
         $rep_jeu1 = $_GET['reponse'];
+        filter_var($rep_jeu1, FILTER_SANITIZE_STRING);
 
         $this->model->set_data_jeu1($quest_jeu1, $rep_jeu1);
 
 
     }
 
-    public function send_quizz_score()
-    {
-        $id_session = $_SESSION['id'];
-        $score = $_GET['score'];
-
-        $this->model->set_quizz_score($score, $id_session);
-
-    }
-
-    public function submit_scores() {
-
-        $id_session = $_SESSION['id'];
-        $score = $_GET['score'];
-        $matiere = $_GET['matiere'];
-
-        $this->model->set_scores($id_session, $score ,$matiere);
-
-    }
 
     public function read_game_data1() {
 
@@ -123,8 +99,13 @@ class controler_ajax
     public function send_game_words() {
 
         $quest_html = $_GET['question'];
+        filter_var($quest_html, FILTER_SANITIZE_STRING);
+
         $rep_html =  $_GET['reponse'];
+        filter_var($rep_html, FILTER_SANITIZE_STRING);
+
         $table = $_GET['matiere'];
+        filter_var($table, FILTER_SANITIZE_STRING);
 
         $this->model->set_db_words($quest_html, $rep_html, $table);
     }
@@ -133,12 +114,25 @@ class controler_ajax
     function new_quizz_content() {
 
         $quest_quizz = $_GET['question'];
+        filter_var($quest_quizz, FILTER_SANITIZE_STRING);
+
         $first_choice = $_GET['reponseA'];
+        filter_var($first_choice, FILTER_SANITIZE_STRING);
+
         $second_choice = $_GET['reponseB'];
+        filter_var($second_choice, FILTER_SANITIZE_STRING);
+
         $third_choice = $_GET['reponseC'];
+        filter_var($third_choice, FILTER_SANITIZE_STRING);
+
         $fourth_choice = $_GET['reponseD'];
+        filter_var($fourth_choice, FILTER_SANITIZE_STRING);
+
         $bonne_reponse = $_GET['bonnerep'];
+        filter_var($bonne_reponse, FILTER_SANITIZE_STRING);
+
         $solution = $_GET['solution'];
+        filter_var($solution, FILTER_SANITIZE_STRING);
 
         $this->model->set_quizz_content($quest_quizz, $first_choice, $second_choice, $third_choice, $fourth_choice, $bonne_reponse, $solution);
 

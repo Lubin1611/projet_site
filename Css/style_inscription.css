@@ -17,16 +17,15 @@
 
 
 #inscription {
-    width: 400px;
+    width: 600px;
     text-align: center;
-
 
 }
 
 #inscription form {
-
+    position: relative;
     margin-top: 10%;
-
+    left: 13%;
 }
 
 i {

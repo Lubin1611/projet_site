@@ -3,7 +3,7 @@ $('#graphique_jeu_1').on('click', function () {
     ajaxcallscores();
 
     document.getElementById('informations_compte').style.display = "none";
-    document.getElementById('affichage_words').style.display = "block";
+        document.getElementById('affichage_words').style.display = "block";
     document.getElementById('graphique_revisions').style.display = "none";
     document.getElementById('graphique_quizz').style.display = "none";
 });
@@ -11,7 +11,7 @@ $('#graphique_jeu_1').on('click', function () {
 $('#infos_compte').on('click', function () {
 
 
-    document.getElementById('informations_compte').style.display = "block";
+    document.getElementById('informations_compte').style.display = "flex";
     document.getElementById('affichage_words').style.display = "none";
     document.getElementById('graphique_revisions').style.display = "none";
     document.getElementById('graphique_quizz').style.display = "none";
@@ -23,7 +23,7 @@ $('#graphique_jeu_2').on('click', function () {
 
     document.getElementById('informations_compte').style.display = "none";
     document.getElementById('affichage_words').style.display = "none";
-    document.getElementById('graphique_revisions').style.display = "block";
+    document.getElementById('graphique_revisions').style.display = "flex";
     document.getElementById('graphique_quizz').style.display = "none";
     ajaxcallgraph();
 
@@ -35,7 +35,7 @@ $('#graphique_jeu_3').on('click', function () {
     document.getElementById('informations_compte').style.display = "none";
     document.getElementById('affichage_words').style.display = "none";
     document.getElementById('graphique_revisions').style.display = "none";
-    document.getElementById('graphique_quizz').style.display = "block";
+    document.getElementById('graphique_quizz').style.display = "flex";
 
     ajaxcallgraph2();
 
@@ -143,7 +143,6 @@ function ajaxcallscores() {
                         data: [moyenne_Php(), moyenne_HTML(), moyenne_Css(), moyenne_Js()]
                     }]
                 },
-
                 // Configuration options go here
                 options: {
                     scale: {

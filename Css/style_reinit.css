@@ -1,0 +1,30 @@
+.container_reinit {
+
+     position: relative;
+     top: 17%;
+     width: 100%;
+     display: flex;
+     justify-content: center;
+
+ }
+
+#form_reinit {
+    width: 600px;
+    text-align: center;
+}
+
+#form_reinit form {
+    position: relative;
+    margin-top: 10%;
+    left: 13%;
+}
+
+#form_reinit input {
+
+    margin-bottom: 5%;
+
+}
+
+span {
+    color: red;
+}

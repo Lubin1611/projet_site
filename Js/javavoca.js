@@ -32,22 +32,27 @@ function ajax_loadDB() {
 
 }
 
+
 var serie = 0; // cette variable s'incrémente a chaque bonne réponse.
 var cumul_score = document.getElementById('highScore').innerHTML;
+
 var vie = 3;
 var tentatives = 0;
 // La variable compteur_highscore sert de référence pour notre système de highscore.
 var compteur_pts_highscore = 0;
-
+var bool = 0;
 
 // Quand l'utilisateur clique sur commencer, les données du jeu sont chargées et le jeu est affiché.
 
 $('#start').on('click', function () {
 
-    ajax_loadDB();
-    document.getElementById('accueil_jeu').style.display = "none";
-    document.getElementById('dim').style.display = "block";
+   cumul_score.value = '0';
 
+    ajax_loadDB();
+
+    document.getElementById('accueil_jeu').style.display = "none";
+    document.getElementById('container_questions').style.display = "block";
+    document.getElementById('dim').style.display = "block";
 });
 
 
@@ -66,7 +71,7 @@ function boutonReponse() {
 
         var newButton = document.createElement('button');
         newButton.innerHTML = "Suivant";
-         newButton.id = 'nextButton';
+        newButton.id = 'nextButton';
         newButton.onclick = nextBtn;
         document.getElementById('reponse').appendChild(newButton);
 
@@ -74,7 +79,8 @@ function boutonReponse() {
 
         document.getElementById("bonsPts").innerHTML = "Bravo, vous avez : " + serie + " bons points";
         tentatives++;
-        compteur_highscore++;
+        compteur_pts_highscore++;
+        cumul_score++;
 
     } else if (utilisateur != content[randQuestions].reponses) {
 
@@ -100,7 +106,6 @@ function boutonReponse() {
     if (tentatives == 10) {
 
         // highscore = document.getElementById("highScore").innerHTML;
-
         document.getElementById("dim").style.display = "none";
 
         ajaxadd_highscore();
@@ -111,14 +116,19 @@ function boutonReponse() {
 
     }
 
+
     if (compteur_pts_highscore == 5) {
 
-        cumul_score = parseInt(cumul_score);
-        cumul_score += 500;
+
+        cumul_score = cumul_score + 500;
         document.getElementById("highScore").innerHTML = cumul_score;
         compteur_pts_highscore = 0;
-    }
+        }
+
+
 }
+
+
 
 $('#table_membres').on('click', function () {
 
@@ -136,11 +146,11 @@ $('#table_membres').on('click', function () {
             if (this.readyState == 4 && this.status == 200) {
 
                 var obj = JSON.parse(this.responseText);
-                console.log(this.responseText);
+
                 for (var i = 0; i < obj.length; i++) {
 
                     var obj1 = document.createElement('div');
-                    obj1.innerHTML =  "Nom : " + obj[i].id_highscore;
+                    obj1.innerHTML =  "Nom : " + obj[i].pseudo;
                     document.getElementById('nom').appendChild(obj1);
 
                     var obj2 = document.createElement('div');
@@ -150,8 +160,7 @@ $('#table_membres').on('click', function () {
                 }
             }
         };
-
-        xhttp.open("GET", "index.php?controler=ajax&action=getClassement", true);
+        xhttp.open("GET", "index.php?controler=scores&action=getClassement", true);
 
         xhttp.send();
     }
@@ -208,7 +217,7 @@ function send_score () {
 
         };
 
-        xhttp.open("GET", "index.php?controler=ajax&action=sendScore&score=" + cumul_score, true);
+        xhttp.open("GET", "index.php?controler=scores&action=sendScore&score=" + cumul_score, true);
 
         xhttp.send();
 
@@ -226,12 +235,12 @@ function nextBtn() {
 
 function reset() {
 
-    document.getElementById("bouton").disabled = false;
     randQuestions =  Math.floor(Math.random() * content.length);
     document.getElementById("questions").innerHTML = content[randQuestions].questions;
-    $('#nextButton').remove()
+    document.getElementById("bouton").disabled = false;
+    $('#nextButton').remove();
     document.getElementById("reponse").innerHTML = " ";
-    document.getElementById("champUtilisateur").value = " ";
+    $('#champUtilisateur').val("");
     vie = 3;
 
 }
@@ -242,7 +251,7 @@ function recommencer() {
     tentatives = 0;
     serie = 0;
     vie = 3;
-
+    bool = 2;
     $("#questions").html("");
     $("#nom").html("");
     $("#score").html("");
@@ -261,4 +270,3 @@ function recommencer() {
 }
 
 
-console.log("compteur : " + compteur_highscore);

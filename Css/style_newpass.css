@@ -1,0 +1,38 @@
+.container_redefinition {
+
+    position: relative;
+    top: 17%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+
+#redefinition {
+    width: 650px;
+    text-align: center;
+}
+
+#redefinition form {
+    position: relative;
+    margin-top: 10%;
+    left: 15%;
+}
+
+#redefinition input {
+
+    margin-bottom: 5%;
+
+}
+
+#redefinition label {
+
+    display: block;
+    float: left;
+
+}
+
+
+span {
+    color: red;
+}

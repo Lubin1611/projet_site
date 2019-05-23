@@ -44,14 +44,11 @@
     height: 20vh;
 }
 
-#container_reponses {
-
-
-}
 
 #choix {
-    width: 100%;
-    height: 40%;
+    position: relative;
+    width: 80%;
+    left: 10%;
 }
 
 #container_quiz {
@@ -62,23 +59,49 @@
     height: 80%;
 }
 
-#questions {
+#box_questions {
     position: relative;
+    text-align: center;
     left: 15%;
     width: 70%;
+    box-shadow: 5px 5px 5px lightgray;
+    font-size: 20px;
 }
+
+#questions {
+    position: relative;
+    left: 2%;
+    font-family: "Noto Sans";
+}
+
 #reponse1, #reponse2, #reponse3, #reponse4 {
+    height: 17vw;
     display: flex;
     align-items: center;
     justify-content: center;
     border: 1px solid white;
 }
-.col {
-    width: 20vw;
-    height: 20vw;
+
+#ligne_choix {
+    position: relative;
+    margin-top: 3%;
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+    left: 15%
 }
+
+#ligne_choix2{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+    left: 15%
+}
+
 #reponse1 {
     background-color: #6f6abb;
+    width: 50%;
     font-size: 1.5em;
     color: white;
     font-weight: bold;
@@ -86,6 +109,7 @@
 
 #reponse2 {
     background-color: orange;
+    width: 50%;
     font-size: 1.5em;
     color: white;
     font-weight: bold;
@@ -93,6 +117,7 @@
 
 #reponse3 {
     background-color: #30ce52;
+    width: 50%;
     font-size: 1.5em;
     color: white;
     font-weight: bold;
@@ -100,6 +125,7 @@
 
 #reponse4 {
     background-color: #2b8068;
+    width: 50%;
     font-size: 1.5em;
     color: white;
     font-weight: bold;
@@ -112,9 +138,6 @@
     display: block;
 }
 
-#commencer {
-
-}
 
 #container_qcm {
     display: none;
@@ -123,23 +146,66 @@
 #container_scores {
 
     display: none;
-
+    position: relative;
+    width: 70%;
+    left: 15%;
+    top: 5%;
 }
 
-.styleScore {
+#score {
 
     display: flex;
+    background-color: var(--cyan);
     justify-content: center;
-    margin-top: 5%;
+    position: relative;
+    margin-top: 3%;
+    width: 70%;
+    left: 15%;
+    padding: 1%;
+    color: white;
+    border-radius: 10px;
+    font-family: "Noto Sans";
+}
+
+#retry {
+    text-align: center;
+    margin-top: 3%;
+    border-bottom: 5px solid var(--cyan);
+    padding-bottom: 0.5%;
+    position: relative;
+    width: 35%;
+    left: 32.5%;
+}
+
+#retry > span {
+    background-color: var(--cyan);
+    color: white;
+    cursor: pointer;
+    padding: 1%;
+}
+
+
+#score:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.10);
 }
 
 
 #explications_score {
-
-    height: 50vh;
+    height: 54vh;
     overflow-y: auto;
-
+    margin-top: 3%;
+    text-align: center;
+    border: 3px solid var(--cyan);
+    padding-top: 2%;
+    border-radius: 10px;
 }
+
 
 #info_start3 {
     position: relative;
@@ -149,8 +215,19 @@
 
 @media (max-width: 812px) {
 
+    #box_questions {
+        width: 90%;
+        left: 5%;
+    }
+
     #affichage_commentaires {
         width: 100%;
+    }
+
+    #ligne_choix, #ligne_choix2 {
+        margin-top: 0;
+        width: 90%;
+        left: 5%;
     }
 
     #affichage_commentaires img {
@@ -162,61 +239,41 @@
         left: 2.5%;
     }
 
+    #reponse1, #reponse2, #reponse3, #reponse4 {
+        text-align: center;
+        font-size: 1.25em;
+        height: 130px;
+    }
+
+    #container_reponses {
+        margin-top: 5%
+    }
     .media-body h5 {
 
         font-size: 0.9em;
     }
 
-    h1 {
-
-        font-size: 5em;
-
+    #choix {
+        position: relative;
+        width: 95%;
+        left: 2.5%;
     }
 
-
-    #container_quiz {
-
-        display: block;
-        height: 99vh;
-
-    }
 
     #explications_score {
-
-        height: 60vh;
-
+        height: 54vh;
+        font-size: 14px;
     }
 
-    body {
-        background-repeat: no-repeat;
-        background-size: cover;
-
+    #retry {
+        width: 75%;
+        left: 12.5%;
+        font-size: 12px;
     }
 
-    .styleJeu {
-
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        align-items: center;
-        height: 80vh;
-
-    }
-
-    #reponses > div, #questions {
-
-        padding: 70px;
-        font-size: 3em;
-    }
-
-    #explications_score {
-
-        font-size: 2.5em;
-    }
-
-    #score {
-
-        font-size: 2.5em;
+    #container_scores {
+        width: 90%;
+        left: 5%;
     }
 
 }

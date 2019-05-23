@@ -10,15 +10,6 @@ class users_controler
 {
 
     private $model;
-    private $nom;
-    private $prenom;
-    private $pseudo;
-    private $motdepasse;
-    private $avatar;
-    private $mail;
-    private $rang;
-    private $log_pseudo;
-    private $log_password;
 
 
     /**
@@ -32,10 +23,33 @@ class users_controler
 
     }
 
+
+    public function request_delete() {
+
+          $id = $_GET['idusers'];
+         filter_var($id, FILTER_SANITIZE_NUMBER_INT);
+
+         $this->model->deleteMember($id);
+
+         include "View/vue_admin.php";
+    }
+
+
+      public function page_connect() {
+
+        include "View/vue_connection.php";
+
+       }
     public function check_credentials() {
 
         $nom = $_POST['nom'];
         filter_var($nom, FILTER_SANITIZE_STRING);
+
+        $avatar = $_POST['valeur_image'];
+        filter_var($avatar, FILTER_SANITIZE_URL);
+
+        $mail = $_POST['mail'];
+        filter_var($mail, FILTER_SANITIZE_EMAIL);
 
         $prenom = $_POST['prenom'];
         filter_var($prenom, FILTER_SANITIZE_STRING);
@@ -47,10 +61,10 @@ class users_controler
         filter_var($motdepasse, FILTER_SANITIZE_STRING);
 
         $avatar = $_POST['valeur_image'];
-        filter_var($avatar, FILTER_SANITIZE_STRING);
+        filter_var($avatar, FILTER_SANITIZE_URL);
 
         $mail = $_POST['mail'];
-        filter_var($mail, FILTER_SANITIZE_STRING);
+        filter_var($mail, FILTER_SANITIZE_EMAIL);
 
         $rang = '0';
 
@@ -61,6 +75,7 @@ class users_controler
             $this->model->sign_up($nom, $prenom, $pseudo, $motdepasse, $avatar, $mail, $rang);
 
             include "View/confirmation_inscription.html";
+
         }
 
        else {
@@ -78,7 +93,9 @@ class users_controler
     }
 
     public function check_mail() {
-        $header = 'Admin';
+
+        $header = 'Team try-english';
+
         $mail = $_POST['mail'];
         filter_var($mail,FILTER_SANITIZE_EMAIL);
 
@@ -86,12 +103,19 @@ class users_controler
 
         if ($reponse == 0) {
 
-            echo "mail vide";
+            $message = "Le mail renseigné n'existe pas";
+
+            include "View/vue_reinit.php";
+
 
         } else {
             $token = $this->token();
             $this->model->setToken($mail,$token);
             $this->model->sendmail($token, $mail, $header);
+
+           $message = "Un lien pour redéfinir votre mot de passe a été envoyé a votre boite mail";
+
+            include "View/vue_reinit.php";
         }
     }
 
@@ -108,17 +132,52 @@ class users_controler
         include "View/vue_modification_mdp.php";
 
 
-
     }
+
+    public function verification ($passOne, $passTwo) {
+
+        if ($passOne == $passTwo) {
+
+            return true;
+        }
+
+        else {
+
+            return false;
+        }
+    }
+
+
+
 
     public function get_new_pass(){
 
         $token = $_GET['jeton'];
+        filter_var($token, FILTER_SANITIZE_STRING);
+
         $mdp = $_POST['confirmpass'];
+        filter_var($mdp, FILTER_SANITIZE_STRING);
 
-        $this->model->set_pass($token, $mdp);
+        $verif = $_POST['newpass'];
+        filter_var($mdp, FILTER_SANITIZE_STRING);
 
-        include "View/Page_accueil.php";
+        $result = $this->verification($mdp, $verif);
+
+        if ($result == true) {
+
+            $this->model->set_pass($token, $mdp);
+
+            $message = "La modification du mot de passe a bien été prise en compte. Vous pouvez vous 
+        connecter avec ce nouveau mot de passe";
+
+            include "View/vue_modification_mdp.php";
+
+        } else {
+
+            $message = 'les mots de passe ne correspondent pas';
+            include "View/vue_modification_mdp.php";
+
+        }
     }
 
    public function vue_sign_up() {
@@ -150,18 +209,18 @@ class users_controler
 
     }
 
+    public function page_accueil() {
+
+        include "View/Page_accueil.php";
+
+    }
+
     public function vue_membres() {
-
-        if ($_SESSION['rang'] === NULL and $_SESSION != 0 ) {
-
-            header("Location:View/acces_interdit.html");
-
-        } else {
 
             $utilisateur = $this->model->infos_membres();
 
             include "View/page_membres.php";
-        }
+
     }
 
     public function vue_admin() {

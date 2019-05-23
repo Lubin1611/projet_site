@@ -1,6 +1,8 @@
 var arrQuestions = [];
 var obj_quizz;
 var index;
+var numQuestions;
+var bonnereponse;
 
 
 // Je fais un appel AJAX pour récuperer mes données.
@@ -14,12 +16,13 @@ function ajax_loadDB() {
         if (this.readyState == 4 && this.status == 200) {
 
             obj_quizz = JSON.parse(this.responseText);
-
+            console.log(obj_quizz);
 
             index = Math.floor(Math.random() * obj_quizz.length);
+            numQuestions = 1;
 
-
-            $("#questions").html(obj_quizz[index].intitule + " " + obj_quizz[index].question);
+            $("#intitule").html("Question" + " " + numQuestions);
+            $("#questions").html(obj_quizz[index].question);
 
             $("#reponse1").html(obj_quizz[index].reponse1);
             $("#reponse2").html(obj_quizz[index].reponse2);
@@ -61,7 +64,6 @@ var tableSolution = [];
 var reponseUser = [];
 
 var compteurBon = 0;
-var compteurpasbon = 0;
 var compteurReponse = 0;
 
 
@@ -82,18 +84,17 @@ function add_score() {
 
     };
 
-    xhttp.open("GET", "index.php?controler=ajax&action=addScore&score=" + compteurBon, true);
+    xhttp.open("GET", "index.php?controler=scores&action=envoiQuiz&score=" + compteurBon, true);
 
     xhttp.send();
 
 }
 
 
-
 $("#reponse1, #reponse2, #reponse3, #reponse4").on("click", function () {
 
     compteurReponse++;
-
+    numQuestions++;
     //verification de la réponse
 
     if (this.id == obj_quizz[index].bonnereponse) {
@@ -118,10 +119,10 @@ $("#reponse1, #reponse2, #reponse3, #reponse4").on("click", function () {
 
         add_score();
 
-        document.getElementById("container_quiz").style.display = "none";
-        document.getElementById("container_scores").style.display = "block";
+        document.getElementById('container_quiz').style.display = "none";
+        document.getElementById('container_scores').style.display = "block";
         document.getElementById("score").innerHTML = "Vous avez un score de : " + compteurBon + " / 10";
-        document.getElementById("score_jeuquizz").value = compteurBon;
+
 
         for (var j = 0; j < reponseUser.length; j++) {
 
@@ -139,7 +140,8 @@ $("#reponse1, #reponse2, #reponse3, #reponse4").on("click", function () {
 
     index = Math.floor(Math.random() * obj_quizz.length);
 
-    $("#questions").html(obj_quizz[index].intitule + " " + obj_quizz[index].question);
+    $("#intitule").html("Question" + " " + numQuestions);
+    $("#questions").html(obj_quizz[index].question);
 
     $("#reponse1").html(obj_quizz[index].reponse1);
     $("#reponse2").html(obj_quizz[index].reponse2);

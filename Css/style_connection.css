@@ -1,0 +1,26 @@
+.container_connection {
+
+    position: relative;
+    top: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+
+#form_connection {
+    width: 600px;
+    text-align: center;
+}
+
+#form_connection form {
+    position: relative;
+    margin-top: 10%;
+    left: 13%;
+}
+
+#form_connection input {
+
+    margin-bottom: 5%;
+
+}

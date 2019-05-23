@@ -1,7 +1,4 @@
-body {
 
-
-}
 
 .prez {
     font-weight: 300;
@@ -10,13 +7,13 @@ body {
 #dim {
     display: none;
     position: relative;
-    top: 5%;
     width: 100%;
     height: 80%;
+    top: 5%;
 }
 
 #container_questions {
-
+    display: none;
     width: 100%;
    height: 100%;
 
@@ -95,16 +92,27 @@ h1 {
 
 #note_serie {
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     left: 35%;
     width: 13vw;
     height: 13vw;
     border: 3px black solid;
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.5);
-    color: black;
+    background-color: #516d88;
+    color: white;
 }
 
-
+#note_serie:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.10);
+}
 #highScore {
 
     position: relative;
@@ -112,11 +120,21 @@ h1 {
     left: 78%;
     border: 3px black solid;
     text-align: center;
-    color: black;
+    color: white;
     width: 13vw;
     height: 13vw;
+    background-color: #516d88;
 }
 
+#highScore:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.10);
+}
 #commenter {
     position: relative;
     top: 20%;
@@ -211,27 +229,28 @@ h1 {
     }
 
     #dim {
-        top: 0;
-        display: flex;
-        align-items: center;
+    height: 100%;
+
     }
 
+
     #container_questions {
-        height: 70%;
+        height: 100%;
         top: 5%;
     }
 
     #box_questions {
-        top: 0;
+        top: 5%;
         display: flex;
         flex-wrap: wrap-reverse;
         height: 20%;
+        margin-bottom: 10%;
     }
 
     #note_serie {
         left: 5%;
         display: block;
-        height: 50%;
+        height: 75%;
         width: 90%;
         border-width: 1px;
     }
@@ -239,7 +258,7 @@ h1 {
     #questions {
         left: 15%;
         min-width: 70%;
-        height: 50%;
+        height: 70%;
         border-width: 1px;
         top: 10%;
         font-size: 3vw;
@@ -259,7 +278,7 @@ h1 {
         top: 10%;
         left: 5%;
         width: 90%;
-        height: 10%;
+        height: 20%;
         border-width: 1px;
     }
 

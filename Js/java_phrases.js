@@ -75,7 +75,7 @@ $("#jeuHtml, #jeuCss, #jeuJs, #jeuPhp").on("click", function () {
 
                 console.log(bonneReponse);
                 score = bonneReponse;
-                matiere = "HTML";
+                matiere = "CSS";
 
                 ajax_send_scores(matiere, score);
 
@@ -114,7 +114,7 @@ $("#jeuHtml, #jeuCss, #jeuJs, #jeuPhp").on("click", function () {
 
                 console.log(bonneReponse);
                 score = bonneReponse;
-                matiere = "HTML";
+                matiere = "JS";
 
                 ajax_send_scores(matiere, score);
 
@@ -153,7 +153,7 @@ $("#jeuHtml, #jeuCss, #jeuJs, #jeuPhp").on("click", function () {
 
                 console.log(bonneReponse);
                 score = bonneReponse;
-                matiere = "HTML";
+                matiere = "PHP";
 
                 ajax_send_scores(matiere, score);
 
@@ -180,7 +180,8 @@ function ajax_loadDB_html() {
             aleaTab =  Math.floor(Math.random() * obj_mots.length);
 
 
-            game_of_words(); // on déclenche le jeu une fois que le tableau de mots est chargé, car ici on se place dans la partie reponse de notre appel ajax
+            game_of_words(); // on déclenche le jeu une fois que le tableau de mots est chargé,
+            // car ici on se place dans la partie reponse de notre appel ajax
 
         }
     };
@@ -207,7 +208,7 @@ function ajax_send_scores(matiere, score) {
         }
     };
 
-    xhttp.open("GET", "index.php?controler=ajax&action=scoresPhrases&score=" + score + "&matiere=" + matiere, true);
+    xhttp.open("GET", "index.php?controler=scores&action=envoi&score=" + score + "&matiere=" + matiere, true);
 
     xhttp.send();
 
@@ -216,32 +217,21 @@ function ajax_send_scores(matiere, score) {
 
 
 function reset() {
-
-
     $("#recupmots > div").remove();
     $("#aleaphrase > span").remove();
     $("#message").empty();
 
     document.getElementById("verifier").disabled = false;
-    document.getElementById("Restart").style.display = "none";
-    document.getElementById("Retry").style.display = "block";
-
 }
 
-
-
-
 function game_of_words() {
+
+    var compteurmots = -1;
 
     document.getElementById("menuJeu").style.display = "none";
     document.getElementById("containerJeu").style.display = "block";
 
-    var boxquestions = document.getElementById("Question");
-    var conteneurP = document.getElementById("aleaphrase");
-    var conteneurRecup = document.getElementById("recupmots");
-    var compteurmots = -1;
-
-    boxquestions.innerHTML = obj_mots[aleaTab].question;
+    document.getElementById("Question").innerHTML = obj_mots[aleaTab].question;
 
     // algorythme qui melange les lettres du mot.
     function shuffelWord(word) {
@@ -261,7 +251,7 @@ function game_of_words() {
         tirets.innerHTML = shuffledmot[j];
         tirets.id = j;
         tirets.onclick = jeu;
-        conteneurP.appendChild(tirets);
+        document.getElementById("aleaphrase").appendChild(tirets);
     }
 
     for (var q = 0; q < shuffledmot.length; q++) { // attribue chaque div pour chaque lettre du mot gÃ©nÃ©rÃ©
@@ -274,7 +264,7 @@ function game_of_words() {
         blocs.style.border = "2px solid orange";
         blocs.style.width = "100px";
         blocs.style.borderRadius = "10px";
-        conteneurRecup.appendChild(blocs);
+        document.getElementById("recupmots").appendChild(blocs);
     }
 
     function jeu() {
@@ -320,7 +310,7 @@ document.getElementById('verifier').addEventListener('click', function () {
 
             document.getElementById("message").innerHTML = "Bravo, vous avez su assembler les mots dans le bon ordre et trouver la phrase !";
             document.getElementById("verifier").disabled = true;
-            document.getElementById("Restart").style.display = "none";
+
 
             console.log("compteur de bonnes réponses :" + bonneReponse);
         }
@@ -329,15 +319,14 @@ document.getElementById('verifier').addEventListener('click', function () {
 
             document.getElementById("message").innerHTML = "Certains mots sont mal placés, ce sont ceux en rouge. Ceux en vert sont bien placés.";
             document.getElementById("verifier").disabled = true;
-            document.getElementById("Retry").style.display = "none";
-            document.getElementById("Restart").style.display = "block";
+
 
         }
     }
 
 });
 
-document.getElementById('Retry').addEventListener('click', function () {
+/*document.getElementById('Retry').addEventListener('click', function () {
 
     compteurbonsMots = 0;
     compteurmots = -1;
@@ -353,7 +342,8 @@ document.getElementById('Retry').addEventListener('click', function () {
 
     }
 });
-
+*/
+/*
 document.getElementById('Restart').addEventListener('click', function () {
 
     compteurbonsMots = 0;
@@ -380,7 +370,7 @@ document.getElementById('Restart').addEventListener('click', function () {
 
     }
 });
-
+*/
 function recommencer() {
 
  window.location.reload();

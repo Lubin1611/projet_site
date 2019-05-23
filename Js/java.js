@@ -9,5 +9,4 @@ $('#btn_menu').on('click', function () {
     $('.menu').addClass('side');
     $('.menu').removeClass('retire');
 
-
 });

@@ -5,27 +5,6 @@ html, body {
     padding: 0;
 }
 
-table {
-
-    border: 1px solid black;
-    margin-top: 300px;
-    margin-left: 150px;
-    width: 80%;
-    height: 40%;
-}
-
-th, td {
-
-    text-align: center;
-    padding: 1%;
-    margin: 2%;
-
-}
-
-table img {
-    width: 25%;
-    height: 25%;
-}
 
 form {
     width: 70%;
@@ -37,25 +16,27 @@ header h1 {
     text-align: center;
 }
 
+
+
 #btn_submit {
-   width: 30%;
+
     text-align: center;
 }
 
 
 
 .container_page {
-    width: 100%;
-    height: 100%;
+     width: 100%;
+    height: 75%;
 }
 
 .containerActu {
 
-    position: absolute;
+    position: relative;
     width: 60%;
     height: 60vh;
     left: 20%;
-    top: 220px;
+    top: 10%;
     border-radius: 10px;
     box-shadow: 5px 5px 5px darkslategray;
 
@@ -78,7 +59,7 @@ h2 {
     border: 5px ridge black;
     top: 2%;
     width: 80%;
-    height: 10%;
+    height: 15%;
     margin-left: 10%;
     padding: 2% 2% 2% 2%;
 }
@@ -91,7 +72,7 @@ h2 {
     border: 5px ridge black;
     margin-top: 5%;
     width: 80%;
-    height: 10%;
+    height: 15%;
     margin-left: 10%;
     padding: 2% 2% 2% 2%;
 
@@ -131,9 +112,6 @@ h2 {
 
 }
 
-img {
-    width: 70%;
-}
 
 header {
     width: 100%;
@@ -151,6 +129,7 @@ header {
     flex-direction: row;
     margin-left: -200px;
     position: fixed;
+    top: 0;
     width: 200px;
     z-index: 100;
     height: 100%;
@@ -215,33 +194,67 @@ i {
 
 #titre_site {
     width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-#first-level {
-    width: 100%;
-    display: inherit;
-    flex-direction: row;
+#box_titre {
 
-}
-
-
-a {
-    text-decoration: none;
-    color: black;
-}
-
-
-#btn_submit > a {
-
-    color: white;
-    font-size: 16px;
-}
-
-
-#connection {
-    font-size: 14px;
     display: flex;
     flex-direction: row;
+    width: 91%;
+}
+
+#connection {
+    display: block;
+    width: 25%;
+    text-align: center;
+}
+
+#redir_connect {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35px;
+    width: 80%;
+    left: 10%;
+    top: 7%;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+#redir_connect a {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2%;
+    color: black;
+    text-decoration: none;
+}
+
+#redir_signup {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4%;
+    height: 35px;
+    width: 80%;
+    left: 10%;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+
+#redir_signup a {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2%;
+    color: black;
+    text-decoration: none;
 }
 
 
@@ -257,39 +270,53 @@ a {
 
 @media (max-width: 1388px) {
 
-    #connection{
-        display: block;
-        width:100%;
-        text-align: center;
-    }
 
-    #btn_submit {
-
-        display: block;
-        width: 100%;
-        text-align: center;
-    }
-
-    form {
-
-        width: 100%;
-    }
 
     header h1 {
         font-size: 18px;
     }
 
-    header input {
-        font-size: 12px;
-        line-height: 12px;
+
+}
+
+@media (max-width: 812px) {
+
+    #box_titre {
+        flex-wrap: wrap;
     }
 
-    header label {
-        font-size: 12px;
+    #connection {
+        width: 90%;
+        position: relative;
+        left: 5%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+
     }
 
-    #btn_submit a{
-        font-size: 12px;
+    #redir_connect {
+        top: 0;
+        width: 40%;
+        line-height: 15px;
     }
 
+    #redir_signup {
+        margin-top: 0;
+        width: 40%;
+        line-height: 15px;
+    }
+
+    #redir_signup a {
+        padding: 0;
+    }
+
+    #redir_connect a {
+        padding: 0;
+    }
+
+    .containerActu {
+        width: 80%;
+        left: 10%;
+    }
 }
