@@ -16,7 +16,7 @@ class Requetes_Ajax
     public function __construct()
     {
         try {
-            $this->bdd = new PDO('mysql:host=tryenglixplub160.mysql.db;dbname=tryenglixplub160;charset=utf8', 'tryenglixplub160', 'Tob16cot11',
+            $this->bdd = new PDO('mysql:host=localhost;dbname=projet_site;charset=utf8', 'root', '',
                 array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
 
 
