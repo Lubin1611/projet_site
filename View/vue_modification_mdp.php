@@ -13,16 +13,49 @@ $token = $_GET['token'];
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title> <script src="lib/jquery.js"></script>
+    <title>Votre site de révisions</title>
+    <script src="lib/jquery.js"></script>
     <link rel="stylesheet" href="bootstrap/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="Css/stylr.css">
+    <link rel="stylesheet" type="text/css" href="Css/style_newpass.css">
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
 </head>
 <body>
 
+<header>
+    <div id='container_btn'>
+        <div id="btn_menu">Menu</div>
+    </div>
+    <div id='box_titre'>
+        <div id='titre_site'>
+            <h1>Page d'accueil</h1>
+        </div>
+        <div id="connection">
+            <?php
+            if (isset($_SESSION['rang']) and $_SESSION['rang'] == 0 || $_SESSION['rang'] == 1) {
+                ?>
+
+                <p>Bienvenue, <?php echo $_SESSION['nom'];
+                    echo $_SESSION['prenom']; ?>
+                </p>
+                <a href="index.php?controler=users&action=deconnection">Se déconnecter</a>
+                <?php
+            } else {
+            ?>
+            <div id='redir_connect'>
+                <a href="index.php?controler=users&action=vueConnection">Connectez-vous</a>
+            </div>
+            <div id="redir_signup">
+                <a href="index.php?controler=users&action=vueInscription">Inscrivez-vous ici</a>
+            </div>
+        </div>
+        <?php
+        }
+        ?>
+    </div>
+</header>
 
 <div class="container_page">
-
     <div class="menu">
         <div id="sidebar">
             <ul>
@@ -56,67 +89,23 @@ $token = $_GET['token'];
         <div><a id="btn">X</a></div>
     </div>
 
+    <div class="container_redefinition">
 
-    <header class="d-flex">
-        <div id="first-level">
-            <div id='container_btn'>
-                <div id="btn_menu">Menu</div>
-            </div>
-            <div id='titre_site'>
-                <h1>Page d'accueil</h1>
-                <div id="connection">
+        <div id='redefinition'>
+            <span><?php if (isset($message)) echo $message; ?></span>
+            <h1>Nouvelle demande de mot de passe</h1>
 
-                    <?php
-                    if (isset($_SESSION['rang']) and $_SESSION['rang'] == 0 || $_SESSION['rang'] == 1) {
-                        ?>
+            <form action="index.php?controler=users&action=newmdp&jeton=<?php echo $token ?>" method="post">
 
-                        <p>Bienvenue, <?php echo $_SESSION['nom'];
-                            echo $_SESSION['prenom'];?>
-                        </p>
-                        <p>Id de session : <?php echo $_SESSION['id']; ?></p>
-                        <p>vous pouvez désormais accéder à votre espace personnel a partir du menu</p>
-                        <a href="index.php?controler=users&action=deconnection">Se déconnecter</a>
+                <label>Indiquez un nouveau mot de passe : </label><input type="password" name="newpass" id='newpass'>
+                <label>Confirmez votre mot de passe : </label><input type="password" name="confirmpass"
+                                                                     id='confirmpass'>
+                <input type="submit" value="envoyez" id = 'verification'>
+            </form>
 
-                        <?php
-                    } else {
-                    ?>
-                    <form action="index.php?controler=users&action=connection" method="post">
-                        <label>Votre pseudo : </label>
-                        <input type="text" name="logPseudo" id='pseudo'>
-
-                        <label>Votre mot de passe : </label>
-                        <input type="password" name="logMdp" id='password'>
-                        <input type="submit" name="Envoyez" id='envoyez'>
-                    </form>
-
-                    <h3>Mot de passe oublié ? </h3>
-                    <a href = "index.php?controler=users&action=reinit">Cliquez ici</a>
-                    <div id="btn_submit">
-                        <a href="index.php?controler=users&action=vueInscription">Inscrivez-vous ici</a>
-                    </div>
-                </div>
-
-                <?php
-                }
-                ?>
-
-            </div>
         </div>
-    </header>
+    </div>
 </div>
-
-
-<h1>Nouvelle demande de mot de passe</h1>
-
-
-<form action="index.php?controler=users&action=newmdp&jeton=<?php echo $token ?>" method="post">
-
-    <label>Indiquez un nouveau mot de passe : </label><input type="password" name="newpass" id = 'newpass'>
-    <label>Confirmez votre mot de passe : </label><input type="password" name="confirmpass" id = 'confirmpass'>
-    <input type="submit" value="envoyez">
-</form>
-
-
 
 
     <script src="Js/java.js"></script>

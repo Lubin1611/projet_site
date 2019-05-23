@@ -6,12 +6,16 @@
  * Time: 16:08
  */
 
-
+/*
+ * Demarre une session pour toutes les pages appelées.
+ */
 session_start();
-//if (session_id() == "") session_start();
 
-
-if (isset($_GET['controler']) and preg_match("#^[a-zA-Z0-9]+$#", $_GET['controler']) ) {   // isset GET['controler'] verifie si une valeur est indiquée en parametre dans l'url
+/*
+ * Isset() vérifie qu'une valeur est définie, preg_match permet de filtrer des caractères
+ * non désirés dans l'url.
+ */
+if (isset($_GET['controler']) and preg_match("#^[a-zA-Z0-9]+$#", $_GET['controler']) ) {
 
     switch ($_GET['controler']) {
 
@@ -28,6 +32,11 @@ if (isset($_GET['controler']) and preg_match("#^[a-zA-Z0-9]+$#", $_GET['controle
                     case "vueInscription":
                         $to_sign_up = new users_controler();
                         $to_sign_up->vue_sign_up();
+                        break;
+
+                    case "vueConnection":
+                        $to_connect = new users_controler();
+                        $to_connect->page_connect();
                         break;
 
                     case "inscription":
@@ -77,6 +86,11 @@ if (isset($_GET['controler']) and preg_match("#^[a-zA-Z0-9]+$#", $_GET['controle
                     case "newmdp":
                         $modification = new users_controler();
                         $modification->get_new_pass();
+                        break;
+
+                    case "suppr":
+                        $supression = new users_controler();
+                        $supression->request_delete();
                 }
 
             } else {
@@ -94,56 +108,56 @@ if (isset($_GET['controler']) and preg_match("#^[a-zA-Z0-9]+$#", $_GET['controle
             if (isset($_GET['action']) and preg_match("#^[a-zA-Z0-9]+$#", $_GET['action'])) {
 
 
-                require "Model/Commentaires_jeux.php";
-                require "Controler/Jeux.php";
+                require "Model/Commentaires.php";
+                require "Controler/Commentaire_controler.php";
 
                 switch ($_GET['action']) {
 
                     case "entrainement":
-                        $training = new Jeux();
+                        $training = new Commentaire_controler();
                         $training->jeu1();
                         break;
 
                     case "jeuMots":
-                        $mots = new Jeux();
+                        $mots = new Commentaire_controler();
                         $mots->jeu2();
                         break;
 
                     case "quizz":
-                        $quizz = new Jeux();
+                        $quizz = new Commentaire_controler();
                         $quizz->jeu3();
                         break;
 
                     case "comsWords":
-                        $coms_jeu1 = new Jeux();
+                        $coms_jeu1 = new Commentaire_controler();
                         $coms_jeu1->write_com2();
                         break;
 
                     case "comsRevisions":
-                        $com_jeu2 = new Jeux();
+                        $com_jeu2 = new Commentaire_controler();
                         $com_jeu2->write_coms();
                         break;
 
                     case "comsQuizz":
-                        $com_jeu3 = new Jeux();
+                        $com_jeu3 = new Commentaire_controler();
                         $com_jeu3->write_com3();
                         break;
 
                     case "editCom2":
-                        $edit_com_memo = new jeux();
+                        $edit_com_memo = new Commentaire_controler();
                         $edit_com_memo->get_com2();
                         break;
                     case "setCom2":
-                        $set_com_memo = new jeux();
+                        $set_com_memo = new Commentaire_controler();
                         $set_com_memo->set_com2();
                         break;
                     case "supprCom2":
-                        $del_com_memo = new jeux();
+                        $del_com_memo = new Commentaire_controler();
                         $del_com_memo->to_delete_com2();
                         break;
 
                     case "confirmSuppr2":
-                        $confirm_suppr = new jeux();
+                        $confirm_suppr = new Commentaire_controler();
                         $confirm_suppr->delete_com2();
 
                 }
@@ -151,7 +165,7 @@ if (isset($_GET['controler']) and preg_match("#^[a-zA-Z0-9]+$#", $_GET['controle
             } else {
 
 
-                echo "Qu'est ce qu'il faut dire dans vous n'avez pas les droits ?";
+                echo "Vous n'avez pas les droits d'accès";
 
             }
             break;
@@ -171,22 +185,32 @@ if (isset($_GET['controler']) and preg_match("#^[a-zA-Z0-9]+$#", $_GET['controle
                         $send->send_scores();
                         break;
 
-                    case "envoi_quizz":
+                    case "envoiQuiz":
                         $send_quizz = new scores_controler();
-                        $send_quizz->resultat_quizz();
+                        $send_quizz->send_quiz_score();
                         break;
 
                     case "envoiReponses":
                         $send_reponses = new scores_controler();
                         $send_reponses->resultat_reponses();
+                        break;
 
+                    case "getClassement":
+                        $classement = new scores_controler();
+                        $classement->request_classement();
+                        break;
+
+                    case "sendScore":
+                        $high_score = new scores_controler();
+                        $high_score->send_highscore();
+                        break;
                 }
 
 
             } else {
 
 
-                echo "eh non ca ne marchera pas";
+                echo "Vous n'avez pas les droits d'accès";
 
             }
             break;
@@ -196,7 +220,7 @@ if (isset($_GET['controler']) and preg_match("#^[a-zA-Z0-9]+$#", $_GET['controle
 
             if (isset($_GET['action']) and preg_match("#^[a-zA-Z0-9]+$#", $_GET['action'])) {
 
-                require "Model/Ajax.php";
+                require "Model/Requetes_Ajax.php";
                 require "Controler/controler_ajax.php";
 
                 switch ($_GET['action']) {
@@ -216,15 +240,6 @@ if (isset($_GET['controler']) and preg_match("#^[a-zA-Z0-9]+$#", $_GET['controle
                         $get_reponses->request_questions();
                         break;
 
-                    case "sendScore":
-                        $high_score = new controler_ajax();
-                        $high_score->send_highscore();
-                        break;
-
-                    case "getClassement":
-                        $classement = new controler_ajax();
-                        $classement->request_classement();
-                        break;
 
                     case "getQuestions":
                         $request_questions = new controler_ajax();
@@ -234,16 +249,6 @@ if (isset($_GET['controler']) and preg_match("#^[a-zA-Z0-9]+$#", $_GET['controle
                     case "getQuizz":
                         $request_quizz = new controler_ajax();
                         $request_quizz->get_content2();
-                        break;
-
-                    case "addScore":
-                        $add_score = new controler_ajax();
-                        $add_score->send_quizz_score();
-                        break;
-
-                    case "scoresPhrases":
-                        $save_score = new controler_ajax();
-                        $save_score->submit_scores();
                         break;
 
                     case "Data1":
@@ -275,7 +280,7 @@ if (isset($_GET['controler']) and preg_match("#^[a-zA-Z0-9]+$#", $_GET['controle
 
             } else {
 
-                echo "inutile de persister ! ";
+                echo "Vous n'avez pas les droits d'accès";
             }
 
     }
@@ -283,11 +288,10 @@ if (isset($_GET['controler']) and preg_match("#^[a-zA-Z0-9]+$#", $_GET['controle
 } elseif (isset($_GET['controler']) == "") {
 
     //Page d'index
+    require "Model/Users.php";
+    require "Controler/users_controler.php";
 
-    require_once "Controler/controler_con.php";
-    include "Model/connection_sql.php";
-
-    $ctrl = new controler_con();
+    $ctrl = new users_controler();
     $ctrl->page_accueil();
 
 } else {

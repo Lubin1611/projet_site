@@ -2,10 +2,9 @@
 /**
  * Created by PhpStorm.
  * User: Lubin
- * Date: 10/03/2019
- * Time: 14:37
+ * Date: 17/05/2019
+ * Time: 16:37
  */
-
 ?>
 
 <!DOCTYPE html>
@@ -13,12 +12,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Votre site de révisions</title>
-    <link rel="stylesheet" href="bootstrap/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="Css/stylr.css">
-    <link rel="stylesheet" type="text/css" href="Css/style_inscription.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <script src="lib/jquery.js"></script>
+    <link rel="stylesheet" href="bootstrap/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="Css/style_connection.css">
+    <link rel="stylesheet" type="text/css" href="Css/stylr.css">
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
 </head>
 <body>
@@ -27,7 +24,7 @@
     <div id='container_btn'>
         <div id="btn_menu">Menu</div>
     </div>
-    <div id = 'box_titre'>
+    <div id='box_titre'>
         <div id='titre_site'>
             <h1>Page d'accueil</h1>
         </div>
@@ -57,6 +54,7 @@
 </header>
 
 <div class="container_page">
+
     <div class="menu">
         <div id="sidebar">
             <ul>
@@ -90,35 +88,26 @@
         <div><a id="btn">X</a></div>
     </div>
 
-    <div class="container_inscription">
-        <div id="inscription">
+    <div class="container_connection">
+        <div id='form_connection'>
+            <h1>Connectez-vous</h1>
+            <form action="index.php?controler=users&action=connection" method="post">
+                <label>Votre pseudo : </label>
+                <input type="text" name="logPseudo" id='pseudo'>
 
-            <?php if (isset($message)) echo $message; ?>
-
-            <h1>Inscrivez - vous</h1>
-
-
-            <form action="index.php?controler=users&action=inscription" method="post">
-                <label>Votre Nom : </label><input type="text" name="nom"><br>
-                <label>Votre Prenom : </label><input type="text" name="prenom"><br>
-                <label>Votre Pseudo : </label><input type="text" name="pseudo"><br>
-                <label>Votre mot de passe : </label><input type="password" name="mdp"><br>
-                <span>Choisissez votre avatar : </span>
-                <div id="avatar">
-                    <i class="fas fa-arrow-left" id='prev'></i><img id="choix_user" alt='choix_avatar'><i
-                            class="fas fa-arrow-right" id="next" name="avatar"></i>
-                    <input type="hidden" name="valeur_image" id="src_image">
-                </div>
-                <label>Votre e-mail : </label><input type="email" name="mail"><br>
-                <input type="submit" value="Inscrivez-vous">
+                <label>Votre mot de passe : </label>
+                <input type="password" name="logMdp" id='password'>
+                <input type="submit" name="Envoyez" id='envoyez'>
             </form>
+
+            <h3>Mot de passe oublié ? </h3>
+            <a href="index.php?controler=users&action=reinit">Cliquez ici</a>
+
         </div>
     </div>
 </div>
 
 
-
-<script src="Js/js_inscription.js"></script>
-<script src="Js/java.js"></script>
+    <script src="Js/java.js"></script>
 </body>
 </html>
